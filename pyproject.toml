@@ -1,0 +1,75 @@
+[project]
+name = "tfrobot-marketplace"
+version = "0.1.0"
+description = "TFRobot Marketplace - 文档与规范 / Documentation and specifications for the TFRobot marketplace"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "TuringFocus Team", email = "dev@turingfocus.cn"}
+]
+keywords = ["tfrobot", "marketplace", "documentation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Documentation",
+    "Topic :: Software Development :: Documentation",
+]
+
+[project.urls]
+Homepage = "https://github.com/A2C-SMCP/tfrobot-marketplace"
+Documentation = "https://doc.turingfocus.cn/tfrobot-marketplace/"
+"Documentation (GitHub)" = "https://a2c-smcp.github.io/tfrobot-marketplace/"
+Repository = "https://github.com/A2C-SMCP/tfrobot-marketplace"
+
+[project.optional-dependencies]
+docs = [
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.7.0",
+    "mike>=2.1.0",
+    "invoke>=2.2.0",
+    "paramiko>=3.4.0",
+    "tomli>=2.0.0",
+    # 未来多语言支持
+    # "mkdocs-static-i18n>=1.2.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+# 纯文档项目，仅包含 scripts 目录用于部署脚本
+packages = ["scripts"]
+
+# bump-my-version 配置
+[tool.bumpversion]
+current_version = "0.1.0"
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(-(?P<release>rc|alpha|beta)(?P<build>\\d+))?"
+serialize = [
+    "{major}.{minor}.{patch}-{release}{build}",
+    "{major}.{minor}.{patch}"
+]
+commit = true
+tag = true
+tag_name = "v{new_version}"
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
+
+[[tool.bumpversion.files]]
+filename = "mkdocs.yml"
+search = "最新版本：{current_version}"
+replace = "最新版本：{new_version}"
+
+[[tool.bumpversion.files]]
+filename = "docs/index.md"
+search = "当前版本：**{current_version}**"
+replace = "当前版本：**{new_version}**"

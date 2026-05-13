@@ -1,0 +1,98 @@
+# GitHub Pages 部署工作流
+#
+# 触发条件：
+#   - 推送到 main 分支
+#   - 手动触发 (workflow_dispatch)
+#
+# 部署方式：使用 mike 构建多版本文档，部署到 gh-pages 分支
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: '版本号 (留空使用 pyproject.toml 中的版本)'
+        required: false
+        type: string
+      alias:
+        description: '版本别名'
+        required: false
+        default: 'latest'
+        type: string
+
+# 设置 GITHUB_TOKEN 权限
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# 只允许一个并发部署
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 需要完整历史来获取 gh-pages 分支
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
+        run: |
+          uv venv
+          source .venv/bin/activate
+          uv pip install -e ".[docs]"
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Get version from pyproject.toml
+        id: version
+        run: |
+          source .venv/bin/activate
+          VERSION=$(python -c "import tomli; print(tomli.load(open('pyproject.toml', 'rb'))['project']['version'])")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Fetch gh-pages branch
+        run: |
+          git fetch origin gh-pages:gh-pages || echo "gh-pages branch does not exist yet"
+
+      - name: Build and deploy with mike
+        env:
+          # 覆盖 site_url 为 GitHub Pages URL
+          MKDOCS_SITE_URL: https://a2c-smcp.github.io/tfrobot-marketplace/
+        run: |
+          source .venv/bin/activate
+          VERSION="${{ inputs.version || steps.version.outputs.version }}"
+          ALIAS="${{ inputs.alias || 'latest' }}"
+
+          echo "📦 Building docs version: $VERSION (alias: $ALIAS)"
+
+          # 使用 mike 部署（会自动提交到 gh-pages 分支）
+          mike deploy "$VERSION" "$ALIAS" --update-aliases --push
+
+      - name: Set default version
+        run: |
+          source .venv/bin/activate
+          mike set-default latest --push || true

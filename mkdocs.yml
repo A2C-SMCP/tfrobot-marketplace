@@ -1,0 +1,106 @@
+# TFRobot Marketplace - MkDocs 配置
+# 启用严格模式，在构建时发现死链和错误
+strict: true
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+site_name: TFRobot Marketplace
+site_description: TFRobot Marketplace - 文档与规范
+site_url: https://doc.turingfocus.cn/tfrobot-marketplace/
+repo_url: https://github.com/A2C-SMCP/tfrobot-marketplace
+repo_name: tfrobot-marketplace
+
+docs_dir: docs
+
+theme:
+  name: material
+  language: zh
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb-outline
+        name: "切换到深色模式"
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/lightbulb
+        name: "切换到浅色模式"
+  features:
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
+    - announce.dismiss
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search:
+      lang: zh
+  - mike:
+      alias_type: symlink
+      version_selector: true
+      canonical_version: latest
+
+extra:
+  version:
+    provider: mike
+    alias: true
+  announce: "TFRobot Marketplace 文档 - 最新版本：0.1.0"
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/A2C-SMCP
+
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+      title: 页面目录
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      pygments_lang_class: true
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.extra
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - abbr
+
+nav:
+  - 首页: index.md
+  - 附录:
+      - 常见问题: appendix/faq.md
