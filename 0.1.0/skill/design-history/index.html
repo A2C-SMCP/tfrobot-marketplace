@@ -1061,7 +1061,7 @@
 <th>子任务</th>
 <th>Jira</th>
 <th>文档</th>
-<th>核心结论</th>
+<th>v1 最终采纳</th>
 </tr>
 </thead>
 <tbody>
@@ -1069,25 +1069,25 @@
 <td>A1</td>
 <td><a href="https://turingfocus.atlassian.net/browse/TFRS-183">TFRS-183</a></td>
 <td><a href="frontmatter-fields/">frontmatter 字段表</a></td>
-<td>对齐 Agent Skills 开放标准 + 1 独有字段 <code>runtime</code>；不采纳 Claude Code 扩展字段</td>
+<td>✅ 完全对齐 Agent Skills 开放标准；不采纳 Claude Code 扩展字段</td>
 </tr>
 <tr>
 <td>A2</td>
 <td><a href="https://turingfocus.atlassian.net/browse/TFRS-184">TFRS-184</a></td>
 <td><a href="skillenv/">.skillenv 设计</a></td>
-<td>标准 dotenv 双语义；ManagedLLM keystore 三层强制隔离</td>
+<td>✅ 标准 dotenv 双语义；用户 vault 三层强制隔离</td>
 </tr>
 <tr>
 <td>A3</td>
 <td><a href="https://turingfocus.atlassian.net/browse/TFRS-185">TFRS-185</a></td>
 <td><a href="runtime-enum/">runtime 枚举</a></td>
-<td>双引擎并存（CubeSandbox / E2B）+ 引擎前缀语法 + BYO Dockerfile</td>
+<td>❌ <strong>v1 撤回</strong>——A3 曾设计双引擎枚举 + BYO Dockerfile；v1 最终决定执行后端归 Computer 侧 A2C-SMCP 表达，<code>runtime</code> 字段不入协议。详见 <a href="../protocol-v1/#附录-a设计史">协议 v1 附录 A</a>。</td>
 </tr>
 <tr>
 <td>A4</td>
 <td><a href="https://turingfocus.atlassian.net/browse/TFRS-186">TFRS-186</a></td>
 <td><a href="directory-placeholders/">目录与占位符</a></td>
-<td><code>TFROBOT_*</code> 私有命名空间 + 纯函数沙箱模型 + <code>skills</code> 工具契约</td>
+<td>✅ <code>TFROBOT_*</code> 私有命名空间 + <code>skills</code> 工具契约 + 3 条安全原则</td>
 </tr>
 </tbody>
 </table>

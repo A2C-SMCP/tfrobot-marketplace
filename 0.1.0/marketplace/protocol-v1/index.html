@@ -872,10 +872,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#02-与-skill-协议-a5-的关系" class="md-nav__link">
+  <a href="#02-与-skill-协议的关系" class="md-nav__link">
     <span class="md-ellipsis">
       
-        0.2 与 SKILL 协议 (A5) 的关系
+        0.2 与 SKILL 协议的关系
       
     </span>
   </a>
@@ -1243,10 +1243,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-skill-层指向-a5" class="md-nav__link">
+  <a href="#7-skill-层指向-skill-协议" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. SKILL 层（指向 A5）
+        7. SKILL 层（指向 SKILL 协议）
       
     </span>
   </a>
@@ -1309,10 +1309,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#附录-a与-a5-协议规范的边界" class="md-nav__link">
+  <a href="#附录-a与-skill-协议规范的边界" class="md-nav__link">
     <span class="md-ellipsis">
       
-        附录 A：与 A5 协议规范的边界
+        附录 A：与 SKILL 协议规范的边界
       
     </span>
   </a>
@@ -1504,10 +1504,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#02-与-skill-协议-a5-的关系" class="md-nav__link">
+  <a href="#02-与-skill-协议的关系" class="md-nav__link">
     <span class="md-ellipsis">
       
-        0.2 与 SKILL 协议 (A5) 的关系
+        0.2 与 SKILL 协议的关系
       
     </span>
   </a>
@@ -1875,10 +1875,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-skill-层指向-a5" class="md-nav__link">
+  <a href="#7-skill-层指向-skill-协议" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7. SKILL 层（指向 A5）
+        7. SKILL 层（指向 SKILL 协议）
       
     </span>
   </a>
@@ -1941,10 +1941,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#附录-a与-a5-协议规范的边界" class="md-nav__link">
+  <a href="#附录-a与-skill-协议规范的边界" class="md-nav__link">
     <span class="md-ellipsis">
       
-        附录 A：与 A5 协议规范的边界
+        附录 A：与 SKILL 协议规范的边界
       
     </span>
   </a>
@@ -2022,7 +2022,7 @@
 <h1 id="tfrobotserver-marketplace-v1-规范">TFRobotServer Marketplace v1 规范<a class="headerlink" href="#tfrobotserver-marketplace-v1-规范" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>Jira：D1 <a href="https://turingfocus.atlassian.net/browse/TFRS-202">TFRS-202</a> / Module D Story <a href="https://turingfocus.atlassian.net/browse/TFRS-201">TFRS-201</a> / Epic <a href="https://turingfocus.atlassian.net/browse/TFRS-179">TFRS-179</a>
-范围：SKILL 包的 <strong>Git 仓库分发约定（数据结构与 JSON Schema）</strong>；与单个 SKILL 文件夹的内容契约（<a href="../../skill/protocol-v1/">A5 协议规范</a>）正交
+范围：SKILL 包的 <strong>Git 仓库分发约定（数据结构与 JSON Schema）</strong>；与单个 SKILL 文件夹的内容契约（<a href="../../skill/protocol-v1/">SKILL 协议 v1</a>）正交
 设计参考：<a href="https://code.claude.com/docs/en/plugin-marketplaces">Claude Code Plugin Marketplaces 官方规范</a> —— 字段定义与 source 类型枚举借鉴其设计，<strong>但 manifest 路径与命名空间独立</strong>（<code>.tfrobot-plugin/</code> 而非 <code>.claude-plugin/</code>）
 读者：① SKILL / Plugin 作者（通过 Marketplace 发布场景）② Module D 实施工程师</p>
 </blockquote>
@@ -2033,21 +2033,21 @@
 <ul>
 <li><strong>Marketplace</strong> = 一个 Git 仓库；<strong>catalog 单位</strong>；manifest 为 <code>.tfrobot-plugin/marketplace.json</code></li>
 <li><strong>Plugin</strong> = 一组相关能力的包装；<strong>版本与依赖单位</strong>；manifest 为 <code>.tfrobot-plugin/plugin.json</code></li>
-<li><strong>SKILL</strong> = 单个能力包；<strong>内容单位</strong>；由 <a href="../../skill/protocol-v1/">A5 协议规范</a> 定义</li>
+<li><strong>SKILL</strong> = 单个能力包；<strong>内容单位</strong>；由 <a href="../../skill/protocol-v1/">SKILL 协议 v1</a> 定义</li>
 </ul>
-<h3 id="02-与-skill-协议-a5-的关系">0.2 与 SKILL 协议 (A5) 的关系<a class="headerlink" href="#02-与-skill-协议-a5-的关系" title="Permanent link">&para;</a></h3>
+<h3 id="02-与-skill-协议的关系">0.2 与 SKILL 协议的关系<a class="headerlink" href="#02-与-skill-协议的关系" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
 <th>维度</th>
-<th>A5（SKILL 协议）</th>
+<th><a href="../../skill/protocol-v1/">SKILL 协议 v1</a></th>
 <th>本规范（Marketplace）</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>范围</td>
-<td>SKILL 文件夹的内容契约（frontmatter / 目录 / runtime / 占位符 / <code>skills</code> 工具等）</td>
+<td>SKILL 文件夹的内容契约（frontmatter / 目录 / 占位符 / <code>skills</code> 工具等）</td>
 <td>Git 仓库的目录约定 + JSON Schema</td>
 </tr>
 <tr>
@@ -2057,12 +2057,12 @@
 </tr>
 <tr>
 <td>平台关心</td>
-<td>LLM / Sandbox 加载 SKILL 时遵守</td>
-<td>Module D 从 Git 仓库拉取 plugin / SKILL 时遵守</td>
+<td>加载方 / Computer 侧消费 SKILL 时遵守</td>
+<td>Marketplace 实施方从 Git 仓库拉取 plugin / SKILL 时遵守</td>
 </tr>
 <tr>
 <td>正交性</td>
-<td>两者<strong>完全正交</strong> —— 同一 SKILL 文件夹既可被 Portal 直接上传也可被 Marketplace 拉取，加载语义一致</td>
+<td>两者<strong>完全正交</strong> —— 同一 SKILL 文件夹无论从哪种渠道分发，加载语义一致</td>
 <td></td>
 </tr>
 </tbody>
@@ -2071,12 +2071,12 @@
 <p><strong>TFRobotServer Marketplace 是独立标准</strong>，借鉴 Claude Code 的字段设计与 source 类型枚举，但 <strong>manifest 路径（<code>.tfrobot-plugin/</code>）与 catalog 命名空间独立</strong>，不追求"同一份仓库被两端互换消费"。</p>
 <p><strong>P0（字段/Schema 借鉴）</strong>：marketplace.json / plugin.json 字段名、必填可选契约、source 类型枚举与字段约束沿用 Claude Code 设计 —— 作者切换阵地时学习成本最低。</p>
 <p><strong>P1（路径独立）</strong>：manifest 路径采用 <code>.tfrobot-plugin/</code> 命名空间；同一份仓库要双端消费需作者维护两套 manifest 目录（双轨发布），平台不做隐式兼容。</p>
-<p><strong>P2（SKILL 层正交）</strong>：A5 引入的私有内容（<code>.cubesandbox.dockerfile</code> / <code>.e2b.dockerfile</code> / <code>.skillenv</code> 等）位于 SKILL 文件夹内部，不属于本规范范围。</p>
+<p><strong>P2（SKILL 层正交）</strong>：SKILL 协议引入的私有内容（<code>.skillenv</code> / 占位符 / <code>skills</code> 工具等）位于 SKILL 文件夹内部，不属于本规范范围。</p>
 <h2 id="1-设计原则">1. 设计原则<a class="headerlink" href="#1-设计原则" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>字段设计借鉴 Claude Code Plugin Marketplaces</strong>：核心字段名、source 类型枚举、必填/可选契约沿用其设计，作者跨阵地切换成本最低；不发明替代命名。</li>
 <li><strong>manifest 命名空间独立</strong>：使用 <code>.tfrobot-plugin/</code> 而非 <code>.claude-plugin/</code>，避免目录名占用别家产品命名；同时不假装与 Claude Code 仓库结构互换消费。</li>
-<li><strong>与 SKILL 协议 (A5) 正交</strong>：本规范不修改单个 SKILL 文件夹的内容契约。</li>
+<li><strong>与 SKILL 协议正交</strong>：本规范不修改单个 SKILL 文件夹的内容契约。</li>
 <li><strong>manifest 显式分级</strong>：<code>marketplace.json</code> 与 <code>plugin.json</code> 是两份不同的 manifest，位于不同目录层；不存在"marketplace 嵌套 marketplace"——只存在"marketplace 通过 source 引用 plugin"。</li>
 <li><strong>Plugin source 是 plugin 级别的引用</strong>：<code>git-subdir</code> 等 source 类型引用的 <code>path</code> 必须指向 plugin 边界（含 <code>plugin.json</code> 的目录），不可指向 marketplace 边界。</li>
 <li><strong>非标准扩展显式标注</strong>：任何超出参考标准的字段或 source type（如 <code>cnb</code>）必须在 §10 与 §11 中显式列出。</li>
@@ -2091,17 +2091,15 @@
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>      .tfrobot-plugin/                        # 条件必需：见 §6 与 §4.4 strict mode
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        plugin.json                           # strict=true 时必需；strict=false 时省略
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      skills/
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        &lt;skill-name&gt;/                         # SKILL 内容 —— A5 §2~§10
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        &lt;skill-name&gt;/                         # SKILL 内容 —— SKILL 协议 §2~§8
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>          SKILL.md
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>          .skillenv                           # 可选（A5 §5）
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>          .cubesandbox.dockerfile             # 条件必需（A5 §6.3）
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>          .e2b.dockerfile                     # 条件必需（A5 §6.3）
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>          scripts/
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>          references/
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>          assets/
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    &lt;plugin-name-B&gt;/
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>      .tfrobot-plugin/plugin.json             # 同上，条件必需
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>      skills/...
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>          .skillenv                           # 可选（SKILL 协议 §5）
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>          scripts/
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>          references/
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>          assets/
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    &lt;plugin-name-B&gt;/
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>      .tfrobot-plugin/plugin.json             # 同上，条件必需
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>      skills/...
 </code></pre></div>
 <h3 id="22-路径约定">2.2 路径约定<a class="headerlink" href="#22-路径约定" title="Permanent link">&para;</a></h3>
 <table>
@@ -2817,15 +2815,14 @@
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="nt">&quot;keywords&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;etl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pandas&quot;</span><span class="p">]</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="7-skill-层指向-a5">7. SKILL 层（指向 A5）<a class="headerlink" href="#7-skill-层指向-a5" title="Permanent link">&para;</a></h2>
-<p>SKILL 目录 <code>&lt;plugin&gt;/skills/&lt;skill-name&gt;/</code> 内的所有内容契约由 <a href="../../skill/protocol-v1/">A5 协议规范</a> 定义，本规范不重述。要点提示：</p>
+<h2 id="7-skill-层指向-skill-协议">7. SKILL 层（指向 SKILL 协议）<a class="headerlink" href="#7-skill-层指向-skill-协议" title="Permanent link">&para;</a></h2>
+<p>SKILL 目录 <code>&lt;plugin&gt;/skills/&lt;skill-name&gt;/</code> 内的所有内容契约由 <a href="../../skill/protocol-v1/">SKILL 协议 v1</a> 定义，本规范不重述。要点提示：</p>
 <ul>
-<li>SKILL.md（必需）：A5 §3 frontmatter + A5 §4 body</li>
-<li><code>.skillenv</code>（可选）：A5 §5</li>
-<li><code>.cubesandbox.dockerfile</code> / <code>.e2b.dockerfile</code>（条件必需）：A5 §6.3</li>
-<li>标准目录 <code>scripts/</code> / <code>references/</code> / <code>assets/</code>：A5 §2</li>
-<li>占位符 <code>TFROBOT_SKILL_DIR</code> / <code>TFROBOT_SESSION_ID</code> / <code>TFROBOT_ROBOT_ID</code>：A5 §7</li>
-<li>内置 <code>skills</code> 工具：A5 §8</li>
+<li>SKILL.md（必需）：SKILL 协议 §3 frontmatter + §4 body</li>
+<li><code>.skillenv</code>（可选）：SKILL 协议 §5</li>
+<li>标准目录 <code>scripts/</code> / <code>references/</code> / <code>assets/</code>：SKILL 协议 §2</li>
+<li>占位符 <code>TFROBOT_SKILL_DIR</code> / <code>TFROBOT_SESSION_ID</code> / <code>TFROBOT_ROBOT_ID</code>：SKILL 协议 §6</li>
+<li>内置 <code>skills</code> 工具：SKILL 协议 §7</li>
 </ul>
 <h2 id="8-curator--aggregator-模式">8. Curator / Aggregator 模式<a class="headerlink" href="#8-curator--aggregator-模式" title="Permanent link">&para;</a></h2>
 <p>一个 marketplace 可以通过 <code>git-subdir</code> 引用<strong>其他仓库中的 plugin</strong>，即使该仓库自身也是一个 marketplace —— 这是合法的 curator 模式。</p>
@@ -2926,8 +2923,8 @@
 <td>TFRobotServer 不消费但容忍存在</td>
 </tr>
 <tr>
-<td>SKILL 层私有内容（<code>.cubesandbox.dockerfile</code> / <code>.e2b.dockerfile</code> / <code>.skillenv</code> / 占位符 / 内置工具）</td>
-<td>由 A5 协议定义；不属本规范范围</td>
+<td>SKILL 层私有内容（<code>.skillenv</code> / 占位符 / 内置工具）</td>
+<td>由 <a href="../../skill/protocol-v1/">SKILL 协议 v1</a> 定义；不属本规范范围</td>
 </tr>
 <tr>
 <td>双轨发布可行性</td>
@@ -3001,7 +2998,7 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Plugin 条目字段表（§4）+ strict mode 语义（§4.4）</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Plugin source 类型枚举 + 各类型字段表（§5）</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>plugin.json</code> JSON Schema 字段表（§6）</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> SKILL 层引用 A5（§7）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> SKILL 层引用 SKILL 协议（§7）</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Curator / Aggregator 模式合法性与边界（§8）</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 与 Claude Code Marketplace 兼容性矩阵（§9）</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> v1 不引入项（§10）</li>
@@ -3021,10 +3018,10 @@
 <li><a href="https://github.com/anthropics/claude-code">Anthropic 官方 marketplace catalog（claude-plugins-official）</a></li>
 <li><a href="https://agentskills.io/specification">Agent Skills 开放标准</a></li>
 </ul>
-<h2 id="附录-a与-a5-协议规范的边界">附录 A：与 A5 协议规范的边界<a class="headerlink" href="#附录-a与-a5-协议规范的边界" title="Permanent link">&para;</a></h2>
+<h2 id="附录-a与-skill-协议规范的边界">附录 A：与 SKILL 协议规范的边界<a class="headerlink" href="#附录-a与-skill-协议规范的边界" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>┌────────────────────────────────────────────────────────────────────────┐
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│ SKILL 文件夹内容契约                ◄── A5 协议规范                     │
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>│ (frontmatter / dirs / runtime /                                        │
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│ SKILL 文件夹内容契约                ◄── SKILL 协议 v1                   │
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>│ (frontmatter / dirs / .skillenv /                                      │
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│  placeholders / skills tool / ...)                                     │
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│           │                                                            │
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│           │ 多种分发渠道                                                │
@@ -3042,12 +3039,12 @@
 <a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>│                                                                        │
 <a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>│                       共同物化目标                                      │
 <a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>│                       ┌───────────────────┐                            │
-<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>│                       │ MinIO + Postgres  │   ◄── A5 §10 / 实施层      │
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>│                       │ 接入方存储与索引   │   ◄── SKILL 协议 §8 / 实施 │
 <a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>│                       │ registry          │                            │
 <a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>│                       └───────────────────┘                            │
 <a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>└────────────────────────────────────────────────────────────────────────┘
 </code></pre></div>
-<p>A5 管"SKILL 内容契约"；本规范管"Marketplace / Plugin 仓库结构与 JSON Schema"。</p>
+<p><a href="../../skill/protocol-v1/">SKILL 协议 v1</a> 管"SKILL 内容契约"；本规范管"Marketplace / Plugin 仓库结构与 JSON Schema"。</p>
 
 
 

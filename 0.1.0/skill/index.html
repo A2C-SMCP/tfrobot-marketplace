@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#skill-协议tfrobotserver-v1" class="md-skip">
+        <a href="#skill-协议tfrobot-v1" class="md-skip">
           跳转至
         </a>
       
@@ -513,10 +513,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#模块对应" class="md-nav__link">
+  <a href="#skill-归属与来源一句话视角" class="md-nav__link">
     <span class="md-ellipsis">
       
-        模块对应
+        SKILL 归属与来源（一句话视角）
       
     </span>
   </a>
@@ -1057,10 +1057,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#模块对应" class="md-nav__link">
+  <a href="#skill-归属与来源一句话视角" class="md-nav__link">
     <span class="md-ellipsis">
       
-        模块对应
+        SKILL 归属与来源（一句话视角）
       
     </span>
   </a>
@@ -1146,8 +1146,8 @@
   
 
 
-<h1 id="skill-协议tfrobotserver-v1">SKILL 协议（TFRobotServer v1）<a class="headerlink" href="#skill-协议tfrobotserver-v1" title="Permanent link">&para;</a></h1>
-<p>TFRobotServer 的 SKILL 协议参考 <a href="https://agentskills.io/specification">Anthropic Agent Skills 开放标准</a> 与 <a href="https://code.claude.com/docs/en/skills">Claude Code Skills 文档</a> 设计，并针对多 Pod K8s 部署、Sandbox 沙箱执行（CubeSandbox 主 / E2B 备）、密钥托管等差异进行受控扩展。</p>
+<h1 id="skill-协议tfrobot-v1">SKILL 协议（TFRobot v1）<a class="headerlink" href="#skill-协议tfrobot-v1" title="Permanent link">&para;</a></h1>
+<p>TFRobot 的 SKILL 协议参考 <a href="https://agentskills.io/specification">Anthropic Agent Skills 开放标准</a> 与 <a href="https://code.claude.com/docs/en/skills">Claude Code Skills 文档</a> 设计，聚焦 <strong>SKILL 内容契约 + LLM 与 SKILL 的交互</strong>。SKILL 的执行后端（沙箱 / 引擎 / 容器 / 凭证基础设施）归 Computer 侧 <a href="https://github.com/A2C-SMCP">A2C-SMCP</a> 协议表达，本协议不规定。</p>
 <p>对应 Epic：<a href="https://turingfocus.atlassian.net/browse/TFRS-179">TFRS-179</a>。</p>
 <h2 id="权威规范">权威规范<a class="headerlink" href="#权威规范" title="Permanent link">&para;</a></h2>
 <table>
@@ -1160,50 +1160,21 @@
 <tbody>
 <tr>
 <td><strong><a href="protocol-v1/">SKILL 协议 v1</a></strong> ⭐</td>
-<td>SKILL 内容契约（frontmatter / 目录 / runtime / 占位符 / <code>skills</code> 工具 / 安全模型）—— Module A/B/C 实施基准</td>
+<td>SKILL 内容契约（frontmatter / 目录 / <code>.skillenv</code> / 占位符 / <code>skills</code> 工具 / 安全模型）+ Robot 多来源汇聚视角</td>
 </tr>
 </tbody>
 </table>
-<p>新读者从这份开始。<strong>SKILL 包的分发约定</strong>（Git 仓库 / <code>marketplace.json</code> / <code>plugin.json</code>）属于姊妹章节 <a href="../marketplace/">Marketplace 分发</a>。</p>
-<h2 id="模块对应">模块对应<a class="headerlink" href="#模块对应" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>模块</th>
-<th>Story</th>
-<th>范围</th>
-<th>规范文档</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A — 文档格式协议</td>
-<td><a href="https://turingfocus.atlassian.net/browse/TFRS-180">TFRS-180</a></td>
-<td>SKILL.md 内容约定</td>
-<td><a href="protocol-v1/">SKILL 协议 v1</a>（含 A1\~A4 设计史）</td>
-</tr>
-<tr>
-<td>B — 存储与同步</td>
-<td><a href="https://turingfocus.atlassian.net/browse/TFRS-181">TFRS-181</a></td>
-<td>Git ↔ MinIO ↔ Postgres / <code>skills</code> 工具 / 资源访问安全</td>
-<td><a href="protocol-v1/">SKILL 协议 v1 §10, §13.1</a></td>
-</tr>
-<tr>
-<td>C — 执行引擎</td>
-<td><a href="https://turingfocus.atlassian.net/browse/TFRS-182">TFRS-182</a></td>
-<td>Sandbox 双集群 / 模板 / 注入链路</td>
-<td><a href="protocol-v1/">SKILL 协议 v1 §6, §9, §13.2</a></td>
-</tr>
-<tr>
-<td>D — Marketplace 分发</td>
-<td><a href="https://turingfocus.atlassian.net/browse/TFRS-201">TFRS-201</a></td>
-<td>Git 仓库分发标准（兼容 Claude Code）+ 多 plugin 多 SKILL 包装</td>
-<td><a href="../marketplace/protocol-v1/">Marketplace v1 规范</a></td>
-</tr>
-</tbody>
-</table>
+<p>新读者从这份开始。<strong>SKILL 包的 Git 仓库分发约定</strong>（<code>marketplace.json</code> / <code>plugin.json</code>）属于姊妹章节 <a href="../marketplace/">Marketplace 分发</a>；<strong>SKILL 在 Computer 侧的执行后端</strong>则归 A2C-SMCP 实施方文档。</p>
+<h2 id="skill-归属与来源一句话视角">SKILL 归属与来源（一句话视角）<a class="headerlink" href="#skill-归属与来源一句话视角" title="Permanent link">&para;</a></h2>
+<p>SKILL 归属于 <strong>Robot</strong>，切换 Robot 即切换 SKILL 集合。Robot 的 SKILL 集合由多来源汇聚：</p>
+<ul>
+<li><strong>云端 Robot 配置</strong>——从云端对象存储的约定目录拉取（默认根 <code>skills/</code>，TFRobot 平台采用 MinIO 实现）。仅文档驱动，不执行脚本。</li>
+<li><strong>已连接的 Computer</strong>——通过 <a href="https://github.com/A2C-SMCP">A2C-SMCP</a> 暴露本地可用 SKILL，可执行 <code>scripts/</code>。</li>
+<li><strong>Marketplace 仓库</strong>——Git 仓库分发，详见 <a href="../marketplace/protocol-v1/">Marketplace v1 规范</a>。</li>
+</ul>
+<p>不同来源带来不同的执行能力，但<strong>落到加载方手中的都是等价的 SKILL 文件夹</strong>——内容契约完全一致。</p>
 <h2 id="子任务产出设计史">子任务产出（设计史）<a class="headerlink" href="#子任务产出设计史" title="Permanent link">&para;</a></h2>
-<p>A1\~A4 是模块 A 协议规范的分步设计文档；如与 SKILL 协议 v1 表述冲突，<strong>以协议 v1 为准</strong>。保留作为决策 rationale 与设计史，统一收录于 <a href="design-history/">设计史索引</a>。</p>
+<p>A1\~A4 是协议规范的分步设计文档；如与协议 v1 表述冲突，<strong>以协议 v1 为准</strong>。保留作为决策 rationale 与设计史，统一收录于 <a href="design-history/">设计史索引</a>。</p>
 <table>
 <thead>
 <tr>
@@ -1227,13 +1198,13 @@
 <td><a href="design-history/skillenv/">.skillenv 设计</a></td>
 </tr>
 <tr>
-<td>A3 <code>runtime</code> 枚举（双引擎并存 / 引擎前缀语法 / BYO Dockerfile）</td>
+<td>A3 <code>runtime</code> 枚举</td>
 <td><a href="https://turingfocus.atlassian.net/browse/TFRS-185">TFRS-185</a></td>
-<td>已完成</td>
+<td>已完成（v1 撤回）</td>
 <td><a href="design-history/runtime-enum/">runtime 枚举</a></td>
 </tr>
 <tr>
-<td>A4 目录结构与占位符（<code>TFROBOT_*</code> 私有命名空间，3 个占位符 + <code>skills</code> 工具）</td>
+<td>A4 目录结构与占位符</td>
 <td><a href="https://turingfocus.atlassian.net/browse/TFRS-186">TFRS-186</a></td>
 <td>已完成</td>
 <td><a href="design-history/directory-placeholders/">目录与占位符</a></td>
