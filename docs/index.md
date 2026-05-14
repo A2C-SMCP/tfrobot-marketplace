@@ -10,7 +10,7 @@
 
     ---
 
-    单个 SKILL 包的 **内容契约**：frontmatter 字段、目录布局、`runtime` 枚举、占位符、`skills` 工具、安全模型。
+    单个 SKILL 包的 **内容契约**：frontmatter 字段、目录布局、`.skillenv` 环境声明、占位符、`skills` 工具、安全模型。
 
     [:octicons-arrow-right-24: 进入 SKILL 协议](skill/index.md)
 

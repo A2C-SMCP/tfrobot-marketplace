@@ -10,7 +10,7 @@ TFRobotServer Marketplace 定义 SKILL 包从 **Git 仓库** 到平台的分发�
 | --- | --- |
 | **[Marketplace v1 规范](protocol-v1.md)** ⭐ | Git 仓库分发标准 —— `marketplace.json` / `plugin.json` JSON Schema、`source` 类型枚举、目录布局、Curator 模式 |
 
-新读者从此入手。**单个 SKILL 包的内容契约**（frontmatter / runtime / 占位符等）见姊妹章节 [SKILL 协议](../skill/index.md)。
+新读者从此入手。**单个 SKILL 包的内容契约**（frontmatter / 占位符 / `skills` 工具等）见姊妹章节 [SKILL 协议](../skill/index.md)。
 
 ## 实施参考（运行时行为，非规范契约）
 

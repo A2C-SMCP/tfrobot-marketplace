@@ -1,7 +1,7 @@
 # TFRobotServer Marketplace v1 规范
 
 > Jira：D1 [TFRS-202](https://turingfocus.atlassian.net/browse/TFRS-202) / Module D Story [TFRS-201](https://turingfocus.atlassian.net/browse/TFRS-201) / Epic [TFRS-179](https://turingfocus.atlassian.net/browse/TFRS-179)
-> 范围：SKILL 包的 **Git 仓库分发约定（数据结构与 JSON Schema）**；与单个 SKILL 文件夹的内容契约（[A5 协议规范](../skill/protocol-v1.md)）正交
+> 范围：SKILL 包的 **Git 仓库分发约定（数据结构与 JSON Schema）**；与单个 SKILL 文件夹的内容契约（[SKILL 协议 v1](../skill/protocol-v1.md)）正交
 > 设计参考：[Claude Code Plugin Marketplaces 官方规范](https://code.claude.com/docs/en/plugin-marketplaces) —— 字段定义与 source 类型枚举借鉴其设计，**但 manifest 路径与命名空间独立**（`.tfrobot-plugin/` 而非 `.claude-plugin/`）
 > 读者：① SKILL / Plugin 作者（通过 Marketplace 发布场景）② Module D 实施工程师
 
@@ -15,16 +15,16 @@
 
 * **Marketplace** = 一个 Git 仓库；**catalog 单位**；manifest 为 `.tfrobot-plugin/marketplace.json`
 * **Plugin** = 一组相关能力的包装；**版本与依赖单位**；manifest 为 `.tfrobot-plugin/plugin.json`
-* **SKILL** = 单个能力包；**内容单位**；由 [A5 协议规范](../skill/protocol-v1.md) 定义
+* **SKILL** = 单个能力包；**内容单位**；由 [SKILL 协议 v1](../skill/protocol-v1.md) 定义
 
-### 0.2 与 SKILL 协议 (A5) 的关系
+### 0.2 与 SKILL 协议的关系
 
-| 维度 | A5（SKILL 协议） | 本规范（Marketplace） |
+| 维度 | [SKILL 协议 v1](../skill/protocol-v1.md) | 本规范（Marketplace） |
 | --- | --- | --- |
-| 范围 | SKILL 文件夹的内容契约（frontmatter / 目录 / runtime / 占位符 / `skills` 工具等） | Git 仓库的目录约定 + JSON Schema |
+| 范围 | SKILL 文件夹的内容契约（frontmatter / 目录 / 占位符 / `skills` 工具等） | Git 仓库的目录约定 + JSON Schema |
 | 作者关心 | 任何 SKILL 作者必须遵守 | 仅"通过 Marketplace 发布"的作者关心 |
-| 平台关心 | LLM / Sandbox 加载 SKILL 时遵守 | Module D 从 Git 仓库拉取 plugin / SKILL 时遵守 |
-| 正交性 | 两者**完全正交** —— 同一 SKILL 文件夹既可被 Portal 直接上传也可被 Marketplace 拉取，加载语义一致 | |
+| 平台关心 | 加载方 / Computer 侧消费 SKILL 时遵守 | Marketplace 实施方从 Git 仓库拉取 plugin / SKILL 时遵守 |
+| 正交性 | 两者**完全正交** —— 同一 SKILL 文件夹无论从哪种渠道分发，加载语义一致 | |
 
 ### 0.3 与 Claude Code Marketplace 的关系
 
@@ -34,13 +34,13 @@
 
 **P1（路径独立）**：manifest 路径采用 `.tfrobot-plugin/` 命名空间；同一份仓库要双端消费需作者维护两套 manifest 目录（双轨发布），平台不做隐式兼容。
 
-**P2（SKILL 层正交）**：A5 引入的私有内容（`.cubesandbox.dockerfile` / `.e2b.dockerfile` / `.skillenv` 等）位于 SKILL 文件夹内部，不属于本规范范围。
+**P2（SKILL 层正交）**：SKILL 协议引入的私有内容（`.skillenv` / 占位符 / `skills` 工具等）位于 SKILL 文件夹内部，不属于本规范范围。
 
 ## 1. 设计原则
 
 1. **字段设计借鉴 Claude Code Plugin Marketplaces**：核心字段名、source 类型枚举、必填/可选契约沿用其设计，作者跨阵地切换成本最低；不发明替代命名。
 2. **manifest 命名空间独立**：使用 `.tfrobot-plugin/` 而非 `.claude-plugin/`，避免目录名占用别家产品命名；同时不假装与 Claude Code 仓库结构互换消费。
-3. **与 SKILL 协议 (A5) 正交**：本规范不修改单个 SKILL 文件夹的内容契约。
+3. **与 SKILL 协议正交**：本规范不修改单个 SKILL 文件夹的内容契约。
 4. **manifest 显式分级**：`marketplace.json` 与 `plugin.json` 是两份不同的 manifest，位于不同目录层；不存在"marketplace 嵌套 marketplace"——只存在"marketplace 通过 source 引用 plugin"。
 5. **Plugin source 是 plugin 级别的引用**：`git-subdir` 等 source 类型引用的 `path` 必须指向 plugin 边界（含 `plugin.json` 的目录），不可指向 marketplace 边界。
 6. **非标准扩展显式标注**：任何超出参考标准的字段或 source type（如 `cnb`）必须在 §10 与 §11 中显式列出。
@@ -58,11 +58,9 @@
       .tfrobot-plugin/                        # 条件必需：见 §6 与 §4.4 strict mode
         plugin.json                           # strict=true 时必需；strict=false 时省略
       skills/
-        <skill-name>/                         # SKILL 内容 —— A5 §2~§10
+        <skill-name>/                         # SKILL 内容 —— SKILL 协议 §2~§8
           SKILL.md
-          .skillenv                           # 可选（A5 §5）
-          .cubesandbox.dockerfile             # 条件必需（A5 §6.3）
-          .e2b.dockerfile                     # 条件必需（A5 §6.3）
+          .skillenv                           # 可选（SKILL 协议 §5）
           scripts/
           references/
           assets/
@@ -346,16 +344,15 @@ Marketplace 体系实际上由 **两套互不交集的 source schema** 组成。
 }
 ```
 
-## 7. SKILL 层（指向 A5）
+## 7. SKILL 层（指向 SKILL 协议）
 
-SKILL 目录 `<plugin>/skills/<skill-name>/` 内的所有内容契约由 [A5 协议规范](../skill/protocol-v1.md) 定义，本规范不重述。要点提示：
+SKILL 目录 `<plugin>/skills/<skill-name>/` 内的所有内容契约由 [SKILL 协议 v1](../skill/protocol-v1.md) 定义，本规范不重述。要点提示：
 
-* SKILL.md（必需）：A5 §3 frontmatter + A5 §4 body
-* `.skillenv`（可选）：A5 §5
-* `.cubesandbox.dockerfile` / `.e2b.dockerfile`（条件必需）：A5 §6.3
-* 标准目录 `scripts/` / `references/` / `assets/`：A5 §2
-* 占位符 `TFROBOT_SKILL_DIR` / `TFROBOT_SESSION_ID` / `TFROBOT_ROBOT_ID`：A5 §7
-* 内置 `skills` 工具：A5 §8
+* SKILL.md（必需）：SKILL 协议 §3 frontmatter + §4 body
+* `.skillenv`（可选）：SKILL 协议 §5
+* 标准目录 `scripts/` / `references/` / `assets/`：SKILL 协议 §2
+* 占位符 `TFROBOT_SKILL_DIR` / `TFROBOT_SESSION_ID` / `TFROBOT_ROBOT_ID`：SKILL 协议 §6
+* 内置 `skills` 工具：SKILL 协议 §7
 
 ## 8. Curator / Aggregator 模式
 
@@ -420,7 +417,7 @@ vendor-x/skills/                                    ← provider marketplace（�
 | **Manifest 路径** | **独立**：`.tfrobot-plugin/` 而非 `.claude-plugin/`；同一份仓库**不能**被两端直接互换消费 |
 | **Marketplace 保留名空间** | **独立**：`tfrobot-` / `turingfocus-` / `tfs-` 前缀；与 Claude Code 保留名空间互不影响 |
 | Plugin 内组件（`commands/` / `agents/` / `hooks/` / `mcpServers` / `lspServers` / `monitors/` / `bin/` / `settings.json`） | TFRobotServer 不消费但容忍存在 |
-| SKILL 层私有内容（`.cubesandbox.dockerfile` / `.e2b.dockerfile` / `.skillenv` / 占位符 / 内置工具） | 由 A5 协议定义；不属本规范范围 |
+| SKILL 层私有内容（`.skillenv` / 占位符 / 内置工具） | 由 [SKILL 协议 v1](../skill/protocol-v1.md) 定义；不属本规范范围 |
 | 双轨发布可行性 | 作者可同时维护 `.tfrobot-plugin/` 与 `.claude-plugin/` 两套 manifest，分别面向两端发布 |
 
 ## 10. v1 不引入（与理由）
@@ -447,7 +444,7 @@ vendor-x/skills/                                    ← provider marketplace（�
 * [x] Plugin 条目字段表（§4）+ strict mode 语义（§4.4）
 * [x] Plugin source 类型枚举 + 各类型字段表（§5）
 * [x] `plugin.json` JSON Schema 字段表（§6）
-* [x] SKILL 层引用 A5（§7）
+* [x] SKILL 层引用 SKILL 协议（§7）
 * [x] Curator / Aggregator 模式合法性与边界（§8）
 * [x] 与 Claude Code Marketplace 兼容性矩阵（§9）
 * [x] v1 不引入项（§10）
@@ -467,12 +464,12 @@ vendor-x/skills/                                    ← provider marketplace（�
 * [Anthropic 官方 marketplace catalog（claude-plugins-official）](https://github.com/anthropics/claude-code)
 * [Agent Skills 开放标准](https://agentskills.io/specification)
 
-## 附录 A：与 A5 协议规范的边界
+## 附录 A：与 SKILL 协议规范的边界
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│ SKILL 文件夹内容契约                ◄── A5 协议规范                     │
-│ (frontmatter / dirs / runtime /                                        │
+│ SKILL 文件夹内容契约                ◄── SKILL 协议 v1                   │
+│ (frontmatter / dirs / .skillenv /                                      │
 │  placeholders / skills tool / ...)                                     │
 │           │                                                            │
 │           │ 多种分发渠道                                                │
@@ -490,10 +487,10 @@ vendor-x/skills/                                    ← provider marketplace（�
 │                                                                        │
 │                       共同物化目标                                      │
 │                       ┌───────────────────┐                            │
-│                       │ MinIO + Postgres  │   ◄── A5 §10 / 实施层      │
+│                       │ 接入方存储与索引   │   ◄── SKILL 协议 §8 / 实施 │
 │                       │ registry          │                            │
 │                       └───────────────────┘                            │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-A5 管"SKILL 内容契约"；本规范管"Marketplace / Plugin 仓库结构与 JSON Schema"。
+[SKILL 协议 v1](../skill/protocol-v1.md) 管"SKILL 内容契约"；本规范管"Marketplace / Plugin 仓库结构与 JSON Schema"。

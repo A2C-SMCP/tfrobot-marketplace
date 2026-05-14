@@ -52,7 +52,7 @@ if (!(await pathExists(manifestPath))) {
 * **不扫描 `commands/` / `agents/` / `skills/` 等目录来"猜"插件结构** —— 必须在 marketplace 条目或 `plugin.json` 显式声明
 * **不存在"按约定自动发现"机制** —— Claude Code Plugin 不是 convention-over-configuration
 
-> Module D 实施建议：复刻这套行为。SKILL 目录扫描可能是个例外（A5 §10 描述了 SKILL 物化时的目录扫描语义），但 plugin 级别的组件发现应该按显式声明走，避免引入隐式约定。
+> Module D 实施建议：复刻这套行为。SKILL 目录扫描可能是个例外（[SKILL 协议 v1](../skill/protocol-v1.md) §2 描述了 SKILL 目录约定），但 plugin 级别的组件发现应该按显式声明走，避免引入隐式约定。
 
 ## 3. plugin.json schema 字段必填性
 

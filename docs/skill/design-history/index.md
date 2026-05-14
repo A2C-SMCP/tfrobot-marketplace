@@ -6,9 +6,9 @@
 
 对应 Story：[TFRS-180](https://turingfocus.atlassian.net/browse/TFRS-180)；Epic：[TFRS-179](https://turingfocus.atlassian.net/browse/TFRS-179)。
 
-| 子任务 | Jira | 文档 | 核心结论 |
+| 子任务 | Jira | 文档 | v1 最终采纳 |
 | --- | --- | --- | --- |
-| A1 | [TFRS-183](https://turingfocus.atlassian.net/browse/TFRS-183) | [frontmatter 字段表](frontmatter-fields.md) | 对齐 Agent Skills 开放标准 + 1 独有字段 `runtime`；不采纳 Claude Code 扩展字段 |
-| A2 | [TFRS-184](https://turingfocus.atlassian.net/browse/TFRS-184) | [.skillenv 设计](skillenv.md) | 标准 dotenv 双语义；ManagedLLM keystore 三层强制隔离 |
-| A3 | [TFRS-185](https://turingfocus.atlassian.net/browse/TFRS-185) | [runtime 枚举](runtime-enum.md) | 双引擎并存（CubeSandbox / E2B）+ 引擎前缀语法 + BYO Dockerfile |
-| A4 | [TFRS-186](https://turingfocus.atlassian.net/browse/TFRS-186) | [目录与占位符](directory-placeholders.md) | `TFROBOT_*` 私有命名空间 + 纯函数沙箱模型 + `skills` 工具契约 |
+| A1 | [TFRS-183](https://turingfocus.atlassian.net/browse/TFRS-183) | [frontmatter 字段表](frontmatter-fields.md) | ✅ 完全对齐 Agent Skills 开放标准；不采纳 Claude Code 扩展字段 |
+| A2 | [TFRS-184](https://turingfocus.atlassian.net/browse/TFRS-184) | [.skillenv 设计](skillenv.md) | ✅ 标准 dotenv 双语义；用户 vault 三层强制隔离 |
+| A3 | [TFRS-185](https://turingfocus.atlassian.net/browse/TFRS-185) | [runtime 枚举](runtime-enum.md) | ❌ **v1 撤回**——A3 曾设计双引擎枚举 + BYO Dockerfile；v1 最终决定执行后端归 Computer 侧 A2C-SMCP 表达，`runtime` 字段不入协议。详见 [协议 v1 附录 A](../protocol-v1.md#附录-a设计史)。 |
+| A4 | [TFRS-186](https://turingfocus.atlassian.net/browse/TFRS-186) | [目录与占位符](directory-placeholders.md) | ✅ `TFROBOT_*` 私有命名空间 + `skills` 工具契约 + 3 条安全原则 |
