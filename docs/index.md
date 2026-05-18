@@ -2,7 +2,7 @@
 
 **TFRobot Marketplace** 是 TFRobot 生态的市场平台，承载第三方扩展、Skill、Computer 配置等内容的发布、发现与分发流程。本文档站点沉淀市场的开放接口、数据规范、接入指南等内容。
 
-## 两大支柱
+## 三大支柱
 
 <div class="grid cards" markdown>
 
@@ -14,11 +14,19 @@
 
     [:octicons-arrow-right-24: 进入 SKILL 协议](skill/index.md)
 
+-   :material-server-network:{ .lg .middle } __MCP Server 配置__
+
+    ---
+
+    Plugin 内 `mcp-servers/` 目录约定 + A2C-SMCP v0.2.0 schema 摘要（stdio / streamable / sse 三种传输 + inputs 占位符 + ToolMeta）。
+
+    [:octicons-arrow-right-24: 进入 MCP Server 配置](mcp-servers/index.md)
+
 -   :material-store:{ .lg .middle } __Marketplace 分发__
 
     ---
 
-    SKILL 包的 **Git 仓库分发约定**：`marketplace.json` / `plugin.json` JSON Schema、`source` 类型、Curator 模式，兼容 Claude Code Plugin Marketplaces。
+    Plugin 包的 **Git 仓库分发约定**（含 SKILL 与 MCP Server）：`marketplace.json` / `plugin.json` JSON Schema、`source` 类型、Curator 模式，兼容 Claude Code Plugin Marketplaces。
 
     [:octicons-arrow-right-24: 进入 Marketplace 分发](marketplace/index.md)
 

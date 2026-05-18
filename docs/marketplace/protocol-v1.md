@@ -43,7 +43,7 @@
 3. **与 SKILL 协议正交**：本规范不修改单个 SKILL 文件夹的内容契约。
 4. **manifest 显式分级**：`marketplace.json` 与 `plugin.json` 是两份不同的 manifest，位于不同目录层；不存在"marketplace 嵌套 marketplace"——只存在"marketplace 通过 source 引用 plugin"。
 5. **Plugin source 是 plugin 级别的引用**：`git-subdir` 等 source 类型引用的 `path` 必须指向 plugin 边界（含 `plugin.json` 的目录），不可指向 marketplace 边界。
-6. **非标准扩展显式标注**：任何超出参考标准的字段或 source type（如 `cnb`）必须在 §10 与 §11 中显式列出。
+6. **非标准扩展显式标注**：任何超出参考标准的字段或 source type（如 `cnb`）必须在 §11 与 §12 中显式列出。
 
 ## 2. 仓库布局
 
@@ -57,16 +57,20 @@
     <plugin-name-A>/
       .tfrobot-plugin/                        # 条件必需：见 §6 与 §4.4 strict mode
         plugin.json                           # strict=true 时必需；strict=false 时省略
-      skills/
+      skills/                                 # 可选 —— SKILL 子树
         <skill-name>/                         # SKILL 内容 —— SKILL 协议 §2~§8
           SKILL.md
           .skillenv                           # 可选（SKILL 协议 §5）
           scripts/
           references/
           assets/
+      mcp-servers/                            # 可选 —— MCP Server 子树（§8）
+        <server-name>.json                    # 单个 MCP Server 配置（对齐 A2C-SMCP v0.2.0）
+        inputs.json                           # 可选 —— 占位符输入定义
     <plugin-name-B>/
       .tfrobot-plugin/plugin.json             # 同上，条件必需
       skills/...
+      mcp-servers/...
 ```
 
 ### 2.2 路径约定
@@ -76,8 +80,10 @@
 | Marketplace manifest 路径 | `.tfrobot-plugin/marketplace.json`（仓库根，**必需**） |
 | Plugin manifest 路径 | `<plugin>/.tfrobot-plugin/plugin.json`（**条件必需**，见 §6） |
 | Plugin 默认聚集目录 | `plugins/<plugin-name>/`（可被 `metadata.pluginRoot` 覆写） |
-| SKILL 目录 | `<plugin>/skills/<skill-name>/`（强制） |
-| Plugin / SKILL 名称字符集 | `[a-z0-9-]`，kebab-case，不以 `-` 开头/结尾，无连续 `--` |
+| SKILL 目录 | `<plugin>/skills/<skill-name>/`（可选；若存在按 SKILL 协议 §2 解析） |
+| MCP Server 目录 | `<plugin>/mcp-servers/`（可选；若存在按 §8 解析） |
+| Plugin 内容下限 | plugin 至少需提供 `skills/` 或 `mcp-servers/` 之一为非空；两者皆空的 plugin 视为空载，加载器警告 |
+| Plugin / SKILL / MCP Server 名称字符集 | `[a-z0-9-]`，kebab-case，不以 `-` 开头/结尾，无连续 `--` |
 
 ### 2.3 SKILL 引用
 
@@ -208,7 +214,7 @@
 
 ### 5.1 Source 类型枚举（5 种 Git 引用方式）
 
-全部是 Git 仓库的引用，差别仅在简写糖归一化目标与"是否子目录"。Claude Code 还支持 `npm`/`pip` 包源，本项目不引入（§10 说明理由）。
+全部是 Git 仓库的引用，差别仅在简写糖归一化目标与"是否子目录"。Claude Code 还支持 `npm`/`pip` 包源，本项目不引入（§11 说明理由）。
 
 | Source | 形态 | 字段 | 说明 |
 | --- | --- | --- | --- |
@@ -312,19 +318,20 @@ Marketplace 体系实际上由 **两套互不交集的 source schema** 组成。
 
 ### 6.3 组件目录（plugin 根，非 `.tfrobot-plugin/` 内）
 
-| 目录 / 文件 | 用途 |
-| --- | --- |
-| `skills/` | SKILL 包（每个 `<name>/SKILL.md`）—— 本仓库消费的核心 |
-| `commands/` | 平铺 `.md` 命令文件（TFRobotServer 不消费） |
-| `agents/` | Agent 定义（TFRobotServer 不消费） |
-| `hooks/hooks.json` | Hook 配置（TFRobotServer 不消费） |
-| `.mcp.json` | MCP server 配置（TFRobotServer 不消费） |
-| `.lsp.json` | LSP server 配置（TFRobotServer 不消费） |
-| `monitors/monitors.json` | 后台 monitor 配置（TFRobotServer 不消费） |
-| `bin/` | Bash PATH 可执行（TFRobotServer 不消费） |
-| `settings.json` | Plugin 默认 settings（TFRobotServer 不消费） |
+| 目录 / 文件 | 用途 | TFRobot v1 |
+| --- | --- | --- |
+| `skills/` | SKILL 包（每个 `<name>/SKILL.md`）——按 [SKILL 协议 v1](../skill/protocol-v1.md) 解析 | **消费** |
+| `mcp-servers/` | MCP Server 配置（每个 `<name>.json` + 可选 `inputs.json`）——按 §8 解析，对齐 [A2C-SMCP v0.2.0](https://doc.turingfocus.cn/a2c-smcp/) | **消费** |
+| `.mcp.json` | Claude Code 私有的 MCP 嵌入式配置 | 不消费（与 `mcp-servers/` 解耦；同时存在两者时只读 `mcp-servers/`） |
+| `commands/` | 平铺 `.md` 命令文件 | 不消费 |
+| `agents/` | Agent 定义 | 不消费 |
+| `hooks/hooks.json` | Hook 配置 | 不消费 |
+| `.lsp.json` | LSP server 配置 | 不消费 |
+| `monitors/monitors.json` | 后台 monitor 配置 | 不消费 |
+| `bin/` | Bash PATH 可执行 | 不消费 |
+| `settings.json` | Plugin 默认 settings | 不消费 |
 
-> **TFRobotServer v1 消费**：仅 `skills/` 子树。Plugin 内其他 Claude Code 私有组件 **识别但忽略不报错**，保证仓库可在两端互操作。
+> **TFRobot v1 消费**：`skills/` 子树 + `mcp-servers/` 子树。Plugin 内其他 Claude Code 私有组件 **识别但忽略不报错**，保证仓库可在两端互操作。
 
 ### 6.4 plugin.json 完整示例
 
@@ -354,7 +361,16 @@ SKILL 目录 `<plugin>/skills/<skill-name>/` 内的所有内容契约由 [SKILL 
 * 占位符 `TFROBOT_SKILL_DIR` / `TFROBOT_SESSION_ID` / `TFROBOT_ROBOT_ID`：SKILL 协议 §6
 * 内置 `skills` 工具：SKILL 协议 §7
 
-## 8. Curator / Aggregator 模式
+## 8. MCP Server 层（指向 MCP Server 配置规范）
+
+MCP Server 目录 `<plugin>/mcp-servers/` 内的所有内容契约由 [MCP Server 配置规范 v1](../mcp-servers/protocol-v1.md) 定义，本规范不重述。要点提示：
+
+* `<server-name>.json`（子树存在时至少 1 个）：单个 MCP Server 配置，结构对齐 A2C-SMCP `MCPServerConfig`
+* `inputs.json`（可选）：占位符输入定义，plugin 范围内共享
+* 文件名（去掉 `.json`）必须等于配置内的 `name` 字段
+* Schema 权威来源：[A2C-SMCP v0.2.0](https://doc.turingfocus.cn/a2c-smcp/)
+
+## 9. Curator / Aggregator 模式
 
 一个 marketplace 可以通过 `git-subdir` 引用**其他仓库中的 plugin**，即使该仓库自身也是一个 marketplace —— 这是合法的 curator 模式。
 
@@ -402,9 +418,9 @@ vendor-x/skills/                                    ← provider marketplace（�
 3. **粒度精确**：可以从一个 monorepo 挑某个子目录作为 plugin，不强迫作者拆 repo
 4. **`sha` 锁版本**：curator 可以"快照" plugin 某个 commit，作者后续改动不会立即影响 curator 用户
 
-**消费 Claude Code 标准仓库的可能性**：因 manifest 路径独立（`.tfrobot-plugin/` vs `.claude-plugin/`），TFRobotServer 平台默认不消费仅含 `.claude-plugin/` manifest 的仓库；若需互操作，由 Module D 实施时决定是否支持"路径回退识别"（v1 不收入，见 §10）。
+**消费 Claude Code 标准仓库的可能性**：因 manifest 路径独立（`.tfrobot-plugin/` vs `.claude-plugin/`），TFRobotServer 平台默认不消费仅含 `.claude-plugin/` manifest 的仓库；若需互操作，由 Module D 实施时决定是否支持"路径回退识别"（v1 不收入，见 §11）。
 
-## 9. 与 Claude Code Marketplace 关系矩阵
+## 10. 与 Claude Code Marketplace 关系矩阵
 
 | 维度 | 关系 |
 | --- | --- |
@@ -420,7 +436,7 @@ vendor-x/skills/                                    ← provider marketplace（�
 | SKILL 层私有内容（`.skillenv` / 占位符 / 内置工具） | 由 [SKILL 协议 v1](../skill/protocol-v1.md) 定义；不属本规范范围 |
 | 双轨发布可行性 | 作者可同时维护 `.tfrobot-plugin/` 与 `.claude-plugin/` 两套 manifest，分别面向两端发布 |
 
-## 10. v1 不引入（与理由）
+## 11. v1 不引入（与理由）
 
 | 不引入项 | 理由 |
 | --- | --- |
@@ -437,7 +453,7 @@ vendor-x/skills/                                    ← provider marketplace（�
 | `.claude-plugin/` 路径回退识别 | v1 仅识别 `.tfrobot-plugin/`；不消费仅含 `.claude-plugin/` manifest 的 Claude Code 标准仓库；如需互操作由后续 ticket 评估 |
 | Plugin 内 Claude Code 私有组件（`commands/` / `hooks/` / `agents/` / `mcpServers` / `lspServers` / `monitors/` / `bin/` / `settings.json`）| TFRobotServer 不消费；识别但忽略不报错 |
 
-## 11. 准出对照（D1 子任务）
+## 12. 准出对照（D1 子任务）
 
 * [x] Marketplace 层级结构定义（§2）
 * [x] `marketplace.json` JSON Schema —— 必填/可选字段表（§3）
@@ -445,9 +461,10 @@ vendor-x/skills/                                    ← provider marketplace（�
 * [x] Plugin source 类型枚举 + 各类型字段表（§5）
 * [x] `plugin.json` JSON Schema 字段表（§6）
 * [x] SKILL 层引用 SKILL 协议（§7）
-* [x] Curator / Aggregator 模式合法性与边界（§8）
-* [x] 与 Claude Code Marketplace 兼容性矩阵（§9）
-* [x] v1 不引入项（§10）
+* [x] MCP Server 层对齐 A2C-SMCP v0.2.0（§8）
+* [x] Curator / Aggregator 模式合法性与边界（§9）
+* [x] 与 Claude Code Marketplace 兼容性矩阵（§10）
+* [x] v1 不引入项（§11）
 
 依赖下游子任务（实施层，本规范不细化）：
 
@@ -457,7 +474,7 @@ vendor-x/skills/                                    ← provider marketplace（�
 * D5 Marketplace/Plugin/SKILL 三态生命周期与 Robot/Factory 协作
 * D6 端到端 Marketplace pull 跑通 + 示例 marketplace 仓库
 
-## 12. 参考
+## 13. 参考
 
 * [Claude Code Plugin Marketplaces 官方规范](https://code.claude.com/docs/en/plugin-marketplaces)
 * [Claude Code Plugins 官方规范](https://code.claude.com/docs/en/plugins)

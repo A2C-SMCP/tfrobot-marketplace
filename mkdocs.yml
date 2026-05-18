@@ -111,6 +111,9 @@ nav:
           - A2 .skillenv 设计: skill/design-history/skillenv.md
           - A3 runtime 枚举: skill/design-history/runtime-enum.md
           - A4 目录与占位符: skill/design-history/directory-placeholders.md
+  - MCP Server 配置:
+      - 概览: mcp-servers/index.md
+      - 配置规范 v1: mcp-servers/protocol-v1.md
   - Marketplace 分发:
       - 概览: marketplace/index.md
       - Marketplace v1 规范: marketplace/protocol-v1.md

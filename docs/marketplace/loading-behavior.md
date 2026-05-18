@@ -121,7 +121,7 @@ PluginSource:       relative | npm | pip | url | github | git-subdir
 
 ### 7.2 TFRobotServer v1 实施子集（缩减后）
 
-全部是 Git 引用，`github` / `cnb` 是简写糖到不同 host。理由见 [D-marketplace-v1.md §10](protocol-v1.md)：
+全部是 Git 引用，`github` / `cnb` 是简写糖到不同 host。理由见 [Marketplace v1 规范 §11](protocol-v1.md)：
 
 ```
 MarketplaceSource:  url | github | git | cnb              ← 4 类
