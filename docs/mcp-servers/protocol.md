@@ -1,4 +1,4 @@
-# MCP Server 配置规范 v1
+# MCP Server 配置规范
 
 > 范围：TFRobot Plugin 内 `mcp-servers/` 子树的目录约定与配置 schema 摘要。
 > 读者：Plugin 作者（撰写指南）+ 接入方实施工程师（加载使用层最小契约）。
@@ -19,7 +19,7 @@ TFRobot Plugin 可在 `<plugin>/mcp-servers/` 下声明若干 MCP Server 配置�
 | 占位符 `${input:<id>}` 语法 | ❌ 摘要 / 速查 | ✅ 权威 |
 | MCP 连接生命周期、协议握手、tool 调用语义 | 不涉及 | ✅ 权威 |
 
-**v1 不引入**：MCP 嵌入 `plugin.json`（保持文件式而非内嵌）、跨 plugin 共享 `inputs.json`（v1 限 plugin 范围）、Schema 拓展（v1 完全等同 A2C-SMCP v0.2.0）。
+**本规范不引入**：MCP 嵌入 `plugin.json`（保持文件式而非内嵌）、跨 plugin 共享 `inputs.json`（限 plugin 范围）、Schema 拓展（完全等同 A2C-SMCP v0.2.0）。
 
 ## 1. 目录约定
 
@@ -255,11 +255,11 @@ Robot / 加载方装载 plugin 时：
 | 同步策略 | A2C-SMCP 升级到 v0.3+ 时，本规范摘要随其变更同步；以 A2C-SMCP 为准 |
 | 不重复设计 | 本规范**不**为 MCP 配置发明替代字段、替代命名、替代占位符语法；歧义以 A2C-SMCP 为权威 |
 
-## 8. v1 不引入
+## 8. 不引入
 
 | 不引入项 | 理由 |
 | --- | --- |
 | MCP 配置内嵌 `plugin.json` | 文件式与 SKILL 子树设计对齐；JSON 嵌套膨胀风险 |
-| 跨 plugin 共享 `inputs.json` | v1 限 plugin 范围；跨 plugin 共享需 registry 层支持，推迟到未来 |
-| Schema 扩展（自定义传输类型、自定义占位符语法） | 完全对齐 A2C-SMCP 是 v1 的核心原则 |
+| 跨 plugin 共享 `inputs.json` | 限 plugin 范围；跨 plugin 共享需 registry 层支持，推迟到未来 |
+| Schema 扩展（自定义传输类型、自定义占位符语法） | 完全对齐 A2C-SMCP 是核心原则 |
 | MCP 连接生命周期 / tool 调用语义 | 属于 A2C-SMCP 与 MCP 协议本身，不在本规范范围 |

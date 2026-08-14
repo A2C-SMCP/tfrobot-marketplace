@@ -1,13 +1,13 @@
 # Plugin manifest 加载行为参考（基于 Claude Code 实现观察）
 
-> 关联：[D-marketplace-v1.md](protocol-v1.md) 主规范
+> 关联：[protocol.md](protocol.md) 主规范
 > Jira：[TFRS-202](https://turingfocus.atlassian.net/browse/TFRS-202) / [TFRS-201](https://turingfocus.atlassian.net/browse/TFRS-201)
 > 性质：**实施/运行时行为参考**，非规范强制约束。Module D 实施时建议复刻 Claude Code 这套行为以最大化兼容；SKILL/Plugin 作者用于理解装载时的取舍。
 > 来源：[Claude Code 官方文档](https://code.claude.com/docs/en/plugin-marketplaces) + 公开源码观察（`pluginLoader.ts` / `schemas.ts`）
 
 ## 0. 为什么单列此文档
 
-主规范 [D-marketplace-v1.md](protocol-v1.md) 关心 **静态契约**（marketplace.json / plugin.json 的字段定义、路径约定、source 类型枚举）。
+主规范 [protocol.md](protocol.md) 关心 **静态契约**（marketplace.json / plugin.json 的字段定义、路径约定、source 类型枚举）。
 
 本文档关心 **动态行为与源码层观察**：
 
@@ -52,7 +52,7 @@ if (!(await pathExists(manifestPath))) {
 * **不扫描 `commands/` / `agents/` / `skills/` 等目录来"猜"插件结构** —— 必须在 marketplace 条目或 `plugin.json` 显式声明
 * **不存在"按约定自动发现"机制** —— Claude Code Plugin 不是 convention-over-configuration
 
-> Module D 实施建议：复刻这套行为。SKILL 目录扫描可能是个例外（[SKILL 协议 v1](../skill/protocol-v1.md) §2 描述了 SKILL 目录约定），但 plugin 级别的组件发现应该按显式声明走，避免引入隐式约定。
+> Module D 实施建议：复刻这套行为。SKILL 目录扫描可能是个例外（[SKILL 协议](../skill/protocol.md) §2 描述了 SKILL 目录约定），但 plugin 级别的组件发现应该按显式声明走，避免引入隐式约定。
 
 ## 3. plugin.json schema 字段必填性
 
@@ -104,7 +104,7 @@ if (!(await pathExists(manifestPath))) {
 
 ## 7. Marketplace source vs Plugin source —— schema 层 disjoint union
 
-主规范 [D-marketplace-v1.md §5.3](protocol-v1.md) 给出了两套 source 的对照表。本节补充源码层观察。
+主规范 [protocol.md §5.3](protocol.md) 给出了两套 source 的对照表。本节补充源码层观察。
 
 ### 7.1 Claude Code 原生 schema（参考实现，全集）
 
@@ -119,9 +119,9 @@ MarketplaceSource:  url | github | git | npm | file | directory
 PluginSource:       relative | npm | pip | url | github | git-subdir
 ```
 
-### 7.2 TFRobotServer v1 实施子集（缩减后）
+### 7.2 TFRobotServer 实施子集（缩减后）
 
-全部是 Git 引用，`github` / `cnb` 是简写糖到不同 host。理由见 [Marketplace v1 规范 §11](protocol-v1.md)：
+全部是 Git 引用，`github` / `cnb` 是简写糖到不同 host。理由见 [Marketplace 规范 §11](protocol.md)：
 
 ```
 MarketplaceSource:  url | github | git | cnb              ← 4 类

@@ -1,7 +1,7 @@
-# TFRobot SKILL 协议 v1 规范
+# TFRobot SKILL 协议规范
 
 > Jira：[TFRS-187](https://turingfocus.atlassian.net/browse/TFRS-187)（A5）/ Story [TFRS-180](https://turingfocus.atlassian.net/browse/TFRS-180) / Epic [TFRS-179](https://turingfocus.atlassian.net/browse/TFRS-179)
-> 状态：**v1 规范定稿（草稿）** —— A1\~A4 已合并至 develop（[#35](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/35) / [#36](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/36) / [#37](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/37) / [#38](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/38)），本文档将它们整合为单一权威契约。
+> 状态：**规范定稿（草稿）** —— A1\~A4 已合并至 develop（[#35](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/35) / [#36](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/36) / [#37](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/37) / [#38](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/38)），本文档将它们整合为单一权威契约。
 > 范围：**SKILL 撰写规范与使用语义**——内容契约（如何写一个 SKILL）+ 加载使用约束（任何接入方必守）。**不涉及** SKILL 分发渠道、运行时存储介质、执行后端（沙箱 / 引擎 / 容器 / 凭证基础设施）等业务侧议题——这些由接入方业务库 / Computer 侧 A2C-SMCP 实施方文档处理。
 > 读者：**SKILL 作者**（开发指南）+ **接入方实施工程师**（加载使用层的最小协议契约）。
 
@@ -17,7 +17,7 @@ TFRobot SKILL 协议定义**单个能力包（SKILL）的撰写规范与使用�
 * **平台无关** —— 协议本身**不指定**分发渠道、存储介质、执行后端；同一个 SKILL 文件夹可在 Claude Code / Cursor / TFRobot 等任何兼容客户端加载使用
 * TFRobot 数字员工通过加载 SKILL 来扩展能力 —— 与 Anthropic [Agent Skills 开放标准](https://agentskills.io/specification)中的 Skill 概念**等价**
 
-**协议层扩展概览**：相对上游标准，本协议在 `.skillenv` 双语义（§5）、`skills` 工具（§7）、`$TFROBOT_*` 占位符（§6）、SKILL 资源访问安全原则（§8）等处做了受控扩展，以适配 Robot ↔ Computer 的混合执行模型。**v1 不引入任何独有 frontmatter 字段**——6 个 frontmatter 字段全部来自 Agent Skills 开放标准。
+**协议层扩展概览**：相对上游标准，本协议在 `.skillenv` 双语义（§5）、`skills` 工具（§7）、`$TFROBOT_*` 占位符（§6）、SKILL 资源访问安全原则（§8）等处做了受控扩展，以适配 Robot ↔ Computer 的混合执行模型。**本规范不引入任何独有 frontmatter 字段**——6 个 frontmatter 字段全部来自 Agent Skills 开放标准。
 
 ### 0.2 SKILL 归属与来源
 
@@ -29,7 +29,7 @@ TFRobot SKILL 协议定义**单个能力包（SKILL）的撰写规范与使用�
 | --- | --- | --- | --- |
 | **云端 Robot 配置** | 从云端对象存储的约定目录提取——按 SKILL `name` 在约定根目录下查找子目录（默认根 `skills/`；TFRobot 平台采用 MinIO 实现）。具体存储后端、路径前缀、命名空间隔离策略由接入方业务库文档定义 | **仅文档提示**——LLM 在工具循环中读 `references/` 并按 body 指示行事；**不执行任何脚本** | 内容契约 + LLM 与 SKILL 的交互（§4 / §6 / §7） |
 | **已连接的 Computer** | Computer 按 [A2C-SMCP 协议](https://github.com/A2C-SMCP)（独立规范）暴露本地可用 SKILL；Robot 通过 A2C 连接发现并挂载 | **可执行**——`scripts/` 内容在 Computer 侧运行；执行后端（沙箱 / 引擎 / 容器 / 凭证）完全由 Computer 决定，本协议不规定 | 内容契约（同上）+ `.skillenv` 等环境声明（§5），由 Computer 侧解释 |
-| **Marketplace 仓库** | Git 仓库分发，详见独立规范 [Marketplace v1 规范](../marketplace/protocol-v1.md) | 取决于挂载点：作为 Robot 配置导入 = 仅文档；作为 Computer 侧能力提供 = 可执行 | 同上 |
+| **Marketplace 仓库** | Git 仓库分发，详见独立规范 [Marketplace 规范](../marketplace/protocol.md) | 取决于挂载点：作为 Robot 配置导入 = 仅文档；作为 Computer 侧能力提供 = 可执行 | 同上 |
 
 **协议边界**：本协议**只规定** SKILL 文件夹本身的内容契约（如何撰写、如何加载、如何使用），以及 LLM 与 SKILL 资源交互的最小契约（§7 `skills` 工具）。
 - SKILL 从何处来、在何处落盘、跨进程如何同步——由接入方业务库文档定义
@@ -43,13 +43,13 @@ TFRobot SKILL 协议定义**单个能力包（SKILL）的撰写规范与使用�
 * **不采纳**任何 Claude Code 私有扩展字段（CLI 残留 / 平台决策项 / 本地 FS 概念）。
 * **不引入任何独有 frontmatter 字段**——执行后端差异由 Computer 侧 A2C-SMCP 协议表达，不污染 SKILL 内容契约。
 
-### 0.4 v1 范围与不范围
+### 0.4 范围与不范围
 
-**v1 收入**：
+**本规范收入**：
 
 * Frontmatter 6 字段（全部来自开放标准）+ 标准目录结构 + `.skillenv` 双语义环境变量声明 + 3 个运行时占位符 + 平台内置 `skills` 工具 + 3 条 SKILL 资源访问安全原则。
 
-**v1 不收入**（详见 §10）：
+**本规范不收入**（详见 §10）：
 
 * CLI 残留占位符 / 平台决策性 frontmatter 字段（model / effort / disable-model-invocation 等）/ 完整性签名校验 / Web 编辑器 / 调试器 UI / 资源配额计费 / 并发隔离精细策略。
 * **`runtime` 字段、Dockerfile 文件名约定、引擎枚举、沙箱 I/O 协议**——执行后端归 Computer 侧 A2C-SMCP，本协议不规定。
@@ -57,16 +57,16 @@ TFRobot SKILL 协议定义**单个能力包（SKILL）的撰写规范与使用�
 
 ## 1. 设计原则
 
-v1 设计共 9 条原则：6 条来自 A1~A4 的"克制 + 互操作 + 安全"基调；3 条是 SKILL 资源访问安全模型的强制约束。
+本规范设计共 9 条原则：6 条来自 A1~A4 的"克制 + 互操作 + 安全"基调；3 条是 SKILL 资源访问安全模型的强制约束。
 
 ### 1.1 协议层（6 条）
 
 1. **完全对齐 Agent Skills 开放标准**：6 个 frontmatter 字段全采纳，不破坏跨客户端互操作。
 2. **不采纳 Claude Code 扩展字段**：CLI 残留（`$ARGUMENTS` / `arguments` / `argument-hint`）、平台决策项（`model` / `effort` / `disable-model-invocation` / `user-invocable`）、本地 FS 概念（`hooks` / `paths`）等一律不入；理由汇总在 A1 §3。
-3. **不引入独有字段**：执行后端差异（沙箱 / 引擎 / 容器选择）由 Computer 侧 A2C-SMCP 表达；SKILL frontmatter **不承载**该类信息。设计史中 A3 曾设计 `runtime` 字段，v1 最终撤回（见附录 A）。
+3. **不引入独有字段**：执行后端差异（沙箱 / 引擎 / 容器选择）由 Computer 侧 A2C-SMCP 表达；SKILL frontmatter **不承载**该类信息。设计史中 A3 曾设计 `runtime` 字段，最终撤回（见附录 A）。
 4. **可由仓库内文件表达的不入 frontmatter**：环境变量 → `.skillenv`；frontmatter 仅承载元信息。
 5. **占位符私有命名空间**：所有运行时占位符以 `TFROBOT_` 前缀；不 mirror Claude Code `CLAUDE_*` / `$ARGUMENTS`；未识别占位符跨平台加载时字面透传。
-6. **v1 克制**：所有候选字段 / 占位符 / 取值均需具体 SKILL 场景驱动；不预设未实证的能力。
+6. **克制**：所有候选字段 / 占位符 / 取值均需具体 SKILL 场景驱动；不预设未实证的能力。
 
 ### 1.2 SKILL 资源访问安全原则（3 条强制）
 
@@ -107,7 +107,7 @@ my-skill/                          # 包根目录名 = SKILL.md frontmatter `nam
 
 ## 3. SKILL.md Frontmatter 字段表
 
-YAML frontmatter 位于 SKILL.md 顶部，包裹在 `---` 之间。v1 共 6 个字段，全部来自 Agent Skills 开放标准。
+YAML frontmatter 位于 SKILL.md 顶部，包裹在 `---` 之间。共 6 个字段，全部来自 Agent Skills 开放标准。
 
 ### 3.1 必填字段
 
@@ -125,7 +125,7 @@ YAML frontmatter 位于 SKILL.md 顶部，包裹在 `---` 之间。v1 共 6 个�
 | `metadata` | map<string,string> | 标准未规定大小上限 | 自由 key-value，跨客户端互操作透传；TFRobot 平台**不解释** |
 | `allowed-tools` | string \| list | 空格分隔字符串或 YAML 列表 | LLM 推理循环中可直接调用、免授权的工具白名单；**与 Computer 侧执行无关**，仅作用于 LLM-工具循环层面 |
 
-### 3.3 v1 不引入的字段（完整列表）
+### 3.3 本规范不引入的字段（完整列表）
 
 CLI 残留：`arguments` / `argument-hint` / `$ARGUMENTS` / `$N` / `$name`
 平台决策：`model` / `effort` / `disable-model-invocation` / `user-invocable` / `agent`
@@ -184,7 +184,7 @@ CLI 残留：`arguments` / `argument-hint` / `$ARGUMENTS` / `$N` / `$name`
 
 ### 5.4 LLM 不可见性（三层防护，接入方必守）
 
-1. **加载层黑名单**：SKILL 加载器维护 LLM 不可见文件名集合（v1 至少含 `.skillenv`）；LLM 任何路径请求都必须拒绝并记审计日志
+1. **加载层黑名单**：SKILL 加载器维护 LLM 不可见文件名集合（至少含 `.skillenv`）；LLM 任何路径请求都必须拒绝并记审计日志
 2. **执行注入而非文件分发**：`.skillenv` 解析必须在执行环境创建前完成，通过执行环境的 env 注入通道传入；**原文件不进入执行环境 FS**
 3. **prompt 渲染产物守护**：接入方应在 CI 中断言最终拼到 LLM 的 prompt 字符串不包含 `.skillenv` 任何行内容（KEY 名、VALUE 字面量、注释）
 
@@ -202,7 +202,7 @@ CLI 残留：`arguments` / `argument-hint` / `$ARGUMENTS` / `$N` / `$name`
 
 ## 6. 占位符
 
-### 6.1 v1 占位符全集（3 个）
+### 6.1 占位符全集（3 个）
 
 全部以 `TFROBOT_` 前缀；SKILL.md body 中可写 `$TFROBOT_<NAME>` 或 `${TFROBOT_<NAME>}`（等价）。
 
@@ -226,14 +226,14 @@ CLI 残留：`arguments` / `argument-hint` / `$ARGUMENTS` / `$N` / `$name`
 | 未定义占位符 | `$TFROBOT_FOOBAR` 等 → 加载器报错 |
 | 转义 | 不支持；需要字面字符串用 code block 或文本说明 |
 
-### 6.3 不收入 v1 的占位符（与不引入理由）
+### 6.3 不收入的占位符（与不引入理由）
 
 | 候选 | 不收入理由 |
 | --- | --- |
 | `$ARGUMENTS` / `$N` / `$name` | CLI 残留（A1 §3.1 已排除） |
-| `$TFROBOT_API_ENDPOINT` / `$TFROBOT_AUTH_TOKEN` | v1 不引入回调通道；需要时由 Computer 侧 A2C-SMCP 自行表达 |
+| `$TFROBOT_API_ENDPOINT` / `$TFROBOT_AUTH_TOKEN` | 不引入回调通道；需要时由 Computer 侧 A2C-SMCP 自行表达 |
 | `.skillenv` 解析后的用户 vault 明文 | 敏感值隔离 —— 仅作为执行环境 env 注入，不在 body 展开 |
-| `$TFROBOT_TENANT_ID` / `$TFROBOT_USER_ID` | 多租户上下文 v1 不暴露；按 tenant 区分应在 robot 配置层 |
+| `$TFROBOT_TENANT_ID` / `$TFROBOT_USER_ID` | 多租户上下文不暴露；按 tenant 区分应在 robot 配置层 |
 | `$TFROBOT_ARG` / `$TFROBOT_INPUT` 类输入占位符 | 输入参数注入语义涉及 LLM 工具调用协议；由 A2C-SMCP 表达 |
 | `$TFROBOT_EFFORT` / `$TFROBOT_MODEL` | 模型与算力档由平台决定，不暴露 |
 | `$TFROBOT_REQUEST_ID` | 可观测性走平台日志 / trace |
@@ -387,7 +387,7 @@ json.dump(
 
 > 同一份 SKILL 包既可作为 Robot 配置导入（此时 `scripts/` 不被执行，仅作为 LLM 可读参考），也可由 Computer 侧通过 A2C-SMCP 暴露（此时按 A2C 实施方约定执行）。**协议层不区分**——同一份包，不同挂载方式带来不同的执行能力。
 
-## 10. v1 不收入项汇总（接入方实施 review checklist）
+## 10. 不收入项汇总（接入方实施 review checklist）
 
 | 类别 | 不收入项 | 出处 |
 | --- | --- | --- |
@@ -397,16 +397,16 @@ json.dump(
 | | `runtime` / `dockerfile` / `image` / `byoi`（执行后端） | §3.3（A3 撤回，见附录 A） |
 | | `version` / `secrets` / `network` / `egress` / `visibility` / `audience` / `quota` / `cost` / `signature` / `integrity` | §3.3 / A1 §3.2 |
 | 占位符 | `$ARGUMENTS` / `$N` / `$name` | §6.3 |
-| | `$TFROBOT_API_ENDPOINT` / `$TFROBOT_AUTH_TOKEN`（无 v1 回调通道） | §6.3 |
+| | `$TFROBOT_API_ENDPOINT` / `$TFROBOT_AUTH_TOKEN`（无回调通道） | §6.3 |
 | | `$TFROBOT_TENANT_ID` / `$TFROBOT_USER_ID`（多租户上下文不暴露） | §6.3 |
 | | `$TFROBOT_ARG` / `$TFROBOT_INPUT`（输入语义留给 A2C-SMCP） | §6.3 |
 | | `$TFROBOT_EFFORT` / `$TFROBOT_MODEL` / `$TFROBOT_REQUEST_ID` | §6.3 |
 | 执行后端 | runtime 枚举 / per-engine Dockerfile / 沙箱 I/O 协议 / 跨 sandbox 通信 / IPC | 由 Computer 侧 A2C-SMCP 自行定义 |
 | 协议外能力 | 完整性签名校验、跨租户公共 marketplace、CDN 加速、多 region 分发、Web 编辑器、调试器 UI、资源配额计费、并发隔离精细策略 | Epic [TFRS-179](https://turingfocus.atlassian.net/browse/TFRS-179) |
 
-## 11. v1 字段集 Freeze 清单
+## 11. 字段集 Freeze 清单
 
-> 本节为 v1 协议字段总图，作为接入方实施时的字段对齐基准。任何不在本表中的字段、占位符、文件名平台均不解释。
+> 本节为协议字段总图，作为接入方实施时的字段对齐基准。任何不在本表中的字段、占位符、文件名平台均不解释。
 
 ### 11.1 Frontmatter 字段（6 个）
 
@@ -430,20 +430,20 @@ json.dump(
 
 ### 11.6 Marketplace 层级路径（Git 仓库解析）
 
-`<repo>/plugins/<plugin-name>/skills/<skill-name>/SKILL.md` —— 详见独立规范 [Marketplace v1 规范](../marketplace/protocol-v1.md)
+`<repo>/plugins/<plugin-name>/skills/<skill-name>/SKILL.md` —— 详见独立规范 [Marketplace 规范](../marketplace/protocol.md)
 
 ## 附录 A：设计史
 
-A1\~A4 是 v1 规范的分步设计文档；本文档是其整合后的权威契约。如本文与 A1\~A4 表述冲突，**以本文为准**（A1\~A4 保留作为决策 rationale 与设计史）。
+A1\~A4 是规范的分步设计文档；本文档是其整合后的权威契约。如本文与 A1\~A4 表述冲突，**以本文为准**（A1\~A4 保留作为决策 rationale 与设计史）。
 
-| 子任务 | Jira | 文档 | PR | v1 最终采纳 |
+| 子任务 | Jira | 文档 | PR | 最终采纳 |
 | --- | --- | --- | --- | --- |
-| A1 frontmatter 字段表 | [TFRS-183](https://turingfocus.atlassian.net/browse/TFRS-183) | [A1-frontmatter-fields.md](design-history/frontmatter-fields.md) | [#35](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/35) | ✅ 完全对齐 Agent Skills 开放标准；不采纳 Claude Code 扩展字段 |
-| A2 `.skillenv` 设计 | [TFRS-184](https://turingfocus.atlassian.net/browse/TFRS-184) | [A2-skillenv.md](design-history/skillenv.md) | [#36](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/36) | ✅ 标准 dotenv 双语义；用户 vault 三层强制隔离 |
-| A3 `runtime` 枚举 | [TFRS-185](https://turingfocus.atlassian.net/browse/TFRS-185) | [A3-runtime-enum.md](design-history/runtime-enum.md) | [#37](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/37) | ❌ **v1 撤回**——A3 曾设计双引擎枚举（`cubesandbox::*` / `e2b::*`）+ BYO Dockerfile；v1 最终决定执行后端归 Computer 侧 A2C-SMCP，`runtime` 字段不入协议 |
-| A4 目录 + 占位符 | [TFRS-186](https://turingfocus.atlassian.net/browse/TFRS-186) | [A4-directory-placeholders.md](design-history/directory-placeholders.md) | [#38](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/38) | ✅ `TFROBOT_*` 私有命名空间 + `skills` 工具契约 + 3 条安全原则 |
+| A1 frontmatter 字段表 | [TFRS-183](https://turingfocus.atlassian.net/browse/TFRS-183) | [frontmatter-fields.md](design-history/frontmatter-fields.md) | [#35](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/35) | ✅ 完全对齐 Agent Skills 开放标准；不采纳 Claude Code 扩展字段 |
+| A2 `.skillenv` 设计 | [TFRS-184](https://turingfocus.atlassian.net/browse/TFRS-184) | [skillenv.md](design-history/skillenv.md) | [#36](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/36) | ✅ 标准 dotenv 双语义；用户 vault 三层强制隔离 |
+| A3 `runtime` 枚举 | [TFRS-185](https://turingfocus.atlassian.net/browse/TFRS-185) | [runtime-enum.md](design-history/runtime-enum.md) | [#37](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/37) | ❌ **撤回**——A3 曾设计双引擎枚举（`cubesandbox::*` / `e2b::*`）+ BYO Dockerfile；最终决定执行后端归 Computer 侧 A2C-SMCP，`runtime` 字段不入协议 |
+| A4 目录 + 占位符 | [TFRS-186](https://turingfocus.atlassian.net/browse/TFRS-186) | [directory-placeholders.md](design-history/directory-placeholders.md) | [#38](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/38) | ✅ `TFROBOT_*` 私有命名空间 + `skills` 工具契约 + 3 条安全原则 |
 
-**A3 撤回 rationale**：A3 假设 TFRobot 协议要直接驱动执行后端（双引擎集群 + 镜像构建 + 沙箱注入），因此设计了 `runtime` 字段携带执行模板 + 引擎前缀语义。v1 评审时确认了更清晰的协议分层：
+**A3 撤回 rationale**：A3 假设 TFRobot 协议要直接驱动执行后端（双引擎集群 + 镜像构建 + 沙箱注入），因此设计了 `runtime` 字段携带执行模板 + 引擎前缀语义。评审时确认了更清晰的协议分层：
 - **Robot 配置侧 SKILL** 本就不执行脚本（仅文档驱动），不需要 `runtime` 字段
 - **Computer 侧 SKILL** 的执行后端由 A2C-SMCP 协议（独立规范）表达，不应污染 SKILL 内容契约
 
@@ -452,6 +452,6 @@ A1\~A4 是 v1 规范的分步设计文档；本文档是其整合后的权威契
 **整体设计教训**（A2 / A3 / A4 反溯共识）：
 
 * "复用 X 实现 Y"在跨信任边界场景需先核对 X 的安全前提是否在 Y 中成立（A2 §11）
-* 协议层是否绑定具体后端实现 = 协议设计常态张力；v1 最终选择**协议只管内容契约，执行后端归实施层**（A3 撤回教训）
+* 协议层是否绑定具体后端实现 = 协议设计常态张力；最终选择**协议只管内容契约，执行后端归实施层**（A3 撤回教训）
 * 私有命名空间 + 跨平台字面透传 > mirror 上游命名（A4 §9 教训）
 * 信息边界 vs 能力边界严格分开：URI 可见性 ≠ 越权能力（A4 §9 教训）

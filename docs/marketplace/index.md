@@ -1,4 +1,4 @@
-# Marketplace 分发（TFRobot v1）
+# Marketplace 分发（TFRobot）
 
 TFRobot Marketplace 定义 **Plugin 包**（含 SKILL 与 MCP Server 配置）从 Git 仓库到平台的分发流程，与 [Claude Code Plugin Marketplaces](https://code.claude.com/docs/en/plugin-marketplaces) 兼容并按 TFRobot 多租户、Curator 审核、A2C-SMCP MCP 配置等需求做受控扩展。
 
@@ -15,7 +15,7 @@ TFRobot Marketplace 定义 **Plugin 包**（含 SKILL 与 MCP Server 配置）�
 
 | 文档 | 范围 |
 | --- | --- |
-| **[Marketplace v1 规范](protocol-v1.md)** ⭐ | Git 仓库分发标准 —— `marketplace.json` / `plugin.json` JSON Schema、`source` 类型枚举、目录布局（SKILL + MCP）、Curator 模式 |
+| **[Marketplace 规范](protocol.md)** ⭐ | Git 仓库分发标准 —— `marketplace.json` / `plugin.json` JSON Schema、`source` 类型枚举、目录布局（SKILL + MCP）、Curator 模式 |
 
 ## 实施参考（运行时行为，非规范契约）
 

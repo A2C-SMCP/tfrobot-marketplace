@@ -52,6 +52,11 @@ theme:
 plugins:
   - search:
       lang: zh
+  - redirects:
+      redirect_maps:
+        'skill/protocol-v1.md': 'skill/protocol.md'
+        'mcp-servers/protocol-v1.md': 'mcp-servers/protocol.md'
+        'marketplace/protocol-v1.md': 'marketplace/protocol.md'
   - mike:
       alias_type: symlink
       version_selector: true
@@ -104,7 +109,7 @@ nav:
   - 首页: index.md
   - SKILL 协议:
       - 概览: skill/index.md
-      - 协议 v1 规范: skill/protocol-v1.md
+      - 协议规范: skill/protocol.md
       - 设计史 (A1~A4):
           - 概览: skill/design-history/index.md
           - A1 frontmatter 字段表: skill/design-history/frontmatter-fields.md
@@ -113,10 +118,10 @@ nav:
           - A4 目录与占位符: skill/design-history/directory-placeholders.md
   - MCP Server 配置:
       - 概览: mcp-servers/index.md
-      - 配置规范 v1: mcp-servers/protocol-v1.md
+      - 配置规范: mcp-servers/protocol.md
   - Marketplace 分发:
       - 概览: marketplace/index.md
-      - Marketplace v1 规范: marketplace/protocol-v1.md
+      - Marketplace 规范: marketplace/protocol.md
       - 加载行为参考: marketplace/loading-behavior.md
   - 附录:
       - 常见问题: appendix/faq.md

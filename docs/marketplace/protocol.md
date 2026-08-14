@@ -1,7 +1,7 @@
-# TFRobotServer Marketplace v1 规范
+# TFRobotServer Marketplace 规范
 
 > Jira：D1 [TFRS-202](https://turingfocus.atlassian.net/browse/TFRS-202) / Module D Story [TFRS-201](https://turingfocus.atlassian.net/browse/TFRS-201) / Epic [TFRS-179](https://turingfocus.atlassian.net/browse/TFRS-179)
-> 范围：SKILL 包的 **Git 仓库分发约定（数据结构与 JSON Schema）**；与单个 SKILL 文件夹的内容契约（[SKILL 协议 v1](../skill/protocol-v1.md)）正交
+> 范围：SKILL 包的 **Git 仓库分发约定（数据结构与 JSON Schema）**；与单个 SKILL 文件夹的内容契约（[SKILL 协议](../skill/protocol.md)）正交
 > 设计参考：[Claude Code Plugin Marketplaces 官方规范](https://code.claude.com/docs/en/plugin-marketplaces) —— 字段定义与 source 类型枚举借鉴其设计，**但 manifest 路径与命名空间独立**（`.tfrobot-plugin/` 而非 `.claude-plugin/`）
 > 读者：① SKILL / Plugin 作者（通过 Marketplace 发布场景）② Module D 实施工程师
 
@@ -15,11 +15,11 @@
 
 * **Marketplace** = 一个 Git 仓库；**catalog 单位**；manifest 为 `.tfrobot-plugin/marketplace.json`
 * **Plugin** = 一组相关能力的包装；**版本与依赖单位**；manifest 为 `.tfrobot-plugin/plugin.json`
-* **SKILL** = 单个能力包；**内容单位**；由 [SKILL 协议 v1](../skill/protocol-v1.md) 定义
+* **SKILL** = 单个能力包；**内容单位**；由 [SKILL 协议](../skill/protocol.md) 定义
 
 ### 0.2 与 SKILL 协议的关系
 
-| 维度 | [SKILL 协议 v1](../skill/protocol-v1.md) | 本规范（Marketplace） |
+| 维度 | [SKILL 协议](../skill/protocol.md) | 本规范（Marketplace） |
 | --- | --- | --- |
 | 范围 | SKILL 文件夹的内容契约（frontmatter / 目录 / 占位符 / `skills` 工具等） | Git 仓库的目录约定 + JSON Schema |
 | 作者关心 | 任何 SKILL 作者必须遵守 | 仅"通过 Marketplace 发布"的作者关心 |
@@ -271,7 +271,7 @@ Marketplace 体系实际上由 **两套互不交集的 source schema** 组成。
 | --- | --- | --- |
 | 控制什么 | 从哪里拉 `marketplace.json` catalog（整个目录）| 从哪里拉单个 plugin |
 | 出现位置 | 用户在 Portal 添加 marketplace 时填写 | `marketplace.json` 中每个 plugin 条目的 `source` 字段 |
-| TFRobotServer v1 实施类型 | `url` / `github` / `git` / `cnb`（4 类） | 相对路径 / `url` / `github` / `git-subdir` / `cnb`（5 类）|
+| TFRobotServer 实施类型 | `url` / `github` / `git` / `cnb`（4 类） | 相对路径 / `url` / `github` / `git-subdir` / `cnb`（5 类）|
 | 是否支持 `sha` 锁版本 | 仅 `ref` 分支/tag，**不**支持 `sha` | 同时支持 `ref` 与 `sha` 精确锁定 commit |
 
 > 两侧都仅接受 Git 引用，`github`/`cnb` 都是简写糖到不同 host 的 `git` —— 命名差异只为 UX 与 schema 校验，底层加载链路一致。
@@ -290,13 +290,13 @@ Marketplace 体系实际上由 **两套互不交集的 source schema** 组成。
 
 * `marketplace.json` 里的 plugin 条目**永远指向"plugin 源"**，从不指向"另一个 marketplace"
 * 即便某 plugin 源恰好是另一个仓库（该仓库可能也对外提供 marketplace 接口），那个仓库的 marketplace 身份**不会被这条 plugin 条目触发** —— 装载器只会去 `git-subdir.path` 子目录读 `plugin.json`，不会去仓库根读 `marketplace.json`
-* 详细装载流程见 [D-loading-behavior.md](loading-behavior.md) §"git-subdir 加载链路"
+* 详细装载流程见 [loading-behavior.md](loading-behavior.md) §"git-subdir 加载链路"
 
 ## 6. plugin.json 字段规范
 
 > Plugin manifest，路径 `<plugin>/.tfrobot-plugin/plugin.json`。字段设计参考 [Claude Code Plugin Reference](https://code.claude.com/docs/en/plugins)。
 >
-> **条件必需**：是否存在 `plugin.json` 由 marketplace 条目的 `strict` 字段决定（§4.4）。装载行为细节、缺失兜底、冲突检测见 [D-loading-behavior.md](loading-behavior.md)。
+> **条件必需**：是否存在 `plugin.json` 由 marketplace 条目的 `strict` 字段决定（§4.4）。装载行为细节、缺失兜底、冲突检测见 [loading-behavior.md](loading-behavior.md)。
 
 ### 6.1 必填字段
 
@@ -318,9 +318,9 @@ Marketplace 体系实际上由 **两套互不交集的 source schema** 组成。
 
 ### 6.3 组件目录（plugin 根，非 `.tfrobot-plugin/` 内）
 
-| 目录 / 文件 | 用途 | TFRobot v1 |
+| 目录 / 文件 | 用途 | TFRobot |
 | --- | --- | --- |
-| `skills/` | SKILL 包（每个 `<name>/SKILL.md`）——按 [SKILL 协议 v1](../skill/protocol-v1.md) 解析 | **消费** |
+| `skills/` | SKILL 包（每个 `<name>/SKILL.md`）——按 [SKILL 协议](../skill/protocol.md) 解析 | **消费** |
 | `mcp-servers/` | MCP Server 配置（每个 `<name>.json` + 可选 `inputs.json`）——按 §8 解析，对齐 [A2C-SMCP v0.2.0](https://doc.turingfocus.cn/a2c-smcp/) | **消费** |
 | `.mcp.json` | Claude Code 私有的 MCP 嵌入式配置 | 不消费（与 `mcp-servers/` 解耦；同时存在两者时只读 `mcp-servers/`） |
 | `commands/` | 平铺 `.md` 命令文件 | 不消费 |
@@ -331,7 +331,7 @@ Marketplace 体系实际上由 **两套互不交集的 source schema** 组成。
 | `bin/` | Bash PATH 可执行 | 不消费 |
 | `settings.json` | Plugin 默认 settings | 不消费 |
 
-> **TFRobot v1 消费**：`skills/` 子树 + `mcp-servers/` 子树。Plugin 内其他 Claude Code 私有组件 **识别但忽略不报错**，保证仓库可在两端互操作。
+> **TFRobot 消费**：`skills/` 子树 + `mcp-servers/` 子树。Plugin 内其他 Claude Code 私有组件 **识别但忽略不报错**，保证仓库可在两端互操作。
 
 ### 6.4 plugin.json 完整示例
 
@@ -353,7 +353,7 @@ Marketplace 体系实际上由 **两套互不交集的 source schema** 组成。
 
 ## 7. SKILL 层（指向 SKILL 协议）
 
-SKILL 目录 `<plugin>/skills/<skill-name>/` 内的所有内容契约由 [SKILL 协议 v1](../skill/protocol-v1.md) 定义，本规范不重述。要点提示：
+SKILL 目录 `<plugin>/skills/<skill-name>/` 内的所有内容契约由 [SKILL 协议](../skill/protocol.md) 定义，本规范不重述。要点提示：
 
 * SKILL.md（必需）：SKILL 协议 §3 frontmatter + §4 body
 * `.skillenv`（可选）：SKILL 协议 §5
@@ -363,7 +363,7 @@ SKILL 目录 `<plugin>/skills/<skill-name>/` 内的所有内容契约由 [SKILL 
 
 ## 8. MCP Server 层（指向 MCP Server 配置规范）
 
-MCP Server 目录 `<plugin>/mcp-servers/` 内的所有内容契约由 [MCP Server 配置规范 v1](../mcp-servers/protocol-v1.md) 定义，本规范不重述。要点提示：
+MCP Server 目录 `<plugin>/mcp-servers/` 内的所有内容契约由 [MCP Server 配置规范](../mcp-servers/protocol.md) 定义，本规范不重述。要点提示：
 
 * `<server-name>.json`（子树存在时至少 1 个）：单个 MCP Server 配置，结构对齐 A2C-SMCP `MCPServerConfig`
 * `inputs.json`（可选）：占位符输入定义，plugin 范围内共享
@@ -374,7 +374,7 @@ MCP Server 目录 `<plugin>/mcp-servers/` 内的所有内容契约由 [MCP Serve
 
 一个 marketplace 可以通过 `git-subdir` 引用**其他仓库中的 plugin**，即使该仓库自身也是一个 marketplace —— 这是合法的 curator 模式。
 
-**前提**：`git-subdir.path` 必须落在 plugin 边界，不能指向 marketplace 边界（含 `marketplace.json`）。`plugin.json` 是否需要存在由 marketplace 条目 `strict` 字段决定，详见 §6 与 [D-loading-behavior.md](loading-behavior.md)。
+**前提**：`git-subdir.path` 必须落在 plugin 边界，不能指向 marketplace 边界（含 `marketplace.json`）。`plugin.json` 是否需要存在由 marketplace 条目 `strict` 字段决定，详见 §6 与 [loading-behavior.md](loading-behavior.md)。
 
 ```
 turingfocus-curated/                                ← curator marketplace
@@ -409,7 +409,7 @@ vendor-x/skills/                                    ← provider marketplace（�
 | 用户加 `vendor-x/skills` 为 marketplace | 整个 repo clone 到 marketplace cache，读根 `marketplace.json`，列出 vendor-x 全套 plugin |
 | 用户从 `turingfocus-curated` 装 `data-toolkit` | 独立 sparse clone `vendor-x/skills`，只提子目录，作为单个 plugin 安装；**不读** vendor-x repo 根的 `marketplace.json` |
 
-代价是磁盘上同一 repo 可能被独立拉取两次；收益是两条路径完全解耦、cache 模型简单（避免一个 cache 既要支持 marketplace 视图又要支持 plugin 视图）。详细流程见 [D-loading-behavior.md](loading-behavior.md)。
+代价是磁盘上同一 repo 可能被独立拉取两次；收益是两条路径完全解耦、cache 模型简单（避免一个 cache 既要支持 marketplace 视图又要支持 plugin 视图）。详细流程见 [loading-behavior.md](loading-behavior.md)。
 
 **设计带来的好处**：
 
@@ -418,7 +418,7 @@ vendor-x/skills/                                    ← provider marketplace（�
 3. **粒度精确**：可以从一个 monorepo 挑某个子目录作为 plugin，不强迫作者拆 repo
 4. **`sha` 锁版本**：curator 可以"快照" plugin 某个 commit，作者后续改动不会立即影响 curator 用户
 
-**消费 Claude Code 标准仓库的可能性**：因 manifest 路径独立（`.tfrobot-plugin/` vs `.claude-plugin/`），TFRobotServer 平台默认不消费仅含 `.claude-plugin/` manifest 的仓库；若需互操作，由 Module D 实施时决定是否支持"路径回退识别"（v1 不收入，见 §11）。
+**消费 Claude Code 标准仓库的可能性**：因 manifest 路径独立（`.tfrobot-plugin/` vs `.claude-plugin/`），TFRobotServer 平台默认不消费仅含 `.claude-plugin/` manifest 的仓库；若需互操作，由 Module D 实施时决定是否支持"路径回退识别"（不收入，见 §11）。
 
 ## 10. 与 Claude Code Marketplace 关系矩阵
 
@@ -433,16 +433,16 @@ vendor-x/skills/                                    ← provider marketplace（�
 | **Manifest 路径** | **独立**：`.tfrobot-plugin/` 而非 `.claude-plugin/`；同一份仓库**不能**被两端直接互换消费 |
 | **Marketplace 保留名空间** | **独立**：`tfrobot-` / `turingfocus-` / `tfs-` 前缀；与 Claude Code 保留名空间互不影响 |
 | Plugin 内组件（`commands/` / `agents/` / `hooks/` / `mcpServers` / `lspServers` / `monitors/` / `bin/` / `settings.json`） | TFRobotServer 不消费但容忍存在 |
-| SKILL 层私有内容（`.skillenv` / 占位符 / 内置工具） | 由 [SKILL 协议 v1](../skill/protocol-v1.md) 定义；不属本规范范围 |
+| SKILL 层私有内容（`.skillenv` / 占位符 / 内置工具） | 由 [SKILL 协议](../skill/protocol.md) 定义；不属本规范范围 |
 | 双轨发布可行性 | 作者可同时维护 `.tfrobot-plugin/` 与 `.claude-plugin/` 两套 manifest，分别面向两端发布 |
 
-## 11. v1 不引入（与理由）
+## 11. 不引入（与理由）
 
 | 不引入项 | 理由 |
 | --- | --- |
-| 平台托管 Git 仓库 / SaaS 化 Marketplace | v1 仅作 Git pull 消费方；托管侧由 Portal / CNB 等承担 |
-| 完整性签名校验（GPG / Sigstore） | Epic 范围外；v1 信任 Git 提交历史 |
-| Plugin 间依赖解析 / 版本约束 / `allowCrossMarketplaceDependenciesOn` 校验 | 字段可识别透传，但 v1 不强制约束 |
+| 平台托管 Git 仓库 / SaaS 化 Marketplace | 仅作 Git pull 消费方；托管侧由 Portal / CNB 等承担 |
+| 完整性签名校验（GPG / Sigstore） | Epic 范围外；信任 Git 提交历史 |
+| Plugin 间依赖解析 / 版本约束 / `allowCrossMarketplaceDependenciesOn` 校验 | 字段可识别透传，但不强制约束 |
 | 跨租户公共 Marketplace、CDN 加速 | Epic 范围外 |
 | `npm` source 类型（marketplace 与 plugin 两侧）| 需要 node 运行时；TFRobotServer 是 Python 服务端，与栈不匹配 |
 | `pip` source 类型（plugin 侧）| SaaS 服务**不允许任意 `pip install`**（安全约束）；plugin 内容须托管在可审计的 Git 仓库 |
@@ -450,7 +450,7 @@ vendor-x/skills/                                    ← provider marketplace（�
 | `hostPattern` / `pathPattern` source 类型 | Claude Code 客户端 `strictKnownMarketplaces` 管控字段，服务端无对应入口 |
 | `settings` source 类型 | 内联到 Claude Code 客户端 settings.json，与客户端 settings 强耦合 |
 | 把 Portal Upload / Inline-Edit 纳入 marketplace.json | 两者属于平台内部 Plugin/SKILL 注入渠道，不经过 marketplace catalog |
-| `.claude-plugin/` 路径回退识别 | v1 仅识别 `.tfrobot-plugin/`；不消费仅含 `.claude-plugin/` manifest 的 Claude Code 标准仓库；如需互操作由后续 ticket 评估 |
+| `.claude-plugin/` 路径回退识别 | 仅识别 `.tfrobot-plugin/`；不消费仅含 `.claude-plugin/` manifest 的 Claude Code 标准仓库；如需互操作由后续 ticket 评估 |
 | Plugin 内 Claude Code 私有组件（`commands/` / `hooks/` / `agents/` / `mcpServers` / `lspServers` / `monitors/` / `bin/` / `settings.json`）| TFRobotServer 不消费；识别但忽略不报错 |
 
 ## 12. 准出对照（D1 子任务）
@@ -464,7 +464,7 @@ vendor-x/skills/                                    ← provider marketplace（�
 * [x] MCP Server 层对齐 A2C-SMCP v0.2.0（§8）
 * [x] Curator / Aggregator 模式合法性与边界（§9）
 * [x] 与 Claude Code Marketplace 兼容性矩阵（§10）
-* [x] v1 不引入项（§11）
+* [x] 不引入项（§11）
 
 依赖下游子任务（实施层，本规范不细化）：
 
@@ -485,7 +485,7 @@ vendor-x/skills/                                    ← provider marketplace（�
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│ SKILL 文件夹内容契约                ◄── SKILL 协议 v1                   │
+│ SKILL 文件夹内容契约                ◄── SKILL 协议                      │
 │ (frontmatter / dirs / .skillenv /                                      │
 │  placeholders / skills tool / ...)                                     │
 │           │                                                            │
@@ -510,4 +510,4 @@ vendor-x/skills/                                    ← provider marketplace（�
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-[SKILL 协议 v1](../skill/protocol-v1.md) 管"SKILL 内容契约"；本规范管"Marketplace / Plugin 仓库结构与 JSON Schema"。
+[SKILL 协议](../skill/protocol.md) 管"SKILL 内容契约"；本规范管"Marketplace / Plugin 仓库结构与 JSON Schema"。

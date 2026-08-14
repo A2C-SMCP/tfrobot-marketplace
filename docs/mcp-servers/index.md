@@ -1,4 +1,4 @@
-# MCP Server 配置（TFRobot v1）
+# MCP Server 配置（TFRobot）
 
 TFRobot Plugin 可以在 `<plugin>/mcp-servers/` 子树下声明若干 **MCP Server 配置**，由 Robot 在加载 Plugin 时按 [A2C-SMCP 协议 v0.2.0](https://doc.turingfocus.cn/a2c-smcp/) 装配并通过 Computer 侧暴露给 LLM 工具循环。
 
@@ -10,7 +10,7 @@ TFRobot Plugin 可以在 `<plugin>/mcp-servers/` 子树下声明若干 **MCP Ser
 
 | 文档 | 范围 |
 | --- | --- |
-| **[MCP Server 配置规范 v1](protocol-v1.md)** ⭐ | Plugin 内 `mcp-servers/` 目录约定 + A2C-SMCP v0.2.0 schema 摘要（BaseMCPServerConfig / stdio·streamable·sse / inputs / ToolMeta） |
+| **[MCP Server 配置规范](protocol.md)** ⭐ | Plugin 内 `mcp-servers/` 目录约定 + A2C-SMCP v0.2.0 schema 摘要（BaseMCPServerConfig / stdio·streamable·sse / inputs / ToolMeta） |
 
 ## 与上游标准的关系
 
