@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://doc.turingfocus.cn/tfrobot-marketplace/latest/marketplace/loading-behavior/">
       
       
-        <link rel="prev" href="../protocol-v1/">
+        <link rel="prev" href="../protocol/">
       
       
         <link rel="next" href="../../appendix/faq/">
@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -485,14 +485,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../skill/protocol-v1/" class="md-nav__link">
+      <a href="../../skill/protocol/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    协议 v1 规范
+    协议规范
   
 
     
@@ -804,14 +804,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../mcp-servers/protocol-v1/" class="md-nav__link">
+      <a href="../../mcp-servers/protocol/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    配置规范 v1
+    配置规范
   
 
     
@@ -924,14 +924,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../protocol-v1/" class="md-nav__link">
+      <a href="../protocol/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Marketplace v1 规范
+    Marketplace 规范
   
 
     
@@ -1114,10 +1114,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#72-tfrobotserver-v1-实施子集缩减后" class="md-nav__link">
+  <a href="#72-tfrobotserver-实施子集缩减后" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7.2 TFRobotServer v1 实施子集（缩减后）
+        7.2 TFRobotServer 实施子集（缩减后）
       
     </span>
   </a>
@@ -1407,10 +1407,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#72-tfrobotserver-v1-实施子集缩减后" class="md-nav__link">
+  <a href="#72-tfrobotserver-实施子集缩减后" class="md-nav__link">
     <span class="md-ellipsis">
       
-        7.2 TFRobotServer v1 实施子集（缩减后）
+        7.2 TFRobotServer 实施子集（缩减后）
       
     </span>
   </a>
@@ -1536,13 +1536,13 @@
 
 <h1 id="plugin-manifest-加载行为参考基于-claude-code-实现观察">Plugin manifest 加载行为参考（基于 Claude Code 实现观察）<a class="headerlink" href="#plugin-manifest-加载行为参考基于-claude-code-实现观察" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>关联：<a href="../protocol-v1/">D-marketplace-v1.md</a> 主规范
+<p>关联：<a href="../protocol/">protocol.md</a> 主规范
 Jira：<a href="https://turingfocus.atlassian.net/browse/TFRS-202">TFRS-202</a> / <a href="https://turingfocus.atlassian.net/browse/TFRS-201">TFRS-201</a>
 性质：<strong>实施/运行时行为参考</strong>，非规范强制约束。Module D 实施时建议复刻 Claude Code 这套行为以最大化兼容；SKILL/Plugin 作者用于理解装载时的取舍。
 来源：<a href="https://code.claude.com/docs/en/plugin-marketplaces">Claude Code 官方文档</a> + 公开源码观察（<code>pluginLoader.ts</code> / <code>schemas.ts</code>）</p>
 </blockquote>
 <h2 id="0-为什么单列此文档">0. 为什么单列此文档<a class="headerlink" href="#0-为什么单列此文档" title="Permanent link">&para;</a></h2>
-<p>主规范 <a href="../protocol-v1/">D-marketplace-v1.md</a> 关心 <strong>静态契约</strong>（marketplace.json / plugin.json 的字段定义、路径约定、source 类型枚举）。</p>
+<p>主规范 <a href="../protocol/">protocol.md</a> 关心 <strong>静态契约</strong>（marketplace.json / plugin.json 的字段定义、路径约定、source 类型枚举）。</p>
 <p>本文档关心 <strong>动态行为与源码层观察</strong>：</p>
 <ul>
 <li><code>plugin.json</code> 缺失时装载是否成功？兜底字段从哪里来？</li>
@@ -1612,7 +1612,7 @@ Jira：<a href="https://turingfocus.atlassian.net/browse/TFRS-202">TFRS-202</a> 
 <li><strong>不存在"按约定自动发现"机制</strong> —— Claude Code Plugin 不是 convention-over-configuration</li>
 </ul>
 <blockquote>
-<p>Module D 实施建议：复刻这套行为。SKILL 目录扫描可能是个例外（<a href="../../skill/protocol-v1/">SKILL 协议 v1</a> §2 描述了 SKILL 目录约定），但 plugin 级别的组件发现应该按显式声明走，避免引入隐式约定。</p>
+<p>Module D 实施建议：复刻这套行为。SKILL 目录扫描可能是个例外（<a href="../../skill/protocol/">SKILL 协议</a> §2 描述了 SKILL 目录约定），但 plugin 级别的组件发现应该按显式声明走，避免引入隐式约定。</p>
 </blockquote>
 <h2 id="3-pluginjson-schema-字段必填性">3. plugin.json schema 字段必填性<a class="headerlink" href="#3-pluginjson-schema-字段必填性" title="Permanent link">&para;</a></h2>
 <table>
@@ -1737,7 +1737,7 @@ Jira：<a href="https://turingfocus.atlassian.net/browse/TFRS-202">TFRS-202</a> 
 <li><strong>不引入按约定的目录自动发现</strong>：组件目录必须显式声明，保持与 Claude Code 行为一致；这样作者跨阵地切换不会遇到"在 A 端能跑、在 B 端找不到组件"的怪现象</li>
 </ol>
 <h2 id="7-marketplace-source-vs-plugin-source--schema-层-disjoint-union">7. Marketplace source vs Plugin source —— schema 层 disjoint union<a class="headerlink" href="#7-marketplace-source-vs-plugin-source--schema-层-disjoint-union" title="Permanent link">&para;</a></h2>
-<p>主规范 <a href="../protocol-v1/">D-marketplace-v1.md §5.3</a> 给出了两套 source 的对照表。本节补充源码层观察。</p>
+<p>主规范 <a href="../protocol/">protocol.md §5.3</a> 给出了两套 source 的对照表。本节补充源码层观察。</p>
 <h3 id="71-claude-code-原生-schema参考实现全集">7.1 Claude Code 原生 schema（参考实现，全集）<a class="headerlink" href="#71-claude-code-原生-schema参考实现全集" title="Permanent link">&para;</a></h3>
 <p>参考 Claude Code <code>schemas.ts:906-1161</code>：</p>
 <div class="language-ts highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Marketplace source —— 用户加 marketplace 时用的</span>
@@ -1747,8 +1747,8 @@ Jira：<a href="https://turingfocus.atlassian.net/browse/TFRS-202">TFRS-202</a> 
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">// Plugin source —— marketplace.json 里 plugin 条目的 source 字段</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nx">PluginSource</span><span class="o">:</span><span class="w">       </span><span class="kt">relative</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">npm</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">pip</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">github</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">git</span><span class="o">-</span><span class="nx">subdir</span>
 </code></pre></div>
-<h3 id="72-tfrobotserver-v1-实施子集缩减后">7.2 TFRobotServer v1 实施子集（缩减后）<a class="headerlink" href="#72-tfrobotserver-v1-实施子集缩减后" title="Permanent link">&para;</a></h3>
-<p>全部是 Git 引用，<code>github</code> / <code>cnb</code> 是简写糖到不同 host。理由见 <a href="../protocol-v1/">Marketplace v1 规范 §11</a>：</p>
+<h3 id="72-tfrobotserver-实施子集缩减后">7.2 TFRobotServer 实施子集（缩减后）<a class="headerlink" href="#72-tfrobotserver-实施子集缩减后" title="Permanent link">&para;</a></h3>
+<p>全部是 Git 引用，<code>github</code> / <code>cnb</code> 是简写糖到不同 host。理由见 <a href="../protocol/">Marketplace 规范 §11</a>：</p>
 <div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>MarketplaceSource:  url | github | git | cnb              ← 4 类
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>PluginSource:       relative | url | github | git-subdir | cnb   ← 5 类
 </code></pre></div>
@@ -1915,7 +1915,7 @@ Jira：<a href="https://turingfocus.atlassian.net/browse/TFRS-202">TFRS-202</a> 
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "content.code.annotate", "content.code.copy", "announce.dismiss", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"alias": true, "provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

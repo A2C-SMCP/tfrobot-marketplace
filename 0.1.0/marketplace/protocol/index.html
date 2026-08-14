@@ -1,0 +1,3323 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="TFRobot Marketplace - 文档与规范">
+      
+      
+      
+        <link rel="canonical" href="https://doc.turingfocus.cn/tfrobot-marketplace/latest/marketplace/protocol/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../loading-behavior/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Marketplace 规范 - TFRobot Marketplace</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tfrobotserver-marketplace-规范" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="TFRobot Marketplace" class="md-header__button md-logo" aria-label="TFRobot Marketplace" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TFRobot Marketplace
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Marketplace 规范
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/A2C-SMCP/tfrobot-marketplace" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tfrobot-marketplace
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../skill/" class="md-tabs__link">
+          
+  
+  
+  SKILL 协议
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mcp-servers/" class="md-tabs__link">
+          
+  
+  
+  MCP Server 配置
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Marketplace 分发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../appendix/faq/" class="md-tabs__link">
+          
+  
+  
+  附录
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TFRobot Marketplace" class="md-nav__button md-logo" aria-label="TFRobot Marketplace" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TFRobot Marketplace
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/A2C-SMCP/tfrobot-marketplace" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tfrobot-marketplace
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SKILL 协议
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SKILL 协议
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skill/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skill/protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    协议规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计史 (A1~A4)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    设计史 (A1~A4)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skill/design-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skill/design-history/frontmatter-fields/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1 frontmatter 字段表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skill/design-history/skillenv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 .skillenv 设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skill/design-history/runtime-enum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3 runtime 枚举
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skill/design-history/directory-placeholders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 目录与占位符
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Server 配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCP Server 配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mcp-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mcp-servers/protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketplace 分发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Marketplace 分发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketplace 规范
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketplace 规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="页面目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      页面目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-总览" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 总览
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. 总览">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-这是什么" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 这是什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-与-skill-协议的关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 与 SKILL 协议的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-与-claude-code-marketplace-的关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 与 Claude Code Marketplace 的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-设计原则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 设计原则
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-仓库布局" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 仓库布局
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 仓库布局">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-marketplace-仓库根" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Marketplace 仓库根
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-路径约定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 路径约定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-skill-引用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 SKILL 引用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-marketplacejson-字段规范" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. marketplace.json 字段规范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. marketplace.json 字段规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-必填字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 必填字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-可选字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 可选字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-owner-子对象" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Owner 子对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-marketplacejson-完整示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 marketplace.json 完整示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-plugin-条目字段规范" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Plugin 条目字段规范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Plugin 条目字段规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-必填字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 必填字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-可选-metadata-字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 可选 metadata 字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-可选组件配置字段marketplace-条目级覆写" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 可选组件配置字段（marketplace 条目级覆写）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-strict-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Strict mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-plugin-source-字段规范" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Plugin source 字段规范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Plugin source 字段规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-source-类型枚举5-种-git-引用方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Source 类型枚举（5 种 Git 引用方式）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-各类型字段表" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 各类型字段表
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 各类型字段表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.1 github
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.2 url
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#523-git-subdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.3 git-subdir
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#524-cnb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.4 cnb
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-marketplace-source-vs-plugin-source两套独立-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Marketplace source vs Plugin source（两套独立 schema）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-pluginjson-字段规范" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. plugin.json 字段规范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. plugin.json 字段规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-必填字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 必填字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-可选字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 可选字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-组件目录plugin-根非-tfrobot-plugin-内" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 组件目录（plugin 根，非 .tfrobot-plugin/ 内）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-pluginjson-完整示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 plugin.json 完整示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-skill-层指向-skill-协议" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. SKILL 层（指向 SKILL 协议）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-mcp-server-层指向-mcp-server-配置规范" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. MCP Server 层（指向 MCP Server 配置规范）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-curator--aggregator-模式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Curator / Aggregator 模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-与-claude-code-marketplace-关系矩阵" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 与 Claude Code Marketplace 关系矩阵
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-不引入与理由" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 不引入（与理由）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-准出对照d1-子任务" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 准出对照（D1 子任务）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-参考" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录-a与-skill-协议规范的边界" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录 A：与 SKILL 协议规范的边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loading-behavior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    加载行为参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    附录
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    附录
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="页面目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      页面目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-总览" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 总览
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. 总览">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-这是什么" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 这是什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-与-skill-协议的关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 与 SKILL 协议的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-与-claude-code-marketplace-的关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 与 Claude Code Marketplace 的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-设计原则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 设计原则
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-仓库布局" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 仓库布局
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 仓库布局">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-marketplace-仓库根" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Marketplace 仓库根
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-路径约定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 路径约定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-skill-引用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 SKILL 引用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-marketplacejson-字段规范" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. marketplace.json 字段规范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. marketplace.json 字段规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-必填字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 必填字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-可选字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 可选字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-owner-子对象" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Owner 子对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-marketplacejson-完整示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 marketplace.json 完整示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-plugin-条目字段规范" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Plugin 条目字段规范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Plugin 条目字段规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-必填字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 必填字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-可选-metadata-字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 可选 metadata 字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-可选组件配置字段marketplace-条目级覆写" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 可选组件配置字段（marketplace 条目级覆写）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-strict-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Strict mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-plugin-source-字段规范" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Plugin source 字段规范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Plugin source 字段规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-source-类型枚举5-种-git-引用方式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Source 类型枚举（5 种 Git 引用方式）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-各类型字段表" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 各类型字段表
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 各类型字段表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.1 github
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.2 url
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#523-git-subdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.3 git-subdir
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#524-cnb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2.4 cnb
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-marketplace-source-vs-plugin-source两套独立-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Marketplace source vs Plugin source（两套独立 schema）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-pluginjson-字段规范" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. plugin.json 字段规范
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. plugin.json 字段规范">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-必填字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 必填字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-可选字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 可选字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-组件目录plugin-根非-tfrobot-plugin-内" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 组件目录（plugin 根，非 .tfrobot-plugin/ 内）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-pluginjson-完整示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 plugin.json 完整示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-skill-层指向-skill-协议" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. SKILL 层（指向 SKILL 协议）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-mcp-server-层指向-mcp-server-配置规范" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. MCP Server 层（指向 MCP Server 配置规范）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-curator--aggregator-模式" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Curator / Aggregator 模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-与-claude-code-marketplace-关系矩阵" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 与 Claude Code Marketplace 关系矩阵
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-不引入与理由" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 不引入（与理由）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-准出对照d1-子任务" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 准出对照（D1 子任务）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-参考" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 参考
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录-a与-skill-协议规范的边界" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录 A：与 SKILL 协议规范的边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="导航栏" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    首页
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Marketplace 分发
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tfrobotserver-marketplace-规范">TFRobotServer Marketplace 规范<a class="headerlink" href="#tfrobotserver-marketplace-规范" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Jira：D1 <a href="https://turingfocus.atlassian.net/browse/TFRS-202">TFRS-202</a> / Module D Story <a href="https://turingfocus.atlassian.net/browse/TFRS-201">TFRS-201</a> / Epic <a href="https://turingfocus.atlassian.net/browse/TFRS-179">TFRS-179</a>
+范围：SKILL 包的 <strong>Git 仓库分发约定（数据结构与 JSON Schema）</strong>；与单个 SKILL 文件夹的内容契约（<a href="../../skill/protocol/">SKILL 协议</a>）正交
+设计参考：<a href="https://code.claude.com/docs/en/plugin-marketplaces">Claude Code Plugin Marketplaces 官方规范</a> —— 字段定义与 source 类型枚举借鉴其设计，<strong>但 manifest 路径与命名空间独立</strong>（<code>.tfrobot-plugin/</code> 而非 <code>.claude-plugin/</code>）
+读者：① SKILL / Plugin 作者（通过 Marketplace 发布场景）② Module D 实施工程师</p>
+</blockquote>
+<h2 id="0-总览">0. 总览<a class="headerlink" href="#0-总览" title="Permanent link">&para;</a></h2>
+<h3 id="01-这是什么">0.1 这是什么<a class="headerlink" href="#01-这是什么" title="Permanent link">&para;</a></h3>
+<p><strong>Marketplace</strong> 是 SKILL/Plugin 的 <strong>Git 仓库分发标准</strong>。一个 Marketplace 是一个 Git 仓库（或可被 Git 操作的等价物），仓库里以 <code>.tfrobot-plugin/marketplace.json</code> 为入口列出该 catalog 提供的 plugin。</p>
+<p>层级语义（自顶向下）：</p>
+<ul>
+<li><strong>Marketplace</strong> = 一个 Git 仓库；<strong>catalog 单位</strong>；manifest 为 <code>.tfrobot-plugin/marketplace.json</code></li>
+<li><strong>Plugin</strong> = 一组相关能力的包装；<strong>版本与依赖单位</strong>；manifest 为 <code>.tfrobot-plugin/plugin.json</code></li>
+<li><strong>SKILL</strong> = 单个能力包；<strong>内容单位</strong>；由 <a href="../../skill/protocol/">SKILL 协议</a> 定义</li>
+</ul>
+<h3 id="02-与-skill-协议的关系">0.2 与 SKILL 协议的关系<a class="headerlink" href="#02-与-skill-协议的关系" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th><a href="../../skill/protocol/">SKILL 协议</a></th>
+<th>本规范（Marketplace）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>范围</td>
+<td>SKILL 文件夹的内容契约（frontmatter / 目录 / 占位符 / <code>skills</code> 工具等）</td>
+<td>Git 仓库的目录约定 + JSON Schema</td>
+</tr>
+<tr>
+<td>作者关心</td>
+<td>任何 SKILL 作者必须遵守</td>
+<td>仅"通过 Marketplace 发布"的作者关心</td>
+</tr>
+<tr>
+<td>平台关心</td>
+<td>加载方 / Computer 侧消费 SKILL 时遵守</td>
+<td>Marketplace 实施方从 Git 仓库拉取 plugin / SKILL 时遵守</td>
+</tr>
+<tr>
+<td>正交性</td>
+<td>两者<strong>完全正交</strong> —— 同一 SKILL 文件夹无论从哪种渠道分发，加载语义一致</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="03-与-claude-code-marketplace-的关系">0.3 与 Claude Code Marketplace 的关系<a class="headerlink" href="#03-与-claude-code-marketplace-的关系" title="Permanent link">&para;</a></h3>
+<p><strong>TFRobotServer Marketplace 是独立标准</strong>，借鉴 Claude Code 的字段设计与 source 类型枚举，但 <strong>manifest 路径（<code>.tfrobot-plugin/</code>）与 catalog 命名空间独立</strong>，不追求"同一份仓库被两端互换消费"。</p>
+<p><strong>P0（字段/Schema 借鉴）</strong>：marketplace.json / plugin.json 字段名、必填可选契约、source 类型枚举与字段约束沿用 Claude Code 设计 —— 作者切换阵地时学习成本最低。</p>
+<p><strong>P1（路径独立）</strong>：manifest 路径采用 <code>.tfrobot-plugin/</code> 命名空间；同一份仓库要双端消费需作者维护两套 manifest 目录（双轨发布），平台不做隐式兼容。</p>
+<p><strong>P2（SKILL 层正交）</strong>：SKILL 协议引入的私有内容（<code>.skillenv</code> / 占位符 / <code>skills</code> 工具等）位于 SKILL 文件夹内部，不属于本规范范围。</p>
+<h2 id="1-设计原则">1. 设计原则<a class="headerlink" href="#1-设计原则" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>字段设计借鉴 Claude Code Plugin Marketplaces</strong>：核心字段名、source 类型枚举、必填/可选契约沿用其设计，作者跨阵地切换成本最低；不发明替代命名。</li>
+<li><strong>manifest 命名空间独立</strong>：使用 <code>.tfrobot-plugin/</code> 而非 <code>.claude-plugin/</code>，避免目录名占用别家产品命名；同时不假装与 Claude Code 仓库结构互换消费。</li>
+<li><strong>与 SKILL 协议正交</strong>：本规范不修改单个 SKILL 文件夹的内容契约。</li>
+<li><strong>manifest 显式分级</strong>：<code>marketplace.json</code> 与 <code>plugin.json</code> 是两份不同的 manifest，位于不同目录层；不存在"marketplace 嵌套 marketplace"——只存在"marketplace 通过 source 引用 plugin"。</li>
+<li><strong>Plugin source 是 plugin 级别的引用</strong>：<code>git-subdir</code> 等 source 类型引用的 <code>path</code> 必须指向 plugin 边界（含 <code>plugin.json</code> 的目录），不可指向 marketplace 边界。</li>
+<li><strong>非标准扩展显式标注</strong>：任何超出参考标准的字段或 source type（如 <code>cnb</code>）必须在 §11 与 §12 中显式列出。</li>
+</ol>
+<h2 id="2-仓库布局">2. 仓库布局<a class="headerlink" href="#2-仓库布局" title="Permanent link">&para;</a></h2>
+<h3 id="21-marketplace-仓库根">2.1 Marketplace 仓库根<a class="headerlink" href="#21-marketplace-仓库根" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;Git 仓库根 = Marketplace&gt;/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  .tfrobot-plugin/
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    marketplace.json                          # 必需，Marketplace manifest（§3）
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  plugins/                                    # 推荐路径；可被 metadata.pluginRoot 覆写
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    &lt;plugin-name-A&gt;/
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>      .tfrobot-plugin/                        # 条件必需：见 §6 与 §4.4 strict mode
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        plugin.json                           # strict=true 时必需；strict=false 时省略
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      skills/                                 # 可选 —— SKILL 子树
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        &lt;skill-name&gt;/                         # SKILL 内容 —— SKILL 协议 §2~§8
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>          SKILL.md
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>          .skillenv                           # 可选（SKILL 协议 §5）
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>          scripts/
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>          references/
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>          assets/
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>      mcp-servers/                            # 可选 —— MCP Server 子树（§8）
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        &lt;server-name&gt;.json                    # 单个 MCP Server 配置（对齐 A2C-SMCP v0.2.0）
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        inputs.json                           # 可选 —— 占位符输入定义
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    &lt;plugin-name-B&gt;/
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>      .tfrobot-plugin/plugin.json             # 同上，条件必需
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>      skills/...
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>      mcp-servers/...
+</code></pre></div>
+<h3 id="22-路径约定">2.2 路径约定<a class="headerlink" href="#22-路径约定" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>约定</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Marketplace manifest 路径</td>
+<td><code>.tfrobot-plugin/marketplace.json</code>（仓库根，<strong>必需</strong>）</td>
+</tr>
+<tr>
+<td>Plugin manifest 路径</td>
+<td><code>&lt;plugin&gt;/.tfrobot-plugin/plugin.json</code>（<strong>条件必需</strong>，见 §6）</td>
+</tr>
+<tr>
+<td>Plugin 默认聚集目录</td>
+<td><code>plugins/&lt;plugin-name&gt;/</code>（可被 <code>metadata.pluginRoot</code> 覆写）</td>
+</tr>
+<tr>
+<td>SKILL 目录</td>
+<td><code>&lt;plugin&gt;/skills/&lt;skill-name&gt;/</code>（可选；若存在按 SKILL 协议 §2 解析）</td>
+</tr>
+<tr>
+<td>MCP Server 目录</td>
+<td><code>&lt;plugin&gt;/mcp-servers/</code>（可选；若存在按 §8 解析）</td>
+</tr>
+<tr>
+<td>Plugin 内容下限</td>
+<td>plugin 至少需提供 <code>skills/</code> 或 <code>mcp-servers/</code> 之一为非空；两者皆空的 plugin 视为空载，加载器警告</td>
+</tr>
+<tr>
+<td>Plugin / SKILL / MCP Server 名称字符集</td>
+<td><code>[a-z0-9-]</code>，kebab-case，不以 <code>-</code> 开头/结尾，无连续 <code>--</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-skill-引用">2.3 SKILL 引用<a class="headerlink" href="#23-skill-引用" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>三元组</strong>：<code>(marketplace_name, plugin_name, skill_name)</code></li>
+<li><strong>串形式</strong>：<code>marketplace_name/plugin_name/skill_name</code></li>
+<li><strong>Plugin 安装语法（Claude Code 兼容）</strong>：<code>/plugin install &lt;plugin-name&gt;@&lt;marketplace-name&gt;</code></li>
+</ul>
+<h2 id="3-marketplacejson-字段规范">3. marketplace.json 字段规范<a class="headerlink" href="#3-marketplacejson-字段规范" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>字段设计沿用 <a href="https://code.claude.com/docs/en/plugin-marketplaces#marketplace-schema">Claude Code Marketplace Schema</a>；manifest 路径独立为 <code>.tfrobot-plugin/</code>。</p>
+</blockquote>
+<h3 id="31-必填字段">3.1 必填字段<a class="headerlink" href="#31-必填字段" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Marketplace 标识（kebab-case，无空格）。公开可见；用户安装时显示：<code>/plugin install x@&lt;name&gt;</code></td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>object</td>
+<td>维护者信息（见 §3.3）</td>
+</tr>
+<tr>
+<td><code>plugins</code></td>
+<td>array&lt;Plugin&gt;</td>
+<td>Plugin 条目数组（见 §4）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>保留名</strong>：TFRobotServer 官方将保留若干 marketplace 名称用于官方分发（如 <code>tfrobot-skills-official</code> / <code>tfrobot-marketplace</code> / <code>turingfocus-skills</code>）；第三方 marketplace 不得占用以 <code>tfrobot-</code> / <code>turingfocus-</code> / <code>tfs-</code> 开头的官方命名空间。Module D 实施时输出完整清单。</p>
+</blockquote>
+<h3 id="32-可选字段">3.2 可选字段<a class="headerlink" href="#32-可选字段" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$schema</code></td>
+<td>string</td>
+<td>JSON Schema URL（编辑器自动补全用，运行时忽略）</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>简要描述</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>string</td>
+<td>Marketplace manifest 版本</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>object</td>
+<td>备用元数据容器；<code>description</code> / <code>version</code> 可放此字段下（向后兼容）</td>
+</tr>
+<tr>
+<td><code>metadata.pluginRoot</code></td>
+<td>string</td>
+<td>相对 plugin source 的基准目录前缀（如 <code>"./plugins"</code>，使 <code>"source": "formatter"</code> 等价于 <code>"source": "./plugins/formatter"</code>）</td>
+</tr>
+<tr>
+<td><code>allowCrossMarketplaceDependenciesOn</code></td>
+<td>array</td>
+<td>本 marketplace 中的 plugin 允许依赖的其他 marketplace 白名单</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-owner-子对象">3.3 Owner 子对象<a class="headerlink" href="#33-owner-子对象" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>是</td>
+<td>维护者或团队名称</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>否</td>
+<td>联系邮箱</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-marketplacejson-完整示例">3.4 marketplace.json 完整示例<a class="headerlink" href="#34-marketplacejson-完整示例" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;$schema&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://anthropic.com/claude-code/marketplace.schema.json&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tfs-skills-official&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Official TFRobotServer SKILL marketplace&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TFRobotServer Team&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tfs@turingfocus.com&quot;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">&quot;pluginRoot&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./plugins&quot;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="nt">&quot;plugins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data-toolkit&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">      </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data-toolkit&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Data ingestion / cleansing / report SKILLs&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">      </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.2.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">      </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TFRobotServer Team&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">      </span><span class="nt">&quot;tags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;etl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pandas&quot;</span><span class="p">]</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;auth-tools&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">      </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">        </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;github&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">        </span><span class="nt">&quot;repo&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;turingfocus/tfs-auth-plugin&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">        </span><span class="nt">&quot;ref&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v0.3.1&quot;</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Auth-related SKILLs&quot;</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="4-plugin-条目字段规范">4. Plugin 条目字段规范<a class="headerlink" href="#4-plugin-条目字段规范" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Plugin 条目可包含 Plugin Manifest（§6）允许的所有字段，加上以下 marketplace 专属字段。</p>
+</blockquote>
+<h3 id="41-必填字段">4.1 必填字段<a class="headerlink" href="#41-必填字段" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Plugin 标识（kebab-case，无空格）</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>string | object</td>
+<td>Plugin 拉取源（见 §5）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-可选-metadata-字段">4.2 可选 metadata 字段<a class="headerlink" href="#42-可选-metadata-字段" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>简要描述</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>string</td>
+<td>Plugin 版本。设置后用户仅在该字符串变更时收到更新；省略则回退到 git commit SHA</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>object</td>
+<td><code>{name: string (必需), email?: string}</code></td>
+</tr>
+<tr>
+<td><code>homepage</code></td>
+<td>string</td>
+<td>主页或文档 URL</td>
+</tr>
+<tr>
+<td><code>repository</code></td>
+<td>string</td>
+<td>源码仓库 URL</td>
+</tr>
+<tr>
+<td><code>license</code></td>
+<td>string</td>
+<td>SPDX license（如 <code>MIT</code>、<code>Apache-2.0</code>）</td>
+</tr>
+<tr>
+<td><code>keywords</code></td>
+<td>array&lt;string&gt;</td>
+<td>用于发现与分类的关键字</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>string</td>
+<td>类别</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>array&lt;string&gt;</td>
+<td>标签</td>
+</tr>
+<tr>
+<td><code>strict</code></td>
+<td>boolean</td>
+<td>是否以 plugin.json 为组件定义权威（默认 <code>true</code>，见 §4.4）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-可选组件配置字段marketplace-条目级覆写">4.3 可选组件配置字段（marketplace 条目级覆写）<a class="headerlink" href="#43-可选组件配置字段marketplace-条目级覆写" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>这些字段可在 marketplace 条目中<strong>追加或覆写</strong> plugin 内部 <code>plugin.json</code> 的同名字段；语义见 §4.4 strict mode。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>skills</code></td>
+<td>string | array</td>
+<td>自定义 SKILL 目录路径（含 <code>&lt;name&gt;/SKILL.md</code>）</td>
+</tr>
+<tr>
+<td><code>commands</code></td>
+<td>string | array</td>
+<td>自定义命令 <code>.md</code> 文件或目录</td>
+</tr>
+<tr>
+<td><code>agents</code></td>
+<td>string | array</td>
+<td>自定义 agent 文件路径</td>
+</tr>
+<tr>
+<td><code>hooks</code></td>
+<td>string | object</td>
+<td>Hooks 配置或 hooks 文件路径</td>
+</tr>
+<tr>
+<td><code>mcpServers</code></td>
+<td>string | object</td>
+<td>MCP server 配置或路径</td>
+</tr>
+<tr>
+<td><code>lspServers</code></td>
+<td>string | object</td>
+<td>LSP server 配置或路径</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44-strict-mode">4.4 Strict mode<a class="headerlink" href="#44-strict-mode" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th><code>strict</code> 值</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>true</code>（默认）</td>
+<td><code>plugin.json</code> 是组件定义权威；marketplace 条目可<strong>补充</strong>额外组件，二者合并</td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td>marketplace 条目是组件定义全集；若 plugin 仓库自带 <code>plugin.json</code> 也声明组件，则装载失败</td>
+</tr>
+</tbody>
+</table>
+<p><strong>何时用 <code>false</code></strong>：marketplace 运营方希望对 plugin 仓库做 curation —— 不修改上游仓库内容，但通过条目精选/重构暴露出来的组件子集。</p>
+<h2 id="5-plugin-source-字段规范">5. Plugin source 字段规范<a class="headerlink" href="#5-plugin-source-字段规范" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>本节定义 <strong>Plugin source</strong> —— 即 <code>marketplace.json</code> 中每个 plugin 条目的 <code>source</code> 字段。这是与 <strong>Marketplace source</strong>（用户添加 marketplace 时用的 source）<strong>完全独立的两套 schema</strong>，详见 §5.4。</p>
+</blockquote>
+<h3 id="51-source-类型枚举5-种-git-引用方式">5.1 Source 类型枚举（5 种 Git 引用方式）<a class="headerlink" href="#51-source-类型枚举5-种-git-引用方式" title="Permanent link">&para;</a></h3>
+<p>全部是 Git 仓库的引用，差别仅在简写糖归一化目标与"是否子目录"。Claude Code 还支持 <code>npm</code>/<code>pip</code> 包源，本项目不引入（§11 说明理由）。</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>形态</th>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>相对路径</strong></td>
+<td><code>string</code>（如 <code>"./my-plugin"</code>）</td>
+<td>无</td>
+<td>marketplace 仓库内的 plugin 目录；必须以 <code>./</code> 开头；不允许 <code>..</code></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>object</td>
+<td><code>url</code>, <code>ref?</code>, <code>sha?</code></td>
+<td>任意 Git URL（<code>https://</code> / <code>git@</code>），含 GitLab / Bitbucket / 自建</td>
+</tr>
+<tr>
+<td><code>github</code></td>
+<td>object</td>
+<td><code>repo</code>, <code>ref?</code>, <code>sha?</code></td>
+<td><code>owner/repo</code> 简写糖 → 归一化到 <code>github.com</code></td>
+</tr>
+<tr>
+<td><code>git-subdir</code></td>
+<td>object</td>
+<td><code>url</code>, <code>path</code>, <code>ref?</code>, <code>sha?</code></td>
+<td>Git 仓库子目录作为 plugin（monorepo，sparse clone）</td>
+</tr>
+<tr>
+<td><code>cnb</code></td>
+<td>object</td>
+<td><code>repo</code>, <code>ref?</code>, <code>sha?</code></td>
+<td><code>group/project</code> 简写糖 → 归一化到 <code>cnb.cool</code>（国内主流 Git 平台）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-各类型字段表">5.2 各类型字段表<a class="headerlink" href="#52-各类型字段表" title="Permanent link">&para;</a></h3>
+<h4 id="521-github">5.2.1 <code>github</code><a class="headerlink" href="#521-github" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>repo</code></td>
+<td>string</td>
+<td>是</td>
+<td>GitHub 仓库 <code>owner/repo</code> 格式</td>
+</tr>
+<tr>
+<td><code>ref</code></td>
+<td>string</td>
+<td>否</td>
+<td>分支或 tag（默认仓库默认分支）</td>
+</tr>
+<tr>
+<td><code>sha</code></td>
+<td>string</td>
+<td>否</td>
+<td>完整 40 字符 commit SHA</td>
+</tr>
+</tbody>
+</table>
+<h4 id="522-url">5.2.2 <code>url</code><a class="headerlink" href="#522-url" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td>string</td>
+<td>是</td>
+<td>完整 Git URL（<code>https://</code> 或 <code>git@</code>）；<code>.git</code> 后缀可选</td>
+</tr>
+<tr>
+<td><code>ref</code></td>
+<td>string</td>
+<td>否</td>
+<td>分支或 tag</td>
+</tr>
+<tr>
+<td><code>sha</code></td>
+<td>string</td>
+<td>否</td>
+<td>完整 40 字符 commit SHA</td>
+</tr>
+</tbody>
+</table>
+<h4 id="523-git-subdir">5.2.3 <code>git-subdir</code><a class="headerlink" href="#523-git-subdir" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>url</code></td>
+<td>string</td>
+<td>是</td>
+<td>Git URL；亦接受 GitHub 简写 <code>owner/repo</code> 或 SSH URL</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td>string</td>
+<td>是</td>
+<td>子目录路径；<strong>必须指向 plugin 根</strong>（即被 marketplace 条目作为 plugin 引用的目录），<strong>不可指向另一个 marketplace 根</strong>（含 <code>marketplace.json</code>）。是否要求 <code>plugin.json</code> 存在见 §6</td>
+</tr>
+<tr>
+<td><code>ref</code></td>
+<td>string</td>
+<td>否</td>
+<td>分支或 tag</td>
+</tr>
+<tr>
+<td><code>sha</code></td>
+<td>string</td>
+<td>否</td>
+<td>完整 40 字符 commit SHA</td>
+</tr>
+</tbody>
+</table>
+<h4 id="524-cnb">5.2.4 <code>cnb</code><a class="headerlink" href="#524-cnb" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>repo</code></td>
+<td>string</td>
+<td>是</td>
+<td>CNB 仓库 <code>group/project</code> 格式</td>
+</tr>
+<tr>
+<td><code>ref</code></td>
+<td>string</td>
+<td>否</td>
+<td>分支或 tag</td>
+</tr>
+<tr>
+<td><code>sha</code></td>
+<td>string</td>
+<td>否</td>
+<td>完整 40 字符 commit SHA</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Claude Code 客户端不识别 <code>cnb</code> 类型；TFRobotServer 引入是为了国内 Git 生态。归一化逻辑与 <code>github</code> 完全同构 —— D3 Loader 将 <code>{source: "cnb", repo: "g/p"}</code> 转换为 <code>https://cnb.cool/g/p.git</code> 走 git clone。</p>
+</blockquote>
+<p><strong>注</strong>：Portal 直接上传 (Upload) 与在线编辑 (Inline-Edit) <strong>不属于 marketplace.json 范围</strong> —— 它们是平台内部 Plugin/SKILL 分发渠道，绕过 marketplace catalog 直接进入 registry，不在本规范覆盖。</p>
+<h3 id="53-marketplace-source-vs-plugin-source两套独立-schema">5.3 Marketplace source vs Plugin source（两套独立 schema）<a class="headerlink" href="#53-marketplace-source-vs-plugin-source两套独立-schema" title="Permanent link">&para;</a></h3>
+<p>Marketplace 体系实际上由 <strong>两套互不交集的 source schema</strong> 组成。它们通过出现位置区分，靠 <code>source.source</code> 字段的 union 类型判定，<strong>不是嵌套递归</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th><strong>Marketplace source</strong></th>
+<th><strong>Plugin source</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>控制什么</td>
+<td>从哪里拉 <code>marketplace.json</code> catalog（整个目录）</td>
+<td>从哪里拉单个 plugin</td>
+</tr>
+<tr>
+<td>出现位置</td>
+<td>用户在 Portal 添加 marketplace 时填写</td>
+<td><code>marketplace.json</code> 中每个 plugin 条目的 <code>source</code> 字段</td>
+</tr>
+<tr>
+<td>TFRobotServer 实施类型</td>
+<td><code>url</code> / <code>github</code> / <code>git</code> / <code>cnb</code>（4 类）</td>
+<td>相对路径 / <code>url</code> / <code>github</code> / <code>git-subdir</code> / <code>cnb</code>（5 类）</td>
+</tr>
+<tr>
+<td>是否支持 <code>sha</code> 锁版本</td>
+<td>仅 <code>ref</code> 分支/tag，<strong>不</strong>支持 <code>sha</code></td>
+<td>同时支持 <code>ref</code> 与 <code>sha</code> 精确锁定 commit</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>两侧都仅接受 Git 引用，<code>github</code>/<code>cnb</code> 都是简写糖到不同 host 的 <code>git</code> —— 命名差异只为 UX 与 schema 校验，底层加载链路一致。</p>
+</blockquote>
+<p><strong>关键交集为空（disjoint union）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>仅在 Marketplace source</th>
+<th>仅在 Plugin source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git</code></td>
+<td>✅ —— marketplace 用 <code>git</code> 引用任意 Git URL</td>
+<td>❌ —— plugin 同语义用 <code>url</code>，discriminator 不同</td>
+</tr>
+<tr>
+<td><code>git-subdir</code></td>
+<td>❌</td>
+<td>✅ —— marketplace <strong>不能</strong>用 git-subdir</td>
+</tr>
+<tr>
+<td>相对路径 <code>"./xxx"</code></td>
+<td>❌</td>
+<td>✅ —— 引用 marketplace 仓库内的 plugin 目录</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>cnb</code> 在 Marketplace source 与 Plugin source <strong>两侧都存在</strong>：marketplace catalog 与 plugin 都可托管于 CNB。两侧 <code>cnb</code> 字段定义独立（marketplace 侧多 <code>path</code>/<code>sparsePaths</code>）。</p>
+</blockquote>
+<p>实际后果：</p>
+<ul>
+<li><code>marketplace.json</code> 里的 plugin 条目<strong>永远指向"plugin 源"</strong>，从不指向"另一个 marketplace"</li>
+<li>即便某 plugin 源恰好是另一个仓库（该仓库可能也对外提供 marketplace 接口），那个仓库的 marketplace 身份<strong>不会被这条 plugin 条目触发</strong> —— 装载器只会去 <code>git-subdir.path</code> 子目录读 <code>plugin.json</code>，不会去仓库根读 <code>marketplace.json</code></li>
+<li>详细装载流程见 <a href="../loading-behavior/">loading-behavior.md</a> §"git-subdir 加载链路"</li>
+</ul>
+<h2 id="6-pluginjson-字段规范">6. plugin.json 字段规范<a class="headerlink" href="#6-pluginjson-字段规范" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Plugin manifest，路径 <code>&lt;plugin&gt;/.tfrobot-plugin/plugin.json</code>。字段设计参考 <a href="https://code.claude.com/docs/en/plugins">Claude Code Plugin Reference</a>。</p>
+<p><strong>条件必需</strong>：是否存在 <code>plugin.json</code> 由 marketplace 条目的 <code>strict</code> 字段决定（§4.4）。装载行为细节、缺失兜底、冲突检测见 <a href="../loading-behavior/">loading-behavior.md</a>。</p>
+</blockquote>
+<h3 id="61-必填字段">6.1 必填字段<a class="headerlink" href="#61-必填字段" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Plugin 标识；同时作为 SKILL 命名空间前缀（如 <code>/&lt;plugin&gt;:&lt;skill&gt;</code>）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-可选字段">6.2 可选字段<a class="headerlink" href="#62-可选字段" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>Plugin 描述</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>string</td>
+<td>版本。设置后用户仅在变更时收到更新；省略则用 Git commit SHA</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>object</td>
+<td><code>{name: string (必需), email?: string}</code></td>
+</tr>
+<tr>
+<td><code>homepage</code></td>
+<td>string</td>
+<td>主页 URL</td>
+</tr>
+<tr>
+<td><code>repository</code></td>
+<td>string</td>
+<td>源码仓库 URL</td>
+</tr>
+<tr>
+<td><code>license</code></td>
+<td>string</td>
+<td>SPDX license</td>
+</tr>
+<tr>
+<td><code>keywords</code></td>
+<td>array&lt;string&gt;</td>
+<td>关键字</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-组件目录plugin-根非-tfrobot-plugin-内">6.3 组件目录（plugin 根，非 <code>.tfrobot-plugin/</code> 内）<a class="headerlink" href="#63-组件目录plugin-根非-tfrobot-plugin-内" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>目录 / 文件</th>
+<th>用途</th>
+<th>TFRobot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>skills/</code></td>
+<td>SKILL 包（每个 <code>&lt;name&gt;/SKILL.md</code>）——按 <a href="../../skill/protocol/">SKILL 协议</a> 解析</td>
+<td><strong>消费</strong></td>
+</tr>
+<tr>
+<td><code>mcp-servers/</code></td>
+<td>MCP Server 配置（每个 <code>&lt;name&gt;.json</code> + 可选 <code>inputs.json</code>）——按 §8 解析，对齐 <a href="https://doc.turingfocus.cn/a2c-smcp/">A2C-SMCP v0.2.0</a></td>
+<td><strong>消费</strong></td>
+</tr>
+<tr>
+<td><code>.mcp.json</code></td>
+<td>Claude Code 私有的 MCP 嵌入式配置</td>
+<td>不消费（与 <code>mcp-servers/</code> 解耦；同时存在两者时只读 <code>mcp-servers/</code>）</td>
+</tr>
+<tr>
+<td><code>commands/</code></td>
+<td>平铺 <code>.md</code> 命令文件</td>
+<td>不消费</td>
+</tr>
+<tr>
+<td><code>agents/</code></td>
+<td>Agent 定义</td>
+<td>不消费</td>
+</tr>
+<tr>
+<td><code>hooks/hooks.json</code></td>
+<td>Hook 配置</td>
+<td>不消费</td>
+</tr>
+<tr>
+<td><code>.lsp.json</code></td>
+<td>LSP server 配置</td>
+<td>不消费</td>
+</tr>
+<tr>
+<td><code>monitors/monitors.json</code></td>
+<td>后台 monitor 配置</td>
+<td>不消费</td>
+</tr>
+<tr>
+<td><code>bin/</code></td>
+<td>Bash PATH 可执行</td>
+<td>不消费</td>
+</tr>
+<tr>
+<td><code>settings.json</code></td>
+<td>Plugin 默认 settings</td>
+<td>不消费</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>TFRobot 消费</strong>：<code>skills/</code> 子树 + <code>mcp-servers/</code> 子树。Plugin 内其他 Claude Code 私有组件 <strong>识别但忽略不报错</strong>，保证仓库可在两端互操作。</p>
+</blockquote>
+<h3 id="64-pluginjson-完整示例">6.4 plugin.json 完整示例<a class="headerlink" href="#64-pluginjson-完整示例" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;data-toolkit&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Data ingestion / cleansing / report SKILLs&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.2.0&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TFRobotServer Team&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tfs@turingfocus.com&quot;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="nt">&quot;homepage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://docs.turingfocus.com/skills/data-toolkit&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="nt">&quot;repository&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://github.com/turingfocus/tfs-data-toolkit&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="nt">&quot;license&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MIT&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="nt">&quot;keywords&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;etl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;pandas&quot;</span><span class="p">]</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="7-skill-层指向-skill-协议">7. SKILL 层（指向 SKILL 协议）<a class="headerlink" href="#7-skill-层指向-skill-协议" title="Permanent link">&para;</a></h2>
+<p>SKILL 目录 <code>&lt;plugin&gt;/skills/&lt;skill-name&gt;/</code> 内的所有内容契约由 <a href="../../skill/protocol/">SKILL 协议</a> 定义，本规范不重述。要点提示：</p>
+<ul>
+<li>SKILL.md（必需）：SKILL 协议 §3 frontmatter + §4 body</li>
+<li><code>.skillenv</code>（可选）：SKILL 协议 §5</li>
+<li>标准目录 <code>scripts/</code> / <code>references/</code> / <code>assets/</code>：SKILL 协议 §2</li>
+<li>占位符 <code>TFROBOT_SKILL_DIR</code> / <code>TFROBOT_SESSION_ID</code> / <code>TFROBOT_ROBOT_ID</code>：SKILL 协议 §6</li>
+<li>内置 <code>skills</code> 工具：SKILL 协议 §7</li>
+</ul>
+<h2 id="8-mcp-server-层指向-mcp-server-配置规范">8. MCP Server 层（指向 MCP Server 配置规范）<a class="headerlink" href="#8-mcp-server-层指向-mcp-server-配置规范" title="Permanent link">&para;</a></h2>
+<p>MCP Server 目录 <code>&lt;plugin&gt;/mcp-servers/</code> 内的所有内容契约由 <a href="../../mcp-servers/protocol/">MCP Server 配置规范</a> 定义，本规范不重述。要点提示：</p>
+<ul>
+<li><code>&lt;server-name&gt;.json</code>（子树存在时至少 1 个）：单个 MCP Server 配置，结构对齐 A2C-SMCP <code>MCPServerConfig</code></li>
+<li><code>inputs.json</code>（可选）：占位符输入定义，plugin 范围内共享</li>
+<li>文件名（去掉 <code>.json</code>）必须等于配置内的 <code>name</code> 字段</li>
+<li>Schema 权威来源：<a href="https://doc.turingfocus.cn/a2c-smcp/">A2C-SMCP v0.2.0</a></li>
+</ul>
+<h2 id="9-curator--aggregator-模式">9. Curator / Aggregator 模式<a class="headerlink" href="#9-curator--aggregator-模式" title="Permanent link">&para;</a></h2>
+<p>一个 marketplace 可以通过 <code>git-subdir</code> 引用<strong>其他仓库中的 plugin</strong>，即使该仓库自身也是一个 marketplace —— 这是合法的 curator 模式。</p>
+<p><strong>前提</strong>：<code>git-subdir.path</code> 必须落在 plugin 边界，不能指向 marketplace 边界（含 <code>marketplace.json</code>）。<code>plugin.json</code> 是否需要存在由 marketplace 条目 <code>strict</code> 字段决定，详见 §6 与 <a href="../loading-behavior/">loading-behavior.md</a>。</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>turingfocus-curated/                                ← curator marketplace
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  .tfrobot-plugin/marketplace.json
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>      └── plugins: [
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>              {
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>                &quot;name&quot;: &quot;data-toolkit&quot;,
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>                &quot;source&quot;: {
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>                  &quot;source&quot;: &quot;git-subdir&quot;,
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                  &quot;url&quot;: &quot;https://github.com/vendor-x/skills.git&quot;,
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>                  &quot;path&quot;: &quot;plugins/data/data-toolkit&quot;
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>                                                    ← 指向 plugin 边界
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>                }
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>              }
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>          ]
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>vendor-x/skills/                                    ← provider marketplace（独立 catalog）
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>  .tfrobot-plugin/marketplace.json                  ← vendor-x 自营消费者走这里
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>  plugins/data/data-toolkit/                        ← plugin 实体（curator 引用这里）
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    .tfrobot-plugin/plugin.json                     ← 条件必需，见 §6
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>    skills/...
+</code></pre></div>
+<p><strong>物理隔离保证</strong>：marketplace 与 plugin 的 manifest 文件名不同（<code>marketplace.json</code> vs <code>plugin.json</code>），路径错位时装载即失败；即便某 plugin 目录在 <code>strict: false</code> 模式下不带 <code>plugin.json</code>，也不会被误识别为 marketplace（不含 <code>marketplace.json</code>）。</p>
+<p><strong>Schema 隔离保证</strong>：marketplace.json 里的 plugin 条目走 <strong>Plugin source schema</strong>（§5.4），永远只指向 plugin 源；即便 plugin 源恰好是另一个 repo（碰巧也带 marketplace 接口），那个 marketplace 身份<strong>不会被触发</strong>。两套 source schema 不交集是规范层面的根因，物理路径错位失败只是兜底。</p>
+<p><strong>双重身份 repo 的加载独立性</strong>：一个 repo 可同时承担两种身份 —— 根目录是自己的 marketplace（让粉丝直接订阅），子目录被第三方 marketplace 用 <code>git-subdir</code> 引用（让更大目录下的用户能发现）。这两条加载路径<strong>不共享 clone</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>视角</th>
+<th>装载器行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户加 <code>vendor-x/skills</code> 为 marketplace</td>
+<td>整个 repo clone 到 marketplace cache，读根 <code>marketplace.json</code>，列出 vendor-x 全套 plugin</td>
+</tr>
+<tr>
+<td>用户从 <code>turingfocus-curated</code> 装 <code>data-toolkit</code></td>
+<td>独立 sparse clone <code>vendor-x/skills</code>，只提子目录，作为单个 plugin 安装；<strong>不读</strong> vendor-x repo 根的 <code>marketplace.json</code></td>
+</tr>
+</tbody>
+</table>
+<p>代价是磁盘上同一 repo 可能被独立拉取两次；收益是两条路径完全解耦、cache 模型简单（避免一个 cache 既要支持 marketplace 视图又要支持 plugin 视图）。详细流程见 <a href="../loading-behavior/">loading-behavior.md</a>。</p>
+<p><strong>设计带来的好处</strong>：</p>
+<ol>
+<li><strong>plugin 作者一个 repo 多用</strong>：根目录自营 marketplace + 子目录被第三方 curator 引用，两种身份并行不悖</li>
+<li><strong>Curator marketplace 不必托管代码</strong>：仅在 <code>marketplace.json</code> 里写指针（含 <code>sha</code> 锁定版本），实际内容仍归属各 plugin 作者</li>
+<li><strong>粒度精确</strong>：可以从一个 monorepo 挑某个子目录作为 plugin，不强迫作者拆 repo</li>
+<li><strong><code>sha</code> 锁版本</strong>：curator 可以"快照" plugin 某个 commit，作者后续改动不会立即影响 curator 用户</li>
+</ol>
+<p><strong>消费 Claude Code 标准仓库的可能性</strong>：因 manifest 路径独立（<code>.tfrobot-plugin/</code> vs <code>.claude-plugin/</code>），TFRobotServer 平台默认不消费仅含 <code>.claude-plugin/</code> manifest 的仓库；若需互操作，由 Module D 实施时决定是否支持"路径回退识别"（不收入，见 §11）。</p>
+<h2 id="10-与-claude-code-marketplace-关系矩阵">10. 与 Claude Code Marketplace 关系矩阵<a class="headerlink" href="#10-与-claude-code-marketplace-关系矩阵" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>marketplace.json</code> 顶层字段</td>
+<td>字段名/语义沿用 Claude Code 设计</td>
+</tr>
+<tr>
+<td><code>marketplace.json</code> 必填字段</td>
+<td>字段名/语义沿用</td>
+</tr>
+<tr>
+<td>Plugin 条目字段</td>
+<td>字段名/语义沿用</td>
+</tr>
+<tr>
+<td><code>plugin.json</code> 字段</td>
+<td>字段名/语义沿用</td>
+</tr>
+<tr>
+<td>Source 类型枚举（<code>github</code> / <code>url</code> / <code>git-subdir</code> / <code>npm</code> / 相对路径）</td>
+<td>字段名/语义沿用</td>
+</tr>
+<tr>
+<td>Source 类型扩展（<code>cnb</code>）</td>
+<td>TFRobotServer 引入用于国内 Git 生态；Claude Code 客户端不识别即跳过</td>
+</tr>
+<tr>
+<td><strong>Manifest 路径</strong></td>
+<td><strong>独立</strong>：<code>.tfrobot-plugin/</code> 而非 <code>.claude-plugin/</code>；同一份仓库<strong>不能</strong>被两端直接互换消费</td>
+</tr>
+<tr>
+<td><strong>Marketplace 保留名空间</strong></td>
+<td><strong>独立</strong>：<code>tfrobot-</code> / <code>turingfocus-</code> / <code>tfs-</code> 前缀；与 Claude Code 保留名空间互不影响</td>
+</tr>
+<tr>
+<td>Plugin 内组件（<code>commands/</code> / <code>agents/</code> / <code>hooks/</code> / <code>mcpServers</code> / <code>lspServers</code> / <code>monitors/</code> / <code>bin/</code> / <code>settings.json</code>）</td>
+<td>TFRobotServer 不消费但容忍存在</td>
+</tr>
+<tr>
+<td>SKILL 层私有内容（<code>.skillenv</code> / 占位符 / 内置工具）</td>
+<td>由 <a href="../../skill/protocol/">SKILL 协议</a> 定义；不属本规范范围</td>
+</tr>
+<tr>
+<td>双轨发布可行性</td>
+<td>作者可同时维护 <code>.tfrobot-plugin/</code> 与 <code>.claude-plugin/</code> 两套 manifest，分别面向两端发布</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-不引入与理由">11. 不引入（与理由）<a class="headerlink" href="#11-不引入与理由" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>不引入项</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台托管 Git 仓库 / SaaS 化 Marketplace</td>
+<td>仅作 Git pull 消费方；托管侧由 Portal / CNB 等承担</td>
+</tr>
+<tr>
+<td>完整性签名校验（GPG / Sigstore）</td>
+<td>Epic 范围外；信任 Git 提交历史</td>
+</tr>
+<tr>
+<td>Plugin 间依赖解析 / 版本约束 / <code>allowCrossMarketplaceDependenciesOn</code> 校验</td>
+<td>字段可识别透传，但不强制约束</td>
+</tr>
+<tr>
+<td>跨租户公共 Marketplace、CDN 加速</td>
+<td>Epic 范围外</td>
+</tr>
+<tr>
+<td><code>npm</code> source 类型（marketplace 与 plugin 两侧）</td>
+<td>需要 node 运行时；TFRobotServer 是 Python 服务端，与栈不匹配</td>
+</tr>
+<tr>
+<td><code>pip</code> source 类型（plugin 侧）</td>
+<td>SaaS 服务<strong>不允许任意 <code>pip install</code></strong>（安全约束）；plugin 内容须托管在可审计的 Git 仓库</td>
+</tr>
+<tr>
+<td><code>file</code> / <code>directory</code> source 类型</td>
+<td>多 Pod K8s 部署无共享本地 FS</td>
+</tr>
+<tr>
+<td><code>hostPattern</code> / <code>pathPattern</code> source 类型</td>
+<td>Claude Code 客户端 <code>strictKnownMarketplaces</code> 管控字段，服务端无对应入口</td>
+</tr>
+<tr>
+<td><code>settings</code> source 类型</td>
+<td>内联到 Claude Code 客户端 settings.json，与客户端 settings 强耦合</td>
+</tr>
+<tr>
+<td>把 Portal Upload / Inline-Edit 纳入 marketplace.json</td>
+<td>两者属于平台内部 Plugin/SKILL 注入渠道，不经过 marketplace catalog</td>
+</tr>
+<tr>
+<td><code>.claude-plugin/</code> 路径回退识别</td>
+<td>仅识别 <code>.tfrobot-plugin/</code>；不消费仅含 <code>.claude-plugin/</code> manifest 的 Claude Code 标准仓库；如需互操作由后续 ticket 评估</td>
+</tr>
+<tr>
+<td>Plugin 内 Claude Code 私有组件（<code>commands/</code> / <code>hooks/</code> / <code>agents/</code> / <code>mcpServers</code> / <code>lspServers</code> / <code>monitors/</code> / <code>bin/</code> / <code>settings.json</code>）</td>
+<td>TFRobotServer 不消费；识别但忽略不报错</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-准出对照d1-子任务">12. 准出对照（D1 子任务）<a class="headerlink" href="#12-准出对照d1-子任务" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Marketplace 层级结构定义（§2）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>marketplace.json</code> JSON Schema —— 必填/可选字段表（§3）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Plugin 条目字段表（§4）+ strict mode 语义（§4.4）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Plugin source 类型枚举 + 各类型字段表（§5）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>plugin.json</code> JSON Schema 字段表（§6）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> SKILL 层引用 SKILL 协议（§7）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> MCP Server 层对齐 A2C-SMCP v0.2.0（§8）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Curator / Aggregator 模式合法性与边界（§9）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 与 Claude Code Marketplace 兼容性矩阵（§10）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 不引入项（§11）</li>
+</ul>
+<p>依赖下游子任务（实施层，本规范不细化）：</p>
+<ul>
+<li>D2 <code>marketplace.json</code> / <code>plugin.json</code> Pydantic schema 落地 + Postgres registry schema</li>
+<li>D3 多 source 类型的拉取实施（含 <code>github</code> / <code>cnb</code> 简写糖归一化）</li>
+<li>D4 双层状态 Reconciler 与 MinIO 物化</li>
+<li>D5 Marketplace/Plugin/SKILL 三态生命周期与 Robot/Factory 协作</li>
+<li>D6 端到端 Marketplace pull 跑通 + 示例 marketplace 仓库</li>
+</ul>
+<h2 id="13-参考">13. 参考<a class="headerlink" href="#13-参考" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://code.claude.com/docs/en/plugin-marketplaces">Claude Code Plugin Marketplaces 官方规范</a></li>
+<li><a href="https://code.claude.com/docs/en/plugins">Claude Code Plugins 官方规范</a></li>
+<li><a href="https://github.com/anthropics/claude-code">Anthropic 官方 marketplace catalog（claude-plugins-official）</a></li>
+<li><a href="https://agentskills.io/specification">Agent Skills 开放标准</a></li>
+</ul>
+<h2 id="附录-a与-skill-协议规范的边界">附录 A：与 SKILL 协议规范的边界<a class="headerlink" href="#附录-a与-skill-协议规范的边界" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>┌────────────────────────────────────────────────────────────────────────┐
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│ SKILL 文件夹内容契约                ◄── SKILL 协议                      │
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>│ (frontmatter / dirs / .skillenv /                                      │
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│  placeholders / skills tool / ...)                                     │
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│           │                                                            │
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│           │ 多种分发渠道                                                │
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│           ▼                                                            │
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>│ ┌────────────┐  ┌────────────┐  ┌──────────────────────────────────┐  │
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>│ │ Portal     │  │ Portal     │  │ Marketplace                      │  │
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>│ │ 直接上传    │  │ 在线编辑    │  │ &lt;repo&gt;/.tfrobot-plugin/           │  │
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>│ │ (非本规范) │  │ (非本规范)  │  │   marketplace.json               │  │
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│ │            │  │            │  │ + plugins/&lt;x&gt;/.tfrobot-plugin/    │  │
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>│ │            │  │            │  │   plugin.json                    │  │
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>│ │            │  │            │  │ + plugins/&lt;x&gt;/skills/&lt;y&gt;/        │  │
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>│ └────────────┘  └────────────┘  └──────────────────────────────────┘  │
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>│                                       ▲                                │
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>│                                       └── 本规范                       │
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>│                                                                        │
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>│                       共同物化目标                                      │
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>│                       ┌───────────────────┐                            │
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>│                       │ 接入方存储与索引   │   ◄── SKILL 协议 §8 / 实施 │
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>│                       │ registry          │                            │
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>│                       └───────────────────┘                            │
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>└────────────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<p><a href="../../skill/protocol/">SKILL 协议</a> 管"SKILL 内容契约"；本规范管"Marketplace / Plugin 仓库结构与 JSON Schema"。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/A2C-SMCP" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "content.code.annotate", "content.code.copy", "announce.dismiss", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"alias": true, "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

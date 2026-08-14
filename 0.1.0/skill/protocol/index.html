@@ -1,0 +1,3186 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="TFRobot Marketplace - 文档与规范">
+      
+      
+      
+        <link rel="canonical" href="https://doc.turingfocus.cn/tfrobot-marketplace/latest/skill/protocol/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../design-history/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>协议规范 - TFRobot Marketplace</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tfrobot-skill-协议规范" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="TFRobot Marketplace" class="md-header__button md-logo" aria-label="TFRobot Marketplace" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TFRobot Marketplace
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              协议规范
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/A2C-SMCP/tfrobot-marketplace" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tfrobot-marketplace
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  SKILL 协议
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mcp-servers/" class="md-tabs__link">
+          
+  
+  
+  MCP Server 配置
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../marketplace/" class="md-tabs__link">
+          
+  
+  
+  Marketplace 分发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../appendix/faq/" class="md-tabs__link">
+          
+  
+  
+  附录
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TFRobot Marketplace" class="md-nav__button md-logo" aria-label="TFRobot Marketplace" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TFRobot Marketplace
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/A2C-SMCP/tfrobot-marketplace" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tfrobot-marketplace
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SKILL 协议
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SKILL 协议
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    协议规范
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    协议规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="页面目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      页面目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-总览" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 总览
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. 总览">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-这是什么" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 这是什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-skill-归属与来源" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 SKILL 归属与来源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-与上游标准的关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 与上游标准的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-范围与不范围" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4 范围与不范围
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-设计原则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 设计原则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 设计原则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-协议层6-条" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 协议层（6 条）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-skill-资源访问安全原则3-条强制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 SKILL 资源访问安全原则（3 条强制）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-skill-包结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SKILL 包结构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. SKILL 包结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-强约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 强约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-语义化命名指引建议遵循" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 语义化命名指引（建议遵循）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-skillmd-frontmatter-字段表" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. SKILL.md Frontmatter 字段表
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. SKILL.md Frontmatter 字段表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-必填字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 必填字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-可选字段开放标准" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 可选字段（开放标准）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-本规范不引入的字段完整列表" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 本规范不引入的字段（完整列表）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-skillmd-body-约定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. SKILL.md Body 约定
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-skillenv-环境变量声明" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. .skillenv 环境变量声明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. .skillenv 环境变量声明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-文件契约" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 文件契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-双语义dotenv-标准语义之上的唯一约定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 双语义（dotenv 标准语义之上的唯一约定）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-行格式规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 行格式规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-llm-不可见性三层防护接入方必守" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 LLM 不可见性（三层防护，接入方必守）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-与平台密钥基础设施的边界协议层约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 与平台密钥基础设施的边界（协议层约束）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-占位符" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 占位符
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 占位符">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-占位符全集3-个" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 占位符全集（3 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-展开规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 展开规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-不收入的占位符与不引入理由" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 不收入的占位符（与不引入理由）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-平台内置-skills-工具" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 平台内置 skills 工具
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 平台内置 skills 工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-工具契约" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 工具契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-典型调用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 典型调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-安全模型汇总" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 安全模型（汇总）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 安全模型（汇总）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-三条强制原则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 三条强制原则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-llm-不可见性保障" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 LLM 不可见性保障
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-与平台密钥基础设施的信任隔离" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 与平台密钥基础设施的信任隔离
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-完整示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 完整示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 完整示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-robot-配置侧-skill仅文档驱动无脚本" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Robot 配置侧 SKILL（仅文档驱动，无脚本）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-computer-侧-skill含脚本由-a2c-smcp-暴露" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Computer 侧 SKILL（含脚本，由 A2C-SMCP 暴露）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-不收入项汇总接入方实施-review-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 不收入项汇总（接入方实施 review checklist）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-字段集-freeze-清单" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 字段集 Freeze 清单
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 字段集 Freeze 清单">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-frontmatter-字段6-个" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Frontmatter 字段（6 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-受协议解释的特殊文件名1-个" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 受协议解释的特殊文件名（1 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-标准目录名3-个非强制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 标准目录名（3 个，非强制）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-占位符3-个" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 占位符（3 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-平台内置工具1-个" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5 平台内置工具（1 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-marketplace-层级路径git-仓库解析" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6 Marketplace 层级路径（Git 仓库解析）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录-a设计史" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录 A：设计史
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计史 (A1~A4)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    设计史 (A1~A4)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design-history/frontmatter-fields/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1 frontmatter 字段表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design-history/skillenv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 .skillenv 设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design-history/runtime-enum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3 runtime 枚举
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design-history/directory-placeholders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 目录与占位符
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Server 配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCP Server 配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mcp-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mcp-servers/protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketplace 分发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Marketplace 分发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../marketplace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../marketplace/protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketplace 规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../marketplace/loading-behavior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    加载行为参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    附录
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    附录
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="页面目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      页面目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-总览" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 总览
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. 总览">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-这是什么" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 这是什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-skill-归属与来源" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 SKILL 归属与来源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-与上游标准的关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 与上游标准的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-范围与不范围" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4 范围与不范围
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-设计原则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 设计原则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 设计原则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-协议层6-条" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 协议层（6 条）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-skill-资源访问安全原则3-条强制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 SKILL 资源访问安全原则（3 条强制）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-skill-包结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SKILL 包结构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. SKILL 包结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-强约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 强约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-语义化命名指引建议遵循" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 语义化命名指引（建议遵循）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-skillmd-frontmatter-字段表" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. SKILL.md Frontmatter 字段表
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. SKILL.md Frontmatter 字段表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-必填字段" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 必填字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-可选字段开放标准" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 可选字段（开放标准）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-本规范不引入的字段完整列表" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 本规范不引入的字段（完整列表）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-skillmd-body-约定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. SKILL.md Body 约定
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-skillenv-环境变量声明" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. .skillenv 环境变量声明
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. .skillenv 环境变量声明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-文件契约" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 文件契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-双语义dotenv-标准语义之上的唯一约定" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 双语义（dotenv 标准语义之上的唯一约定）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-行格式规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 行格式规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-llm-不可见性三层防护接入方必守" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 LLM 不可见性（三层防护，接入方必守）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-与平台密钥基础设施的边界协议层约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 与平台密钥基础设施的边界（协议层约束）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-占位符" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 占位符
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 占位符">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-占位符全集3-个" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 占位符全集（3 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-展开规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 展开规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-不收入的占位符与不引入理由" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 不收入的占位符（与不引入理由）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-平台内置-skills-工具" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 平台内置 skills 工具
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 平台内置 skills 工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-工具契约" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 工具契约
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-典型调用" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 典型调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-安全模型汇总" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 安全模型（汇总）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 安全模型（汇总）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-三条强制原则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 三条强制原则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-llm-不可见性保障" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 LLM 不可见性保障
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-与平台密钥基础设施的信任隔离" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 与平台密钥基础设施的信任隔离
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-完整示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 完整示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 完整示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-robot-配置侧-skill仅文档驱动无脚本" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Robot 配置侧 SKILL（仅文档驱动，无脚本）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-computer-侧-skill含脚本由-a2c-smcp-暴露" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Computer 侧 SKILL（含脚本，由 A2C-SMCP 暴露）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-不收入项汇总接入方实施-review-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 不收入项汇总（接入方实施 review checklist）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-字段集-freeze-清单" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 字段集 Freeze 清单
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 字段集 Freeze 清单">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-frontmatter-字段6-个" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Frontmatter 字段（6 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-受协议解释的特殊文件名1-个" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 受协议解释的特殊文件名（1 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-标准目录名3-个非强制" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 标准目录名（3 个，非强制）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-占位符3-个" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 占位符（3 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-平台内置工具1-个" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5 平台内置工具（1 个）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-marketplace-层级路径git-仓库解析" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6 Marketplace 层级路径（Git 仓库解析）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#附录-a设计史" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        附录 A：设计史
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="导航栏" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    首页
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    SKILL 协议
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tfrobot-skill-协议规范">TFRobot SKILL 协议规范<a class="headerlink" href="#tfrobot-skill-协议规范" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Jira：<a href="https://turingfocus.atlassian.net/browse/TFRS-187">TFRS-187</a>（A5）/ Story <a href="https://turingfocus.atlassian.net/browse/TFRS-180">TFRS-180</a> / Epic <a href="https://turingfocus.atlassian.net/browse/TFRS-179">TFRS-179</a>
+状态：<strong>规范定稿（草稿）</strong> —— A1\~A4 已合并至 develop（<a href="https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/35">#35</a> / <a href="https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/36">#36</a> / <a href="https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/37">#37</a> / <a href="https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/38">#38</a>），本文档将它们整合为单一权威契约。
+范围：<strong>SKILL 撰写规范与使用语义</strong>——内容契约（如何写一个 SKILL）+ 加载使用约束（任何接入方必守）。<strong>不涉及</strong> SKILL 分发渠道、运行时存储介质、执行后端（沙箱 / 引擎 / 容器 / 凭证基础设施）等业务侧议题——这些由接入方业务库 / Computer 侧 A2C-SMCP 实施方文档处理。
+读者：<strong>SKILL 作者</strong>（开发指南）+ <strong>接入方实施工程师</strong>（加载使用层的最小协议契约）。</p>
+</blockquote>
+<h2 id="0-总览">0. 总览<a class="headerlink" href="#0-总览" title="Permanent link">&para;</a></h2>
+<h3 id="01-这是什么">0.1 这是什么<a class="headerlink" href="#01-这是什么" title="Permanent link">&para;</a></h3>
+<p>TFRobot SKILL 协议定义<strong>单个能力包（SKILL）的撰写规范与使用语义</strong>。</p>
+<p><strong>SKILL 是什么</strong>：</p>
+<ul>
+<li><strong>一个文件夹</strong>，包含一份 <code>SKILL.md</code>（frontmatter + body）+ 可选的脚本、参考资料、资源文件</li>
+<li><strong>平台无关</strong> —— 协议本身<strong>不指定</strong>分发渠道、存储介质、执行后端；同一个 SKILL 文件夹可在 Claude Code / Cursor / TFRobot 等任何兼容客户端加载使用</li>
+<li>TFRobot 数字员工通过加载 SKILL 来扩展能力 —— 与 Anthropic <a href="https://agentskills.io/specification">Agent Skills 开放标准</a>中的 Skill 概念<strong>等价</strong></li>
+</ul>
+<p><strong>协议层扩展概览</strong>：相对上游标准，本协议在 <code>.skillenv</code> 双语义（§5）、<code>skills</code> 工具（§7）、<code>$TFROBOT_*</code> 占位符（§6）、SKILL 资源访问安全原则（§8）等处做了受控扩展，以适配 Robot ↔ Computer 的混合执行模型。<strong>本规范不引入任何独有 frontmatter 字段</strong>——6 个 frontmatter 字段全部来自 Agent Skills 开放标准。</p>
+<h3 id="02-skill-归属与来源">0.2 SKILL 归属与来源<a class="headerlink" href="#02-skill-归属与来源" title="Permanent link">&para;</a></h3>
+<p><strong>SKILL 归属于 Robot</strong>——切换 Robot 即切换可见 SKILL 集合。这是用户与接入方都应建立的基本心智模型：SKILL 不是孤立资产，而是 Robot 当前能力面的一部分。</p>
+<p><strong>Robot 的 SKILL 集合由多来源汇聚而成</strong>，且<strong>来源决定执行能力</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>内容</th>
+<th>执行能力</th>
+<th>协议层关心</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>云端 Robot 配置</strong></td>
+<td>从云端对象存储的约定目录提取——按 SKILL <code>name</code> 在约定根目录下查找子目录（默认根 <code>skills/</code>；TFRobot 平台采用 MinIO 实现）。具体存储后端、路径前缀、命名空间隔离策略由接入方业务库文档定义</td>
+<td><strong>仅文档提示</strong>——LLM 在工具循环中读 <code>references/</code> 并按 body 指示行事；<strong>不执行任何脚本</strong></td>
+<td>内容契约 + LLM 与 SKILL 的交互（§4 / §6 / §7）</td>
+</tr>
+<tr>
+<td><strong>已连接的 Computer</strong></td>
+<td>Computer 按 <a href="https://github.com/A2C-SMCP">A2C-SMCP 协议</a>（独立规范）暴露本地可用 SKILL；Robot 通过 A2C 连接发现并挂载</td>
+<td><strong>可执行</strong>——<code>scripts/</code> 内容在 Computer 侧运行；执行后端（沙箱 / 引擎 / 容器 / 凭证）完全由 Computer 决定，本协议不规定</td>
+<td>内容契约（同上）+ <code>.skillenv</code> 等环境声明（§5），由 Computer 侧解释</td>
+</tr>
+<tr>
+<td><strong>Marketplace 仓库</strong></td>
+<td>Git 仓库分发，详见独立规范 <a href="../../marketplace/protocol/">Marketplace 规范</a></td>
+<td>取决于挂载点：作为 Robot 配置导入 = 仅文档；作为 Computer 侧能力提供 = 可执行</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<p><strong>协议边界</strong>：本协议<strong>只规定</strong> SKILL 文件夹本身的内容契约（如何撰写、如何加载、如何使用），以及 LLM 与 SKILL 资源交互的最小契约（§7 <code>skills</code> 工具）。
+- SKILL 从何处来、在何处落盘、跨进程如何同步——由接入方业务库文档定义
+- SKILL 的脚本如何执行、用什么沙箱 / 容器 / 引擎、凭证从何而来——由 Computer 侧 A2C-SMCP 实施方文档定义</p>
+<blockquote>
+<p>即使来源不同，落到加载方手中的都是<strong>等价的 SKILL 文件夹</strong>；其后续装载、渲染、LLM 交互走完全相同的协议层路径。可执行部分则由 Computer 侧按 A2C-SMCP 自定义实现。</p>
+</blockquote>
+<h3 id="03-与上游标准的关系">0.3 与上游标准的关系<a class="headerlink" href="#03-与上游标准的关系" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>完全对齐</strong><a href="https://agentskills.io/specification">Agent Skills 开放标准</a>的 6 个 frontmatter 字段（<code>name</code> / <code>description</code> / <code>license</code> / <code>compatibility</code> / <code>metadata</code> / <code>allowed-tools</code>），跨 Claude Code / Cursor / Goose 等兼容客户端<strong>互操作不破坏</strong>。</li>
+<li><strong>不采纳</strong>任何 Claude Code 私有扩展字段（CLI 残留 / 平台决策项 / 本地 FS 概念）。</li>
+<li><strong>不引入任何独有 frontmatter 字段</strong>——执行后端差异由 Computer 侧 A2C-SMCP 协议表达，不污染 SKILL 内容契约。</li>
+</ul>
+<h3 id="04-范围与不范围">0.4 范围与不范围<a class="headerlink" href="#04-范围与不范围" title="Permanent link">&para;</a></h3>
+<p><strong>本规范收入</strong>：</p>
+<ul>
+<li>Frontmatter 6 字段（全部来自开放标准）+ 标准目录结构 + <code>.skillenv</code> 双语义环境变量声明 + 3 个运行时占位符 + 平台内置 <code>skills</code> 工具 + 3 条 SKILL 资源访问安全原则。</li>
+</ul>
+<p><strong>本规范不收入</strong>（详见 §10）：</p>
+<ul>
+<li>CLI 残留占位符 / 平台决策性 frontmatter 字段（model / effort / disable-model-invocation 等）/ 完整性签名校验 / Web 编辑器 / 调试器 UI / 资源配额计费 / 并发隔离精细策略。</li>
+<li><strong><code>runtime</code> 字段、Dockerfile 文件名约定、引擎枚举、沙箱 I/O 协议</strong>——执行后端归 Computer 侧 A2C-SMCP，本协议不规定。</li>
+<li><strong>不规定</strong>：SKILL 分发渠道实施、运行时存储介质、密钥基础设施实现、跨进程同步机制等业务侧议题。</li>
+</ul>
+<h2 id="1-设计原则">1. 设计原则<a class="headerlink" href="#1-设计原则" title="Permanent link">&para;</a></h2>
+<p>本规范设计共 9 条原则：6 条来自 A1~A4 的"克制 + 互操作 + 安全"基调；3 条是 SKILL 资源访问安全模型的强制约束。</p>
+<h3 id="11-协议层6-条">1.1 协议层（6 条）<a class="headerlink" href="#11-协议层6-条" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>完全对齐 Agent Skills 开放标准</strong>：6 个 frontmatter 字段全采纳，不破坏跨客户端互操作。</li>
+<li><strong>不采纳 Claude Code 扩展字段</strong>：CLI 残留（<code>$ARGUMENTS</code> / <code>arguments</code> / <code>argument-hint</code>）、平台决策项（<code>model</code> / <code>effort</code> / <code>disable-model-invocation</code> / <code>user-invocable</code>）、本地 FS 概念（<code>hooks</code> / <code>paths</code>）等一律不入；理由汇总在 A1 §3。</li>
+<li><strong>不引入独有字段</strong>：执行后端差异（沙箱 / 引擎 / 容器选择）由 Computer 侧 A2C-SMCP 表达；SKILL frontmatter <strong>不承载</strong>该类信息。设计史中 A3 曾设计 <code>runtime</code> 字段，最终撤回（见附录 A）。</li>
+<li><strong>可由仓库内文件表达的不入 frontmatter</strong>：环境变量 → <code>.skillenv</code>；frontmatter 仅承载元信息。</li>
+<li><strong>占位符私有命名空间</strong>：所有运行时占位符以 <code>TFROBOT_</code> 前缀；不 mirror Claude Code <code>CLAUDE_*</code> / <code>$ARGUMENTS</code>；未识别占位符跨平台加载时字面透传。</li>
+<li><strong>克制</strong>：所有候选字段 / 占位符 / 取值均需具体 SKILL 场景驱动；不预设未实证的能力。</li>
+</ol>
+<h3 id="12-skill-资源访问安全原则3-条强制">1.2 SKILL 资源访问安全原则（3 条强制）<a class="headerlink" href="#12-skill-资源访问安全原则3-条强制" title="Permanent link">&para;</a></h3>
+<p>SKILL 内容来自不受加载方控制的多个来源（云端 Robot 配置 / Computer 上报 / Marketplace 仓库），<strong>作为不可信资产对待</strong>。任何接入方实施必须满足以下三条：</p>
+<ol>
+<li><strong>SKILL 资源访问受控</strong>：所有 SKILL 文件访问（LLM 读 <code>references/</code> / <code>scripts/</code>）都必须经由受控通道——LLM 端走平台内置 <code>skills</code> 工具（§7）。<strong>不允许</strong>将 SKILL 原始存储凭据下放给 LLM，也不允许接入方把 SKILL 当本地代码 import / eval。Computer 侧执行 <code>scripts/</code> 时的资源访问由 A2C-SMCP 自行约束。</li>
+<li><strong>加载方不持久化 SKILL</strong>：SKILL 字节<strong>只</strong>在加载方进程内存中一次性使用（喂给 LLM 上下文 / 通过 A2C 传递给 Computer），<strong>不</strong>落盘到加载方进程 FS、<strong>不</strong>派生子进程执行 SKILL 衍生命令、<strong>不</strong>基于 SKILL 文件 FS 权限做任何决策。SKILL 对加载方而言<strong>只是 data</strong>。</li>
+<li><strong>敏感凭证 LLM 不可见</strong>：<code>.skillenv</code> 解析后的明文及任何由其引用的私人 vault 内容<strong>不进入</strong> SKILL.md body 展开路径、<strong>不进入</strong> LLM 上下文（详见 §5.4 / §8）。</li>
+</ol>
+<h2 id="2-skill-包结构">2. SKILL 包结构<a class="headerlink" href="#2-skill-包结构" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>my-skill/                          # 包根目录名 = SKILL.md frontmatter `name`
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── SKILL.md                       # 必需 —— frontmatter + body
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── .skillenv                      # 可选 —— 环境变量声明（§5）
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── scripts/                       # 标准命名 —— Computer 侧可执行代码（Robot 配置侧 SKILL 可忽略）
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── references/                    # 标准命名 —— LLM 渐进式读取的参考文档
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── assets/                        # 标准命名 —— 静态资源
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── &lt;任意其他目录或文件&gt;             # 作者自由扩展，平台不解释
+</code></pre></div>
+<h3 id="21-强约束">2.1 强约束<a class="headerlink" href="#21-强约束" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>包根目录名</td>
+<td>必须等于 <code>SKILL.md</code> frontmatter 中的 <code>name</code></td>
+</tr>
+<tr>
+<td><code>SKILL.md</code></td>
+<td>必须存在于包根；缺失即加载失败</td>
+</tr>
+<tr>
+<td>受协议解释的 hidden-file</td>
+<td>仅 <code>.skillenv</code>；其他 <code>.xxx</code> 平台不解释也不拒绝</td>
+</tr>
+<tr>
+<td><code>scripts/</code> / <code>references/</code> / <code>assets/</code></td>
+<td>命名标准化但<strong>不强制必填</strong> —— 按需创建即可，缺失加载器不报错</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-语义化命名指引建议遵循">2.2 语义化命名指引（建议遵循）<a class="headerlink" href="#22-语义化命名指引建议遵循" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scripts/</code></td>
+<td>Computer 侧可执行代码（<code>.py</code> / <code>.ts</code> / <code>.js</code> / shell 等）。Robot 配置侧 SKILL 中此目录无运行语义，仅作为 LLM 可读资源参考</td>
+</tr>
+<tr>
+<td><code>references/</code></td>
+<td>LLM 渐进式读取的参考文档（Markdown / 纯文本）</td>
+</tr>
+<tr>
+<td><code>assets/</code></td>
+<td>静态资源（图片、字体、文档模板、二进制等）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-skillmd-frontmatter-字段表">3. SKILL.md Frontmatter 字段表<a class="headerlink" href="#3-skillmd-frontmatter-字段表" title="Permanent link">&para;</a></h2>
+<p>YAML frontmatter 位于 SKILL.md 顶部，包裹在 <code>---</code> 之间。共 6 个字段，全部来自 Agent Skills 开放标准。</p>
+<h3 id="31-必填字段">3.1 必填字段<a class="headerlink" href="#31-必填字段" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>约束</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>1–64 字符；<code>[a-z0-9-]</code>；不以 <code>-</code> 开头/结尾；无连续 <code>--</code>；<strong>与目录名一致</strong></td>
+<td>SKILL 唯一标识</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>1–1024 字符；非空</td>
+<td>"做什么 + 何时用"；Robot 启动时进入 LLM 可见 skill 列表（progressive disclosure 第一层）；<strong>首句包含核心触发关键词</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-可选字段开放标准">3.2 可选字段（开放标准）<a class="headerlink" href="#32-可选字段开放标准" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>约束</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>license</code></td>
+<td>string</td>
+<td>标准未规定字符上限</td>
+<td>许可声明</td>
+</tr>
+<tr>
+<td><code>compatibility</code></td>
+<td>string</td>
+<td>最长 500 字符</td>
+<td>人类可读环境要求 hint（如"需要互联网访问"、"需要 Computer 预装 pandas"）</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>map<string,string></td>
+<td>标准未规定大小上限</td>
+<td>自由 key-value，跨客户端互操作透传；TFRobot 平台<strong>不解释</strong></td>
+</tr>
+<tr>
+<td><code>allowed-tools</code></td>
+<td>string | list</td>
+<td>空格分隔字符串或 YAML 列表</td>
+<td>LLM 推理循环中可直接调用、免授权的工具白名单；<strong>与 Computer 侧执行无关</strong>，仅作用于 LLM-工具循环层面</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-本规范不引入的字段完整列表">3.3 本规范不引入的字段（完整列表）<a class="headerlink" href="#33-本规范不引入的字段完整列表" title="Permanent link">&para;</a></h3>
+<p>CLI 残留：<code>arguments</code> / <code>argument-hint</code> / <code>$ARGUMENTS</code> / <code>$N</code> / <code>$name</code>
+平台决策：<code>model</code> / <code>effort</code> / <code>disable-model-invocation</code> / <code>user-invocable</code> / <code>agent</code>
+本地 FS 概念：<code>hooks</code> / <code>paths</code>
+环境隐式：<code>shell</code>
+执行后端：<code>runtime</code> / <code>dockerfile</code> / <code>image</code> / <code>byoi</code>（执行后端由 Computer 侧 A2C-SMCP 表达）
+候选未引入：<code>version</code> / <code>secrets</code> / <code>network</code> / <code>egress</code> / <code>visibility</code> / <code>audience</code> / <code>quota</code> / <code>cost</code> / <code>signature</code> / <code>integrity</code></p>
+<p>理由汇总参见 A1 §3 与附录 A（A3 撤回 rationale）。</p>
+<h2 id="4-skillmd-body-约定">4. SKILL.md Body 约定<a class="headerlink" href="#4-skillmd-body-约定" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>格式</strong>：Markdown，由 LLM 直接消费（拼到 prompt 中）</li>
+<li><strong>相对路径引用</strong>：参照 Agent Skills 开放标准 —— 引用包内文件用"相对 SKILL.md 的路径"（如 <code>scripts/main.py</code> / <code>references/foo.md</code>）；具体由平台 Read 工具（§7）按"当前激活 SKILL"上下文解析</li>
+<li><strong>占位符</strong>：SKILL.md body 中的 <code>$TFROBOT_*</code> 占位符在激活时由平台展开（§6.2）</li>
+<li><strong>触发表述</strong>：description 的首句必须包含核心触发关键词；body 可详述步骤、调用工具、引用资源</li>
+<li><strong>执行指引</strong>：body 可指示 LLM "调用 Computer 侧暴露的脚本 X"；具体调用语义走 A2C-SMCP 工具调用协议，本规范不展开</li>
+</ul>
+<h2 id="5-skillenv-环境变量声明">5. <code>.skillenv</code> 环境变量声明<a class="headerlink" href="#5-skillenv-环境变量声明" title="Permanent link">&para;</a></h2>
+<p>仓库根可选文件，声明 SKILL 执行所需的环境变量与密钥来源。<strong>LLM 全程不可见</strong>。</p>
+<blockquote>
+<p>协议层只规定 <code>.skillenv</code> 的<strong>语法与语义</strong>。Robot 配置侧 SKILL 不执行脚本，因此 <code>.skillenv</code> 主要服务 Computer 侧 SKILL；Computer 侧负责按本节语义解析并注入运行环境。</p>
+</blockquote>
+<h3 id="51-文件契约">5.1 文件契约<a class="headerlink" href="#51-文件契约" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件名</td>
+<td><code>.skillenv</code></td>
+</tr>
+<tr>
+<td>位置</td>
+<td>skill 包根目录，与 <code>SKILL.md</code> 同级</td>
+</tr>
+<tr>
+<td>是否必填</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>文件格式</td>
+<td>标准 <a href="https://github.com/motdotla/dotenv">dotenv</a>（每行 <code>KEY=VALUE</code>，<code>#</code> 行注释，空行允许）</td>
+</tr>
+<tr>
+<td>编码</td>
+<td>UTF-8（无 BOM），LF 换行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-双语义dotenv-标准语义之上的唯一约定">5.2 双语义（dotenv 标准语义之上的唯一约定）<a class="headerlink" href="#52-双语义dotenv-标准语义之上的唯一约定" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>行格式</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KEY=VALUE</code>（VALUE 非空）</td>
+<td><strong>字面量</strong> —— VALUE 整段作为 env var 值传给执行环境；不做任何解析或变量替换</td>
+</tr>
+<tr>
+<td><code>KEY=</code>（VALUE 为空）</td>
+<td><strong>用户 vault 引用</strong> —— 以 KEY 为名查询当前用户的私人凭证 vault；查到 → 注入解析后的明文；查不到 → 执行启动失败</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>"用户 vault" 是一个抽象概念，指代由接入方（云端服务 / Computer 侧）维护、按当前用户上下文解析的密钥源。本协议不规定具体后端实现。</p>
+</blockquote>
+<h3 id="53-行格式规则">5.3 行格式规则<a class="headerlink" href="#53-行格式规则" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>KEY 形如 <code>[A-Z_][A-Z0-9_]*</code>（POSIX env var 名约定）</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>非空 VALUE → 字面量传递</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>空 VALUE → 用户 vault 同名查询</td>
+</tr>
+<tr>
+<td>R4</td>
+<td><code>#</code> 起始行为注释；<strong>行尾注释不支持</strong></td>
+</tr>
+<tr>
+<td>R5</td>
+<td>空行允许</td>
+</tr>
+<tr>
+<td>R6</td>
+<td><strong>不支持</strong> <code>"..."</code> / <code>'...'</code> 包裹，<strong>不支持</strong> <code>${VAR}</code> / <code>$VAR</code> 展开</td>
+</tr>
+<tr>
+<td>R7</td>
+<td>KEY 重复 → 解析报错</td>
+</tr>
+<tr>
+<td>R8</td>
+<td><strong>不支持</strong>多行 VALUE</td>
+</tr>
+</tbody>
+</table>
+<h3 id="54-llm-不可见性三层防护接入方必守">5.4 LLM 不可见性（三层防护，接入方必守）<a class="headerlink" href="#54-llm-不可见性三层防护接入方必守" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>加载层黑名单</strong>：SKILL 加载器维护 LLM 不可见文件名集合（至少含 <code>.skillenv</code>）；LLM 任何路径请求都必须拒绝并记审计日志</li>
+<li><strong>执行注入而非文件分发</strong>：<code>.skillenv</code> 解析必须在执行环境创建前完成，通过执行环境的 env 注入通道传入；<strong>原文件不进入执行环境 FS</strong></li>
+<li><strong>prompt 渲染产物守护</strong>：接入方应在 CI 中断言最终拼到 LLM 的 prompt 字符串不包含 <code>.skillenv</code> 任何行内容（KEY 名、VALUE 字面量、注释）</li>
+</ol>
+<h3 id="55-与平台密钥基础设施的边界协议层约束">5.5 与平台密钥基础设施的边界（协议层约束）<a class="headerlink" href="#55-与平台密钥基础设施的边界协议层约束" title="Permanent link">&para;</a></h3>
+<p><code>.skillenv</code> 仅服务<strong>用户私人凭证 vault</strong>。协议层强制：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>协议层语法</td>
+<td><code>.skillenv</code> 没有任何语法能引用接入方的平台共享密钥（如平台付费配额、共享 API key 池等）</td>
+</tr>
+<tr>
+<td>解析层映射</td>
+<td>空 VALUE 时<strong>只</strong>查询用户私人 vault，不得回退到平台共享密钥源</td>
+</tr>
+<tr>
+<td>注入层目标</td>
+<td>执行环境 env 只含用户 vault 解析结果 + <code>.skillenv</code> 字面量；<strong>平台共享密钥永不出现在执行环境 env</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>背景：若把平台共享密钥注入 <code>.skillenv</code>，用户脚本一句 <code>print(os.environ)</code> 就能 dump 出整个平台付费配额。协议层、解析层、注入层<strong>三处强制隔离</strong>。具体凭证基础设施实现（vault 后端、密钥缓存、传输通道等）由接入方业务文档定义。</p>
+</blockquote>
+<h2 id="6-占位符">6. 占位符<a class="headerlink" href="#6-占位符" title="Permanent link">&para;</a></h2>
+<h3 id="61-占位符全集3-个">6.1 占位符全集（3 个）<a class="headerlink" href="#61-占位符全集3-个" title="Permanent link">&para;</a></h3>
+<p>全部以 <code>TFROBOT_</code> 前缀；SKILL.md body 中可写 <code>$TFROBOT_&lt;NAME&gt;</code> 或 <code>${TFROBOT_&lt;NAME&gt;}</code>（等价）。</p>
+<table>
+<thead>
+<tr>
+<th>占位符</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$TFROBOT_SKILL_DIR</code></td>
+<td>当前 SKILL 包的资源前缀。Body 中 LLM 看到的是不透明 URI（如 <code>tfs-skill://&lt;tenant&gt;/&lt;skill&gt;/&lt;version&gt;/</code>），供 <code>skills</code> 工具（§7）识别；具体 URI 格式由接入方定，作者不应解析其内部结构</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_SESSION_ID</code></td>
+<td>当前会话 UUID</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_ROBOT_ID</code></td>
+<td>当前 Robot 实例 ID</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>$TFROBOT_SKILL_DIR</code> 字面暴露给 LLM <strong>不构成漏洞</strong> —— 安全闸门在 <code>skills</code> 工具实现层（§7）。</p>
+<p>Computer 侧若选择将这些占位符也注入脚本执行环境（如 <code>os.environ["TFROBOT_SKILL_DIR"]</code>），命名仍遵循"去掉 <code>$</code> / <code>${}</code>"约定；具体注入由 A2C-SMCP 实施方负责。</p>
+</blockquote>
+<h3 id="62-展开规则">6.2 展开规则<a class="headerlink" href="#62-展开规则" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时机</td>
+<td>平台在拼到 LLM prompt <strong>之前</strong>完成替换；LLM 见到的是已展开值</td>
+</tr>
+<tr>
+<td>语法</td>
+<td><code>$TFROBOT_NAME</code> 与 <code>${TFROBOT_NAME}</code> 等价</td>
+</tr>
+<tr>
+<td>命名空间</td>
+<td>仅识别 <code>$TFROBOT_*</code> 开头；其他 <code>$VAR</code> 保持字面原样</td>
+</tr>
+<tr>
+<td>未定义占位符</td>
+<td><code>$TFROBOT_FOOBAR</code> 等 → 加载器报错</td>
+</tr>
+<tr>
+<td>转义</td>
+<td>不支持；需要字面字符串用 code block 或文本说明</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-不收入的占位符与不引入理由">6.3 不收入的占位符（与不引入理由）<a class="headerlink" href="#63-不收入的占位符与不引入理由" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>候选</th>
+<th>不收入理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ARGUMENTS</code> / <code>$N</code> / <code>$name</code></td>
+<td>CLI 残留（A1 §3.1 已排除）</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_API_ENDPOINT</code> / <code>$TFROBOT_AUTH_TOKEN</code></td>
+<td>不引入回调通道；需要时由 Computer 侧 A2C-SMCP 自行表达</td>
+</tr>
+<tr>
+<td><code>.skillenv</code> 解析后的用户 vault 明文</td>
+<td>敏感值隔离 —— 仅作为执行环境 env 注入，不在 body 展开</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_TENANT_ID</code> / <code>$TFROBOT_USER_ID</code></td>
+<td>多租户上下文不暴露；按 tenant 区分应在 robot 配置层</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_ARG</code> / <code>$TFROBOT_INPUT</code> 类输入占位符</td>
+<td>输入参数注入语义涉及 LLM 工具调用协议；由 A2C-SMCP 表达</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_EFFORT</code> / <code>$TFROBOT_MODEL</code></td>
+<td>模型与算力档由平台决定，不暴露</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_REQUEST_ID</code></td>
+<td>可观测性走平台日志 / trace</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-平台内置-skills-工具">7. 平台内置 <code>skills</code> 工具<a class="headerlink" href="#7-平台内置-skills-工具" title="Permanent link">&para;</a></h2>
+<p><strong>LLM 读 SKILL 资源的唯一受控通道</strong>（§1.2 第 7 条）。任何 SKILL 激活期间隐式可用，不需作者写入 <code>allowed-tools</code>，也不能被禁用。</p>
+<h3 id="71-工具契约">7.1 工具契约<a class="headerlink" href="#71-工具契约" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>设计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工具名</td>
+<td><code>skills</code>（与 Claude Code 命名一致）</td>
+</tr>
+<tr>
+<td>入参 1</td>
+<td><code>skill_name</code>: string —— 平台已注册 SKILL 的 <code>name</code>（§3.1）</td>
+</tr>
+<tr>
+<td>入参 2</td>
+<td><code>path</code>: string —— 相对 skill 根的路径（如 <code>references/foo.md</code> / <code>scripts/main.py</code> / <code>assets/template.docx</code>）</td>
+</tr>
+<tr>
+<td>返回</td>
+<td>文件内容（文本直返；二进制走 base64）</td>
+</tr>
+<tr>
+<td><strong>黑名单（强制 403）</strong></td>
+<td><code>.skillenv</code> / 任何 <code>.skillenv*</code> 模式</td>
+</tr>
+<tr>
+<td><strong>路径校验</strong></td>
+<td>拒绝 <code>..</code> / 绝对路径 / 跳出 skill 根 / 符号链接逃逸</td>
+</tr>
+<tr>
+<td><strong>授权校验</strong></td>
+<td>当前会话有权访问 <code>skill_name</code> 才允许；权限模型由接入方 registry 定</td>
+</tr>
+<tr>
+<td><strong>大小上限</strong></td>
+<td>建议 ≤ 10 MB（超过返回错误并提示走 Computer 侧执行处理）</td>
+</tr>
+<tr>
+<td><strong>作用域</strong></td>
+<td>仅 LLM 工具调用层；Computer 侧脚本访问自身 SKILL 资源走 A2C-SMCP，不通过本工具</td>
+</tr>
+<tr>
+<td><strong>跨 SKILL 读</strong></td>
+<td>天然支持 —— <code>skill_name</code> 是显式入参；授权由 registry 把关</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-典型调用">7.2 典型调用<a class="headerlink" href="#72-典型调用" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># LLM 在 Robot 配置侧 SKILL 中按 body 指示读取参考文档</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">skills</span><span class="p">(</span><span class="n">skill_name</span><span class="o">=</span><span class="s2">&quot;deploy-helper&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;references/checklist.md&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 跨 SKILL 引用共享资源（如 shared template / 术语表）</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">skills</span><span class="p">(</span><span class="n">skill_name</span><span class="o">=</span><span class="s2">&quot;common-utils&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;references/glossary.md&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 黑名单触发拒绝</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">skills</span><span class="p">(</span><span class="n">skill_name</span><span class="o">=</span><span class="s2">&quot;csv-aggregator&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;.skillenv&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># → 403 access denied: protected file</span>
+</code></pre></div>
+<h2 id="8-安全模型汇总">8. 安全模型（汇总）<a class="headerlink" href="#8-安全模型汇总" title="Permanent link">&para;</a></h2>
+<p>本节是 §1.2 / §5.4 / §5.5 / §7.1 中安全相关约束的索引；接入方在 review 实施时使用。</p>
+<h3 id="81-三条强制原则">8.1 三条强制原则<a class="headerlink" href="#81-三条强制原则" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>协议层落位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SKILL 资源访问受控</strong></td>
+<td>LLM 走 <code>skills</code> 工具（§7）；Computer 侧脚本走 A2C-SMCP 自身受控通道</td>
+</tr>
+<tr>
+<td><strong>加载方不持久化 SKILL</strong></td>
+<td>只读字节、不下盘、不 <code>subprocess</code> 执行 SKILL 衍生命令、不基于 SKILL 文件 FS 权限做决策；当 data 喂 LLM 一次性使用</td>
+</tr>
+<tr>
+<td><strong>敏感凭证 LLM 不可见</strong></td>
+<td><code>.skillenv</code> 三层防护（§5.4）；body 中不展开 vault 明文</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-llm-不可见性保障">8.2 LLM 不可见性保障<a class="headerlink" href="#82-llm-不可见性保障" title="Permanent link">&para;</a></h3>
+<p><code>.skillenv</code> 与所有敏感值（短期 auth token、用户 vault 明文）必须满足：</p>
+<ul>
+<li>加载器黑名单拒绝任何 path 请求（§5.4 第 1 条）</li>
+<li>执行注入而非文件分发（§5.4 第 2 条）</li>
+<li>CI 守护 prompt 渲染产物（§5.4 第 3 条）</li>
+</ul>
+<h3 id="83-与平台密钥基础设施的信任隔离">8.3 与平台密钥基础设施的信任隔离<a class="headerlink" href="#83-与平台密钥基础设施的信任隔离" title="Permanent link">&para;</a></h3>
+<p><code>.skillenv</code> 仅服务<strong>用户私人凭证 vault</strong>；接入方的平台共享密钥（付费 API quota、共享 service account 等）必须在协议层、解析层、注入层三处强制隔离，物理上无任何语法能引用（§5.5）。</p>
+<h2 id="9-完整示例">9. 完整示例<a class="headerlink" href="#9-完整示例" title="Permanent link">&para;</a></h2>
+<h3 id="91-robot-配置侧-skill仅文档驱动无脚本">9.1 Robot 配置侧 SKILL（仅文档驱动，无脚本）<a class="headerlink" href="#91-robot-配置侧-skill仅文档驱动无脚本" title="Permanent link">&para;</a></h3>
+<p>包目录：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>deploy-helper/
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── SKILL.md
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>└── references/
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    └── checklist.md
+</code></pre></div>
+<p><code>SKILL.md</code>：</p>
+<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nn">---</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy-helper</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">帮助用户准备发布到目标环境的清单。当用户说&quot;准备发布&quot;或类似意图时触发。</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nn">---</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">## 任务流程</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="l l-Scalar l-Scalar-Plain">1. 询问用户目标环境（dev / staging / prod）与版本号</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="l l-Scalar l-Scalar-Plain">2. 调用 `skills(skill_name=&quot;deploy-helper&quot;, path=&quot;references/checklist.md&quot;)` 读取按环境分组的检查项</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="l l-Scalar l-Scalar-Plain">3. 根据当前 robot 状态逐项核对</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="l l-Scalar l-Scalar-Plain">4. 输出报告，会话 ID 引用 `$TFROBOT_SESSION_ID` 以便后续追溯</span>
+</code></pre></div>
+<blockquote>
+<p>Robot 配置侧 SKILL <strong>不执行任何脚本</strong>；LLM 在工具循环中读 <code>references/</code> 并按 body 指示行事。<code>$TFROBOT_SESSION_ID</code> 在激活时展开为具体 UUID。</p>
+</blockquote>
+<h3 id="92-computer-侧-skill含脚本由-a2c-smcp-暴露">9.2 Computer 侧 SKILL（含脚本，由 A2C-SMCP 暴露）<a class="headerlink" href="#92-computer-侧-skill含脚本由-a2c-smcp-暴露" title="Permanent link">&para;</a></h3>
+<p>包目录：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>csv-aggregator/
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>├── SKILL.md
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>├── .skillenv
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>├── scripts/
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>│   └── main.py
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>├── references/
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>│   └── column-mapping.md
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>└── assets/
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    └── report-template.docx
+</code></pre></div>
+<p><code>SKILL.md</code>：</p>
+<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nn">---</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv-aggregator</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">把多个 CSV 文件按用户给定的列规则聚合，并按 assets/report-template.docx 模板生成报告。当用户上传 CSV 并要求聚合/出报告时触发。</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nt">compatibility</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">需要 Computer 侧 Python 3.11+ 环境；预装 pandas / python-docx；列规则参见 references/column-mapping.md</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nn">---</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1">## 执行</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="l l-Scalar l-Scalar-Plain">1. LLM 通过 A2C-SMCP 调用 Computer 侧暴露的 `csv-aggregator` 工具</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="l l-Scalar l-Scalar-Plain">2. Computer 侧加载本 SKILL 包，按其内部约定执行 `scripts/main.py`（执行后端 / 沙箱 / 资源限额由 Computer 决定）</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="l l-Scalar l-Scalar-Plain">3. 脚本把处理统计 JSON 写到 stdout；LLM 收到 stdout 作为 tool result</span>
+</code></pre></div>
+<p><code>.skillenv</code>：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>LOG_LEVEL=INFO
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a># 空 VALUE 即触发用户 vault 查询；下行示例（按需启用）
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a># DATA_WAREHOUSE_TOKEN=
+</code></pre></div>
+<p><code>scripts/main.py</code>（由 Computer 侧执行，环境变量由 Computer 按 §5 解析注入）：</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">skill_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TFROBOT_SKILL_DIR&quot;</span><span class="p">]</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">session</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TFROBOT_SESSION_ID&quot;</span><span class="p">]</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">skill_dir</span><span class="si">}</span><span class="s2">/assets/report-template.docx&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="n">template</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># ... 业务逻辑 ...</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="p">{</span><span class="s2">&quot;session&quot;</span><span class="p">:</span> <span class="n">session</span><span class="p">,</span> <span class="s2">&quot;rows_processed&quot;</span><span class="p">:</span> <span class="mi">1234</span><span class="p">,</span> <span class="s2">&quot;output_file&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">skill_dir</span><span class="si">}</span><span class="s2">/out/report.docx&quot;</span><span class="p">},</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="p">)</span>
+</code></pre></div>
+<blockquote>
+<p>同一份 SKILL 包既可作为 Robot 配置导入（此时 <code>scripts/</code> 不被执行，仅作为 LLM 可读参考），也可由 Computer 侧通过 A2C-SMCP 暴露（此时按 A2C 实施方约定执行）。<strong>协议层不区分</strong>——同一份包，不同挂载方式带来不同的执行能力。</p>
+</blockquote>
+<h2 id="10-不收入项汇总接入方实施-review-checklist">10. 不收入项汇总（接入方实施 review checklist）<a class="headerlink" href="#10-不收入项汇总接入方实施-review-checklist" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>不收入项</th>
+<th>出处</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontmatter 字段</td>
+<td><code>arguments</code> / <code>argument-hint</code> / <code>$ARGUMENTS</code> / <code>$N</code> / <code>$name</code>（CLI 残留）</td>
+<td>§3.3 / A1 §3.1</td>
+</tr>
+<tr>
+<td></td>
+<td><code>model</code> / <code>effort</code> / <code>disable-model-invocation</code> / <code>user-invocable</code> / <code>agent</code>（平台决策）</td>
+<td>§3.3 / A1 §3.1</td>
+</tr>
+<tr>
+<td></td>
+<td><code>hooks</code> / <code>paths</code> / <code>shell</code>（本地 FS 概念）</td>
+<td>§3.3 / A1 §3.1</td>
+</tr>
+<tr>
+<td></td>
+<td><code>runtime</code> / <code>dockerfile</code> / <code>image</code> / <code>byoi</code>（执行后端）</td>
+<td>§3.3（A3 撤回，见附录 A）</td>
+</tr>
+<tr>
+<td></td>
+<td><code>version</code> / <code>secrets</code> / <code>network</code> / <code>egress</code> / <code>visibility</code> / <code>audience</code> / <code>quota</code> / <code>cost</code> / <code>signature</code> / <code>integrity</code></td>
+<td>§3.3 / A1 §3.2</td>
+</tr>
+<tr>
+<td>占位符</td>
+<td><code>$ARGUMENTS</code> / <code>$N</code> / <code>$name</code></td>
+<td>§6.3</td>
+</tr>
+<tr>
+<td></td>
+<td><code>$TFROBOT_API_ENDPOINT</code> / <code>$TFROBOT_AUTH_TOKEN</code>（无回调通道）</td>
+<td>§6.3</td>
+</tr>
+<tr>
+<td></td>
+<td><code>$TFROBOT_TENANT_ID</code> / <code>$TFROBOT_USER_ID</code>（多租户上下文不暴露）</td>
+<td>§6.3</td>
+</tr>
+<tr>
+<td></td>
+<td><code>$TFROBOT_ARG</code> / <code>$TFROBOT_INPUT</code>（输入语义留给 A2C-SMCP）</td>
+<td>§6.3</td>
+</tr>
+<tr>
+<td></td>
+<td><code>$TFROBOT_EFFORT</code> / <code>$TFROBOT_MODEL</code> / <code>$TFROBOT_REQUEST_ID</code></td>
+<td>§6.3</td>
+</tr>
+<tr>
+<td>执行后端</td>
+<td>runtime 枚举 / per-engine Dockerfile / 沙箱 I/O 协议 / 跨 sandbox 通信 / IPC</td>
+<td>由 Computer 侧 A2C-SMCP 自行定义</td>
+</tr>
+<tr>
+<td>协议外能力</td>
+<td>完整性签名校验、跨租户公共 marketplace、CDN 加速、多 region 分发、Web 编辑器、调试器 UI、资源配额计费、并发隔离精细策略</td>
+<td>Epic <a href="https://turingfocus.atlassian.net/browse/TFRS-179">TFRS-179</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-字段集-freeze-清单">11. 字段集 Freeze 清单<a class="headerlink" href="#11-字段集-freeze-清单" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>本节为协议字段总图，作为接入方实施时的字段对齐基准。任何不在本表中的字段、占位符、文件名平台均不解释。</p>
+</blockquote>
+<h3 id="111-frontmatter-字段6-个">11.1 Frontmatter 字段（6 个）<a class="headerlink" href="#111-frontmatter-字段6-个" title="Permanent link">&para;</a></h3>
+<p><code>name</code> / <code>description</code> / <code>license</code> / <code>compatibility</code> / <code>metadata</code> / <code>allowed-tools</code></p>
+<h3 id="112-受协议解释的特殊文件名1-个">11.2 受协议解释的特殊文件名（1 个）<a class="headerlink" href="#112-受协议解释的特殊文件名1-个" title="Permanent link">&para;</a></h3>
+<p><code>.skillenv</code></p>
+<h3 id="113-标准目录名3-个非强制">11.3 标准目录名（3 个，非强制）<a class="headerlink" href="#113-标准目录名3-个非强制" title="Permanent link">&para;</a></h3>
+<p><code>scripts/</code> / <code>references/</code> / <code>assets/</code></p>
+<h3 id="114-占位符3-个">11.4 占位符（3 个）<a class="headerlink" href="#114-占位符3-个" title="Permanent link">&para;</a></h3>
+<p><code>$TFROBOT_SKILL_DIR</code> / <code>$TFROBOT_SESSION_ID</code> / <code>$TFROBOT_ROBOT_ID</code></p>
+<h3 id="115-平台内置工具1-个">11.5 平台内置工具（1 个）<a class="headerlink" href="#115-平台内置工具1-个" title="Permanent link">&para;</a></h3>
+<p><code>skills(skill_name, path)</code></p>
+<h3 id="116-marketplace-层级路径git-仓库解析">11.6 Marketplace 层级路径（Git 仓库解析）<a class="headerlink" href="#116-marketplace-层级路径git-仓库解析" title="Permanent link">&para;</a></h3>
+<p><code>&lt;repo&gt;/plugins/&lt;plugin-name&gt;/skills/&lt;skill-name&gt;/SKILL.md</code> —— 详见独立规范 <a href="../../marketplace/protocol/">Marketplace 规范</a></p>
+<h2 id="附录-a设计史">附录 A：设计史<a class="headerlink" href="#附录-a设计史" title="Permanent link">&para;</a></h2>
+<p>A1\~A4 是规范的分步设计文档；本文档是其整合后的权威契约。如本文与 A1\~A4 表述冲突，<strong>以本文为准</strong>（A1\~A4 保留作为决策 rationale 与设计史）。</p>
+<table>
+<thead>
+<tr>
+<th>子任务</th>
+<th>Jira</th>
+<th>文档</th>
+<th>PR</th>
+<th>最终采纳</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1 frontmatter 字段表</td>
+<td><a href="https://turingfocus.atlassian.net/browse/TFRS-183">TFRS-183</a></td>
+<td><a href="../design-history/frontmatter-fields/">frontmatter-fields.md</a></td>
+<td><a href="https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/35">#35</a></td>
+<td>✅ 完全对齐 Agent Skills 开放标准；不采纳 Claude Code 扩展字段</td>
+</tr>
+<tr>
+<td>A2 <code>.skillenv</code> 设计</td>
+<td><a href="https://turingfocus.atlassian.net/browse/TFRS-184">TFRS-184</a></td>
+<td><a href="../design-history/skillenv/">skillenv.md</a></td>
+<td><a href="https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/36">#36</a></td>
+<td>✅ 标准 dotenv 双语义；用户 vault 三层强制隔离</td>
+</tr>
+<tr>
+<td>A3 <code>runtime</code> 枚举</td>
+<td><a href="https://turingfocus.atlassian.net/browse/TFRS-185">TFRS-185</a></td>
+<td><a href="../design-history/runtime-enum/">runtime-enum.md</a></td>
+<td><a href="https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/37">#37</a></td>
+<td>❌ <strong>撤回</strong>——A3 曾设计双引擎枚举（<code>cubesandbox::*</code> / <code>e2b::*</code>）+ BYO Dockerfile；最终决定执行后端归 Computer 侧 A2C-SMCP，<code>runtime</code> 字段不入协议</td>
+</tr>
+<tr>
+<td>A4 目录 + 占位符</td>
+<td><a href="https://turingfocus.atlassian.net/browse/TFRS-186">TFRS-186</a></td>
+<td><a href="../design-history/directory-placeholders/">directory-placeholders.md</a></td>
+<td><a href="https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/38">#38</a></td>
+<td>✅ <code>TFROBOT_*</code> 私有命名空间 + <code>skills</code> 工具契约 + 3 条安全原则</td>
+</tr>
+</tbody>
+</table>
+<p><strong>A3 撤回 rationale</strong>：A3 假设 TFRobot 协议要直接驱动执行后端（双引擎集群 + 镜像构建 + 沙箱注入），因此设计了 <code>runtime</code> 字段携带执行模板 + 引擎前缀语义。评审时确认了更清晰的协议分层：
+- <strong>Robot 配置侧 SKILL</strong> 本就不执行脚本（仅文档驱动），不需要 <code>runtime</code> 字段
+- <strong>Computer 侧 SKILL</strong> 的执行后端由 A2C-SMCP 协议（独立规范）表达，不应污染 SKILL 内容契约</p>
+<p>因此 <code>runtime</code> 字段及其衍生（per-engine Dockerfile / 沙箱 I/O 协议）整体从协议撤出。A3 文档保留作为设计史档案。</p>
+<p><strong>整体设计教训</strong>（A2 / A3 / A4 反溯共识）：</p>
+<ul>
+<li>"复用 X 实现 Y"在跨信任边界场景需先核对 X 的安全前提是否在 Y 中成立（A2 §11）</li>
+<li>协议层是否绑定具体后端实现 = 协议设计常态张力；最终选择<strong>协议只管内容契约，执行后端归实施层</strong>（A3 撤回教训）</li>
+<li>私有命名空间 + 跨平台字面透传 &gt; mirror 上游命名（A4 §9 教训）</li>
+<li>信息边界 vs 能力边界严格分开：URI 可见性 ≠ 越权能力（A4 §9 教训）</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/A2C-SMCP" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "content.code.annotate", "content.code.copy", "announce.dismiss", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"alias": true, "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
