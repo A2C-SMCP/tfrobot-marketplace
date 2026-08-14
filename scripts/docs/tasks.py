@@ -5,8 +5,8 @@
 使用方式:
     inv docs.serve                    # 本地预览
     inv docs.build                    # 构建文档
-    inv docs.deploy                   # 部署到公司服务器（默认 mode=git）
-    inv docs.deploy --mode=upload     # 服务器拉 GitHub 网络不稳时使用本地打包 SFTP 上传
+    inv docs.deploy                   # 部署到公司服务器（默认 mode=upload，本地打包 SFTP 上传）
+    inv docs.deploy --mode=git        # 服务器可直连 GitHub 时改为服务器 git fetch 同步
     inv docs.deploy-github            # 部署到 GitHub Pages
     inv docs.clean                    # 清理构建产物
 """
@@ -81,7 +81,7 @@ def sync_gh_pages(c):
 
 
 @task
-def deploy(c, version=None, alias="latest", push=True, mode="git"):
+def deploy(c, version=None, alias="latest", push=True, mode="upload"):
     """部署文档（使用 mike + Git 标准流程）。
 
     工作流程:
@@ -94,9 +94,9 @@ def deploy(c, version=None, alias="latest", push=True, mode="git"):
         version: 版本号（可选，默认使用 pyproject.toml 中的版本）
         alias: 版本别名（默认 'latest'）
         push: 是否推送到远程仓库（默认 True）
-        mode: 服务器更新模式，'git'（默认）或 'upload'。
-              git: 服务器 ssh 执行 git fetch + reset --hard origin/gh-pages，需要服务器到 GitHub 网络通畅
+        mode: 服务器更新模式，'upload'（默认）或 'git'。
               upload: 本地打包 → SFTP 上传 → 远端解压覆盖，绕开服务器 git pull（GitHub 网络不稳时使用）
+              git: 服务器 ssh 执行 git fetch + reset --hard origin/gh-pages，需要服务器到 GitHub 网络通畅
     """
     if mode not in ("git", "upload"):
         print(f"❌ 未知 mode: {mode}（仅支持 'git' 或 'upload'）")
@@ -448,13 +448,13 @@ def deploy_github(c, version=None, alias="latest", set_default=True):
 
 
 @task(name="deploy-all")
-def deploy_all(c, version=None, alias="latest", mode="git"):
+def deploy_all(c, version=None, alias="latest", mode="upload"):
     """同时部署到 GitHub Pages 和公司服务器。
 
     Args:
         version: 版本号（可选，默认使用 pyproject.toml 中的版本）
         alias: 版本别名（默认 'latest'）
-        mode: 公司服务器更新模式，'git'（默认）或 'upload'。详见 deploy task
+        mode: 公司服务器更新模式，'upload'（默认）或 'git'。详见 deploy task
     """
     if mode not in ("git", "upload"):
         print(f"❌ 未知 mode: {mode}（仅支持 'git' 或 'upload'）")
