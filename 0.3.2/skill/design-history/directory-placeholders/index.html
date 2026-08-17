@@ -1,0 +1,3046 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="TFRobot Marketplace - 文档与规范">
+      
+      
+      
+        <link rel="canonical" href="https://doc.turingfocus.cn/tfrobot-marketplace/latest/skill/design-history/directory-placeholders/">
+      
+      
+        <link rel="prev" href="../runtime-enum/">
+      
+      
+        <link rel="next" href="../../../mcp-servers/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>A4 目录与占位符 - TFRobot Marketplace</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#a4--skill-包目录结构与占位符约定" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="TFRobot Marketplace" class="md-header__button md-logo" aria-label="TFRobot Marketplace" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TFRobot Marketplace
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              A4 目录与占位符
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/A2C-SMCP/tfrobot-marketplace" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tfrobot-marketplace
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+  SKILL 协议
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../mcp-servers/" class="md-tabs__link">
+          
+  
+  
+  MCP Server 配置
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../marketplace/" class="md-tabs__link">
+          
+  
+  
+  Marketplace 分发
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../appendix/faq/" class="md-tabs__link">
+          
+  
+  
+  附录
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TFRobot Marketplace" class="md-nav__button md-logo" aria-label="TFRobot Marketplace" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TFRobot Marketplace
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/A2C-SMCP/tfrobot-marketplace" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tfrobot-marketplace
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SKILL 协议
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SKILL 协议
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    协议规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计史 (A1~A4)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    设计史 (A1~A4)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frontmatter-fields/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A1 frontmatter 字段表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skillenv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A2 .skillenv 设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runtime-enum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A3 runtime 枚举
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 目录与占位符
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A4 目录与占位符
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="页面目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      页面目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-裁定原则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 裁定原则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 裁定原则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-skill-资源访问安全原则新增" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 SKILL 资源访问安全原则（新增）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-标准目录结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 标准目录结构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 标准目录结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-强约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 强约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-语义化命名指引非强制建议遵循" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 语义化命名指引（非强制，建议遵循）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-与-claude-code--agent-skills-开放标准的差异" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 与 Claude Code / Agent Skills 开放标准的差异
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-v1-占位符全集" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. v1 占位符全集
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. v1 占位符全集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-tfrobot_skill_dir--skill-包根资源前缀" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 $TFROBOT_SKILL_DIR — SKILL 包根资源前缀
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-tfrobot_session_id--当前会话-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 $TFROBOT_SESSION_ID — 当前会话 ID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tfrobot_robot_id--robot-实例-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 $TFROBOT_ROBOT_ID — Robot 实例 ID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-不收入-v1-占位符集合的候选" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 不收入 v1 占位符集合的候选
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-展开规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 展开规则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 展开规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-skillmd-body-中的展开" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 SKILL.md body 中的展开
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-沙箱进程环境变量" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 沙箱进程环境变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-展开示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 展开示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-与-claude-code-占位符的兼容性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 与 Claude Code 占位符的兼容性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 与 Claude Code 占位符的兼容性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-命名空间隔离" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 命名空间隔离
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-跨客户端互操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 跨客户端互操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-命名为何不-mirror-claude-code-而用自有前缀" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 命名"为何不 mirror Claude Code 而用自有前缀"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-与其他-a-子任务的同步" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 与其他 A 子任务的同步
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 与其他 A 子任务的同步">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-与-a1frontmatter对齐" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 与 A1（frontmatter）对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-与-a2skillenv对齐" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 与 A2（.skillenv）对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-与-a3runtime-枚举对齐" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 与 A3（runtime 枚举）对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-沙箱脚本的纯函数输入输出协议" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 沙箱脚本的纯函数输入/输出协议
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-平台内置-skills-工具llm-读-skill-资源的唯一受控通道" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 平台内置 skills 工具（LLM 读 SKILL 资源的唯一受控通道）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-完整示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 完整示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 完整示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-极简-prompt-only无脚本无环境变量纯参考文档驱动" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 极简 prompt-only（无脚本、无环境变量、纯参考文档驱动）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-cubesandboxpython-沙箱脚本--资源--纯函数输出" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 cubesandbox::python 沙箱（脚本 + 资源 + 纯函数输出）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-cubesandbox-byo含-ffmpeg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 cubesandbox BYO（含 ffmpeg）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-准出对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 准出对照
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-任务描述-ac-修订建议反溯" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 任务描述 AC 修订建议（反溯）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 任务描述 AC 修订建议（反溯）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-tfrs-186本任务描述清理" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 TFRS-186（本任务）描述清理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-a3-tfrs-185-文档同步小修已就地修订" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 A3 (TFRS-185) 文档同步小修（已就地修订）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-tfrs-197c4-鉴权通道暂停" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 TFRS-197（C4 鉴权通道）暂停
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-tfrs-182story-模块-cac-项删除" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 TFRS-182（Story 模块 C）AC 项删除
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-tfrs-195c2-注入链路ac-扩项" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 TFRS-195（C2 注入链路）AC 扩项
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#96-tfrs-181b-模块存储ac-扩项" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.6 TFRS-181（B 模块存储）AC 扩项
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#97-tfrs-199c6-占位符--挂载ac-扩项" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.7 TFRS-199（C6 占位符 + 挂载）AC 扩项
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#98-跨项目依赖tfrobotv2-tfrob-477drive-层隐身工具--动态暴露" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.8 跨项目依赖：TFRobotV2 TFROB-477（Drive 层隐身工具 + 动态暴露）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Server 配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCP Server 配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mcp-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mcp-servers/protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    配置规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketplace 分发
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Marketplace 分发
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../marketplace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../marketplace/protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marketplace 规范
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../marketplace/loading-behavior/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    加载行为参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    附录
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    附录
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../appendix/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常见问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="页面目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      页面目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-裁定原则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 裁定原则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 裁定原则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-skill-资源访问安全原则新增" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 SKILL 资源访问安全原则（新增）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-标准目录结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 标准目录结构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 标准目录结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-强约束" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 强约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-语义化命名指引非强制建议遵循" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 语义化命名指引（非强制，建议遵循）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-与-claude-code--agent-skills-开放标准的差异" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 与 Claude Code / Agent Skills 开放标准的差异
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-v1-占位符全集" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. v1 占位符全集
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. v1 占位符全集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-tfrobot_skill_dir--skill-包根资源前缀" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 $TFROBOT_SKILL_DIR — SKILL 包根资源前缀
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-tfrobot_session_id--当前会话-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 $TFROBOT_SESSION_ID — 当前会话 ID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-tfrobot_robot_id--robot-实例-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 $TFROBOT_ROBOT_ID — Robot 实例 ID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-不收入-v1-占位符集合的候选" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 不收入 v1 占位符集合的候选
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-展开规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 展开规则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 展开规则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-skillmd-body-中的展开" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 SKILL.md body 中的展开
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-沙箱进程环境变量" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 沙箱进程环境变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-展开示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 展开示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-与-claude-code-占位符的兼容性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 与 Claude Code 占位符的兼容性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 与 Claude Code 占位符的兼容性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-命名空间隔离" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 命名空间隔离
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-跨客户端互操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 跨客户端互操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-命名为何不-mirror-claude-code-而用自有前缀" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 命名"为何不 mirror Claude Code 而用自有前缀"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-与其他-a-子任务的同步" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 与其他 A 子任务的同步
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 与其他 A 子任务的同步">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-与-a1frontmatter对齐" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 与 A1（frontmatter）对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-与-a2skillenv对齐" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 与 A2（.skillenv）对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-与-a3runtime-枚举对齐" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 与 A3（runtime 枚举）对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-沙箱脚本的纯函数输入输出协议" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 沙箱脚本的纯函数输入/输出协议
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-平台内置-skills-工具llm-读-skill-资源的唯一受控通道" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 平台内置 skills 工具（LLM 读 SKILL 资源的唯一受控通道）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-完整示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 完整示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 完整示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-极简-prompt-only无脚本无环境变量纯参考文档驱动" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 极简 prompt-only（无脚本、无环境变量、纯参考文档驱动）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-cubesandboxpython-沙箱脚本--资源--纯函数输出" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 cubesandbox::python 沙箱（脚本 + 资源 + 纯函数输出）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-cubesandbox-byo含-ffmpeg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 cubesandbox BYO（含 ffmpeg）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-准出对照" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 准出对照
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-任务描述-ac-修订建议反溯" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 任务描述 AC 修订建议（反溯）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 任务描述 AC 修订建议（反溯）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-tfrs-186本任务描述清理" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 TFRS-186（本任务）描述清理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-a3-tfrs-185-文档同步小修已就地修订" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 A3 (TFRS-185) 文档同步小修（已就地修订）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-tfrs-197c4-鉴权通道暂停" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 TFRS-197（C4 鉴权通道）暂停
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-tfrs-182story-模块-cac-项删除" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 TFRS-182（Story 模块 C）AC 项删除
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-tfrs-195c2-注入链路ac-扩项" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 TFRS-195（C2 注入链路）AC 扩项
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#96-tfrs-181b-模块存储ac-扩项" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.6 TFRS-181（B 模块存储）AC 扩项
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#97-tfrs-199c6-占位符--挂载ac-扩项" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.7 TFRS-199（C6 占位符 + 挂载）AC 扩项
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#98-跨项目依赖tfrobotv2-tfrob-477drive-层隐身工具--动态暴露" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.8 跨项目依赖：TFRobotV2 TFROB-477（Drive 层隐身工具 + 动态暴露）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="导航栏" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    首页
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    SKILL 协议
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    设计史 (A1~A4)
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="a4--skill-包目录结构与占位符约定">A4 — SKILL 包目录结构与占位符约定<a class="headerlink" href="#a4--skill-包目录结构与占位符约定" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Jira：<a href="https://turingfocus.atlassian.net/browse/TFRS-186">TFRS-186</a>（Story <a href="https://turingfocus.atlassian.net/browse/TFRS-180">TFRS-180</a> / Epic <a href="https://turingfocus.atlassian.net/browse/TFRS-179">TFRS-179</a>）
+范围：仅 SKILL 包内<strong>目录命名约定</strong>与 SKILL.md / 脚本中可见的<strong>运行时占位符</strong>集合及展开规则。具体挂载链路 / 占位符注入机制由模块 C（<a href="https://turingfocus.atlassian.net/browse/TFRS-199">TFRS-199</a> C6）实施；输入参数注入语义由 <a href="https://turingfocus.atlassian.net/browse/TFRS-197">TFRS-197</a>（C4）定。
+结论一句话：<strong>目录结构沿用 Agent Skills 标准 + 3 个语义化命名目录（<code>scripts/</code> / <code>references/</code> / <code>assets/</code>）+ 3 个特殊文件（<code>.skillenv</code> / <code>.cubesandbox.dockerfile</code> / <code>.e2b.dockerfile</code>），其余开放；运行时占位符 v1 收 3 个 <code>$TFROBOT_*</code>，全部带 <code>TFROBOT_</code> 前缀，激活时在 SKILL.md body 中展开、同名以环境变量形式注入沙箱进程；v1 采用</strong>纯函数沙箱脚本模型<strong>（脚本无 host 回调，输入走 env / 挂载 / stdin、输出走 stdout / 文件），与 E2B / CubeSandbox 行业默认一致；CLI 残留占位符（<code>$ARGUMENTS</code> / <code>$N</code> / <code>$name</code>）与 host 回调相关占位符（<code>$TFROBOT_API_ENDPOINT</code>）均不收入 v1</strong>。</p>
+</blockquote>
+<h2 id="1-裁定原则">1. 裁定原则<a class="headerlink" href="#1-裁定原则" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>目录半开放</strong>：必须有 <code>SKILL.md</code>；<code>scripts/</code> / <code>references/</code> / <code>assets/</code> 为标准语义化命名（作者按用途归类）；其余目录作者可任意添加，平台不强制闭集。</li>
+<li><strong>特殊文件名占位</strong>：3 个 hidden-file 前缀的根级文件由前序子任务定稿：<code>.skillenv</code>（A2）、<code>.cubesandbox.dockerfile</code> / <code>.e2b.dockerfile</code>（A3）—— 本文档统一汇总命名空间。</li>
+<li><strong>占位符引擎中立 + 私有命名空间</strong>：所有 v1 占位符均以 <code>TFROBOT_</code> 前缀，避免与 OS / SDK / 用户脚本环境变量冲突，也不与 Claude Code 的 <code>CLAUDE_*</code> / <code>$ARGUMENTS</code> 系列冲突或试图 mirror。</li>
+<li><strong>同名跨形态统一</strong>：每个占位符在 SKILL.md body 中和沙箱进程环境变量中<strong>同名同语义</strong>；作者一处习得、两处可用。</li>
+<li><strong>激活时 body 展开</strong>：平台在把 SKILL.md body 拼到 LLM prompt <strong>之前</strong>完成 <code>$VAR</code> / <code>${VAR}</code> 替换，LLM 见到的是已展开的真实值（与 Claude Code 一致）。</li>
+<li><strong><code>$TFROBOT_SKILL_DIR</code> 跨 runtime 语义统一</strong>：同一占位符名，展开值随 runtime 形态变化 —— 沙箱化 runtime 下展开为本地挂载路径；<code>prompt-only</code> 下展开为平台内部不透明 URI（详见 §3.1）。<strong>作者只需记一个名字</strong>。</li>
+<li><strong>不收 CLI 残留</strong>：<code>$ARGUMENTS</code> / <code>$N</code> / <code>$name</code> 等位置参数型占位符<strong>已由 A1 §3.1 整组排除</strong>（属"Custom commands have been merged into skills"的历史包袱），本文档保持一致，不重提引入。</li>
+<li><strong>不暴露敏感值到 body</strong>：用户 vault 解析后的明文等敏感凭证<strong>只</strong>通过沙箱进程 env 注入，<strong>不</strong>进入 v1 占位符集合、<strong>不</strong>在 SKILL.md body 中展开（与 A2 §5 LLM 不可见性三层防护一致）。</li>
+<li><strong>纯函数沙箱脚本模型</strong>：v1 沙箱内脚本无 host 回调通道 —— 输入走 env / 挂载 / 可选 stdin、输出走 stdout / 文件。脚本不主动调用 TFRobotServer 内部 API；需要"读会话 / 调其他工具 / 做对话决策"的场景应写为 <code>prompt-only</code> SKILL，让 LLM 在其工具循环中编排。与 E2B / CubeSandbox 行业默认一致（详见 §6.4 与 §9）。</li>
+<li><strong>v1 克制</strong>：3 个占位符覆盖「定位资源 + 标识会话 + 标识 robot」最小集；新增项必须有具体 SKILL 场景驱动。</li>
+</ol>
+<h3 id="11-skill-资源访问安全原则新增">1.1 SKILL 资源访问安全原则（新增）<a class="headerlink" href="#11-skill-资源访问安全原则新增" title="Permanent link">&para;</a></h3>
+<p>SKILL 文件存储在 MinIO（B 模块定稿），作为<strong>不可信资产</strong>对待。三条强制约束：</p>
+<ol>
+<li><strong>SKILL 资源访问受控</strong>：所有 SKILL 文件访问（LLM 读 <code>references/</code> / <code>scripts/</code>、sandbox 内 FS 访问）都由平台居间介入；不存在"LLM 直接拿 MinIO 凭据自取"或"FastAPI 把 SKILL 当本地 import / eval"的路径。LLM 端通过平台内置 <code>skills</code> 工具读资源（§6.5）；sandbox 端通过受控 staging 管线挂载（§6.4）。</li>
+<li><strong>FastAPI 主进程不持久化 SKILL</strong>：SKILL 字节从 MinIO 取出后<strong>只</strong>在主进程内存中存活一次性使用（喂给 LLM 上下文 / staging 给 sandbox），<strong>绝不</strong>写入 Pod FS、<strong>绝不</strong> <code>subprocess</code> 执行任何 SKILL 衍生命令、<strong>绝不</strong>基于 SKILL 文件 FS 权限做决策。SKILL 文件内容对主进程而言<strong>只是 data</strong>。</li>
+<li><strong>Sandbox staging 不经 FastAPI 文件系统</strong>：MinIO → sandbox 卷的文件传递走独立管线（具体方案由 C2/C6 出 ADR，详见 §6.4 / §9.5），FastAPI 主进程不当中转。staging 延迟约束：<strong>不能淹没 &lt; 60ms 沙箱冷启动优势</strong>（CubeSandbox 60ms / E2B P95 ~90ms）；具体实现方向（per-skill-version baked image / lazy FUSE mount / sandbox 直拉 + signed URL / speculative pre-warm 等）由 C 模块按 SKILL 体积分布选型。</li>
+</ol>
+<h2 id="2-标准目录结构">2. 标准目录结构<a class="headerlink" href="#2-标准目录结构" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>my-skill/                          # skill 包根（目录名 = SKILL.md frontmatter `name`）
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── SKILL.md                       # 必需。frontmatter + body
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── .skillenv                      # 可选。环境变量声明（A2 定稿）
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── .cubesandbox.dockerfile        # 条件必需 —— runtime: cubesandbox 时（A3 定稿）
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── .e2b.dockerfile                # 条件必需 —— runtime: e2b 时（A3 定稿）
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── scripts/                       # 标准命名 —— 沙箱内执行入口与可执行代码
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── main.py
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── lib/
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   └── ...
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── references/                    # 标准命名 —— LLM 渐进式读取的参考文档
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   ├── architecture.md
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   ├── checklist.md
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   └── ...
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── assets/                        # 标准命名 —— 静态资源（图片、模板、字体等）
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   ├── logo.png
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│   └── template.docx
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>└── &lt;任意其他目录或文件&gt;             # 作者自由扩展，平台不解释
+</code></pre></div>
+<h3 id="21-强约束">2.1 强约束<a class="headerlink" href="#21-强约束" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>约束</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>包根目录名</td>
+<td>必须等于 <code>SKILL.md</code> frontmatter 中的 <code>name</code>（A1 §2.1）</td>
+</tr>
+<tr>
+<td><code>SKILL.md</code></td>
+<td>必须存在于包根；缺失即加载失败</td>
+</tr>
+<tr>
+<td>隐藏文件</td>
+<td><code>.skillenv</code> / <code>.cubesandbox.dockerfile</code> / <code>.e2b.dockerfile</code> 是 v1 仅有的 3 个由协议解释的 hidden-file 名；其他 <code>.xxx</code> 文件平台不解释（也不拒绝）</td>
+</tr>
+<tr>
+<td><code>scripts/</code> / <code>references/</code> / <code>assets/</code></td>
+<td>名字标准化但<strong>不强制必填</strong> —— 作者按需创建。即使不存在加载器也不报错。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-语义化命名指引非强制建议遵循">2.2 语义化命名指引（非强制，建议遵循）<a class="headerlink" href="#22-语义化命名指引非强制建议遵循" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>语义</th>
+<th>何时用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scripts/</code></td>
+<td>沙箱内可执行的代码（Python <code>.py</code> / Node <code>.ts</code> / <code>.js</code> / shell 等）</td>
+<td>沙箱化 runtime（Tier 1 <code>&lt;engine&gt;::&lt;lang&gt;</code> / Tier 2 BYO）下，SKILL.md body 调用 <code>scripts/foo.py</code> 等</td>
+</tr>
+<tr>
+<td><code>references/</code></td>
+<td>LLM 在执行过程中<strong>渐进式</strong>按需读取的参考文档（Markdown / 纯文本）</td>
+<td>LLM 在 SKILL.md body 中指示「需要细节时读 <code>references/checklist.md</code>」；与 Claude Code "progressive disclosure" 概念一致</td>
+</tr>
+<tr>
+<td><code>assets/</code></td>
+<td>静态资源（图片、字体、文档模板、二进制等）</td>
+<td>脚本生成报告时引用 <code>assets/template.docx</code> 之类</td>
+</tr>
+<tr>
+<td>其他 <code>&lt;name&gt;/</code></td>
+<td>作者自定义</td>
+<td>任意业务划分（如 <code>tests/</code> / <code>i18n/</code> 等），平台不解释</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-与-claude-code--agent-skills-开放标准的差异">2.3 与 Claude Code / Agent Skills 开放标准的差异<a class="headerlink" href="#23-与-claude-code--agent-skills-开放标准的差异" title="Permanent link">&para;</a></h3>
+<ul>
+<li>开放标准（agentskills.io）只规定「use relative paths from the skill root」，未约束目录名 —— 本文档<strong>与之兼容</strong>（标准目录是约定，非强制）；</li>
+<li>Claude Code 文档示例同样使用 <code>scripts/</code> / <code>references/</code>，命名与本文档对齐；</li>
+<li>不引入 Claude Code 的 <code>tools/</code> 目录约定 —— TFRobotServer 工具白名单走 frontmatter <code>allowed-tools</code>（A1 §2.2 / §4.1），与目录无关；</li>
+<li>不引入 <code>_meta.yaml</code> / <code>manifest.json</code> 等附加元信息文件 —— 元数据全部在 frontmatter（A1）或 <code>.skillenv</code>（A2）中表达。</li>
+</ul>
+<h2 id="3-v1-占位符全集">3. v1 占位符全集<a class="headerlink" href="#3-v1-占位符全集" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>3 个占位符，全部以 <code>TFROBOT_</code> 前缀。每个在 SKILL.md body 中可写为 <code>$TFROBOT_&lt;NAME&gt;</code> 或 <code>${TFROBOT_&lt;NAME&gt;}</code>（任意作者偏好），同名以环境变量形式注入沙箱进程。</p>
+</blockquote>
+<h3 id="31-tfrobot_skill_dir--skill-包根资源前缀">3.1 <code>$TFROBOT_SKILL_DIR</code> — SKILL 包根资源前缀<a class="headerlink" href="#31-tfrobot_skill_dir--skill-包根资源前缀" title="Permanent link">&para;</a></h3>
+<p><strong>v1 唯一跨 runtime 展开值不同的占位符</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>Runtime 形态</th>
+<th>展开值（示例）</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tier 1 / Tier 2 沙箱化 runtime（<code>cubesandbox::*</code> / <code>e2b::*</code> / <code>cubesandbox</code> / <code>e2b</code>）</td>
+<td><strong>本地挂载路径</strong>，如 <code>/skill</code> —— 由 C6（<a href="https://turingfocus.atlassian.net/browse/TFRS-199">TFRS-199</a>）从 MinIO 挂载</td>
+<td>脚本中 <code>open(f"{os.environ['TFROBOT_SKILL_DIR']}/references/foo.md")</code>；SKILL.md body 中 <code>$TFROBOT_SKILL_DIR/scripts/main.py</code></td>
+</tr>
+<tr>
+<td>Tier 0 <code>prompt-only</code></td>
+<td><strong>平台内部不透明 URI</strong>，如 <code>tfs-skill://&lt;tenant&gt;/&lt;skill&gt;/&lt;version&gt;/</code> —— 由平台 <code>skills</code> 工具（§6.5）识别；亦可在有 S3 凭据的外部环境中下载使用</td>
+<td>LLM 通过 <code>skills(skill_name, path)</code> 工具读取（详见 §6.5）；也可在 SKILL.md body 中拼接到 URI 供 LLM 参考构造工具调用：<code>Read("$TFROBOT_SKILL_DIR/references/checklist.md")</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>URI 格式属平台内部协议</strong>（具体由 B 模块实施时决定，可能是 <code>tfs-skill://</code> / <code>minio://</code> / 不透明 token），A4 仅承诺：</p>
+<ul>
+<li>它是一个<strong>前缀</strong>，可与包内相对路径（<code>references/foo.md</code>）拼接形成完整资源标识；</li>
+<li>平台提供的 <code>skills</code> 工具（§6.5）与沙箱本地 FS 都能解析；</li>
+<li><strong>作者不应解析此值的内部结构</strong>，仅作为黑盒前缀使用；</li>
+<li>URI 可见性不构成安全漏洞 —— 任何资源访问最终都经 <code>skills</code> 工具或沙箱挂载层校验"当前 SKILL 范围 + 路径合法 + 黑名单"（§1.1 第 11 条 + §6.5）。</li>
+</ul>
+<p><strong>与相对路径写法的关系</strong>：开放标准推荐相对路径（<code>references/foo.md</code>）；平台 <code>skills</code> 工具同时支持「相对路径 + 当前激活 skill 上下文」与「完整 URI」两种入参，由作者按场景偏好选：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>方式 A（推荐，开放标准对齐）：    skills(&lt;implicit current skill&gt;, &quot;references/checklist.md&quot;)
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>方式 B（显式跨 SKILL 引用）：      skills(&quot;common-utils&quot;, &quot;references/glossary.md&quot;)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>方式 C（URI 拼接 + 外部环境）：    curl --signature $TFROBOT_SKILL_DIR/references/checklist.md  # 如作者接入有 S3 凭据的 Bash 环境
+</code></pre></div>
+<p>A4 不规定作者偏好；平台三种都支持。</p>
+<h3 id="32-tfrobot_session_id--当前会话-id">3.2 <code>$TFROBOT_SESSION_ID</code> — 当前会话 ID<a class="headerlink" href="#32-tfrobot_session_id--当前会话-id" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>契约</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>展开值</td>
+<td>字符串。当前 robot 会话的唯一标识（具体格式由 robot 平台决定，通常 UUID v4）</td>
+</tr>
+<tr>
+<td>作用域</td>
+<td>单次 SKILL 调用绑定到一个会话；该值在整个调用生命周期内不变</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>所有 runtime 均可用（含 <code>prompt-only</code>）</td>
+</tr>
+<tr>
+<td>典型用途</td>
+<td>日志关联、跨服务追踪、回调时携带、user-facing message 关联</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-tfrobot_robot_id--robot-实例-id">3.3 <code>$TFROBOT_ROBOT_ID</code> — Robot 实例 ID<a class="headerlink" href="#33-tfrobot_robot_id--robot-实例-id" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>契约</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>展开值</td>
+<td>字符串。当前激活该 SKILL 的 robot 实例标识</td>
+</tr>
+<tr>
+<td>作用域</td>
+<td>同 SESSION_ID；同一 robot 多个会话共享相同 ROBOT_ID</td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td>所有 runtime 均可用</td>
+</tr>
+<tr>
+<td>典型用途</td>
+<td>多租户审计、按 robot 路由、工单关联</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-不收入-v1-占位符集合的候选">3.4 不收入 v1 占位符集合的候选<a class="headerlink" href="#34-不收入-v1-占位符集合的候选" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>候选</th>
+<th>不收入理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ARGUMENTS</code> / <code>$N</code> / <code>$name</code></td>
+<td>CLI 残留，由 A1 §3.1 整组排除；与 TFRobotServer 通过 LLM 工具调用结构化传参的入口本质不匹配</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_API_ENDPOINT</code> / <code>$TFROBOT_AUTH_TOKEN</code> 等 host 回调相关占位符</td>
+<td><strong>v1 采用纯函数沙箱脚本模型，无 host 回调通道</strong>（§1 第 9 条）。脚本不通过 HTTP 调 TFRobotServer 主进程；需要"读会话 / 调其他工具 / 做对话决策"的场景应写为 <code>prompt-only</code> SKILL。回调模型推迟到出现具体业务诉求（详见 §9.3）</td>
+</tr>
+<tr>
+<td>用户 vault 解析后的明文（来自 <code>.skillenv</code>）</td>
+<td>敏感值隔离 —— 作为<strong>沙箱进程 env</strong> 注入（A2 §5 三层防护），不进入 SKILL.md body 展开路径</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_TENANT_ID</code> / <code>$TFROBOT_USER_ID</code></td>
+<td>多租户/用户上下文 v1 暂不暴露给 SKILL 作者 —— 跨租户审计走平台日志而非 SKILL 自身；若 SKILL 真有按 tenant 区分行为的需求，应通过 robot 配置层显式传参，而非由 SKILL 解 tenant id 做分支</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_ARG</code> / <code>$TFROBOT_INPUT</code> 类输入占位符</td>
+<td><strong>输入参数注入语义</strong>涉及 LLM 工具调用协议（结构化参数 vs 单字符串 vs 多入参等）；v1 纯函数模型下输入走 env vars / argv / stdin，具体格式由 C2（<a href="https://turingfocus.atlassian.net/browse/TFRS-195">TFRS-195</a>）实施时定。A3 §3 例值中曾出现的 <code>$TFROBOT_ARG</code> 由 §9.2 反溯修订改写为通用表述</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_EFFORT</code> / <code>$TFROBOT_MODEL</code></td>
+<td>Claude Code 的 <code>${CLAUDE_EFFORT}</code> / model 注入是 CLI 选项注入；TFRobotServer 模型与算力档由平台按租户/计费策略决定（A1 §3.1），不暴露给 SKILL 作者</td>
+</tr>
+<tr>
+<td><code>$TFROBOT_REQUEST_ID</code></td>
+<td>可观测性需求由平台日志/trace 携带，无需 SKILL 自渲染；待具体调试场景出现再评估</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-展开规则">4. 展开规则<a class="headerlink" href="#4-展开规则" title="Permanent link">&para;</a></h2>
+<h3 id="41-skillmd-body-中的展开">4.1 SKILL.md body 中的展开<a class="headerlink" href="#41-skillmd-body-中的展开" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>时机</strong></td>
+<td>平台在把 SKILL.md body 拼到 LLM prompt <strong>之前</strong>完成替换；LLM 见到的是已展开的字符串</td>
+</tr>
+<tr>
+<td><strong>语法</strong></td>
+<td>接受 <code>$TFROBOT_NAME</code> 与 <code>${TFROBOT_NAME}</code> 两种 shell 风格；二者等价</td>
+</tr>
+<tr>
+<td><strong>命名空间</strong></td>
+<td>仅识别以 <code>$TFROBOT_</code> 开头的占位符；其他 <code>$VAR</code>（如 <code>$HOME</code> / <code>$PATH</code> / <code>$ARGUMENTS</code>）<strong>保持字面原样</strong>，平台不展开、不报错</td>
+</tr>
+<tr>
+<td><strong>未定义占位符</strong></td>
+<td>引用 v1 集合外的 <code>$TFROBOT_*</code>（如 <code>$TFROBOT_FOOBAR</code>）→ 加载器报错（"unknown placeholder $TFROBOT_FOOBAR"），避免作者误以为有该值</td>
+</tr>
+<tr>
+<td><strong>runtime 不匹配占位符</strong></td>
+<td>如 <code>prompt-only</code> SKILL.md body 中出现 <code>$TFROBOT_API_ENDPOINT</code> → 加载器报错（§3.4）</td>
+</tr>
+<tr>
+<td><strong>转义</strong></td>
+<td>不支持。若作者真的想在 body 中写字面字符串 <code>$TFROBOT_SKILL_DIR</code>（极罕见），用 markdown code block 或文本说明绕开，本文档不引入转义语法（v1 克制）</td>
+</tr>
+<tr>
+<td><strong>多次出现</strong></td>
+<td>同一占位符可出现任意次；每次独立展开为相同值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-沙箱进程环境变量">4.2 沙箱进程环境变量<a class="headerlink" href="#42-沙箱进程环境变量" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>注入名</strong></td>
+<td>占位符名去掉 <code>$</code> / <code>${...}</code>，直接作为 env var 名（如 <code>TFROBOT_SKILL_DIR</code>、<code>TFROBOT_SESSION_ID</code>）</td>
+</tr>
+<tr>
+<td><strong>注入时机</strong></td>
+<td>由 C2（<a href="https://turingfocus.atlassian.net/browse/TFRS-195">TFRS-195</a>）在 <code>sandbox.create(envs=...)</code> 时一次性注入</td>
+</tr>
+<tr>
+<td><strong>与 <code>.skillenv</code> 注入的关系</strong></td>
+<td><code>.skillenv</code> 解析结果（A2 §4）+ <code>TFROBOT_*</code> 占位符 = 沙箱进程完整 env 集合；同名冲突时（虽然极罕见 —— <code>TFROBOT_</code> 前缀命名空间避让），<code>.skillenv</code> 优先级低（不允许覆盖平台占位符）</td>
+</tr>
+<tr>
+<td><strong><code>prompt-only</code> 下</strong></td>
+<td>无沙箱进程，env 注入路径 N/A；占位符仅在 SKILL.md body 中展开</td>
+</tr>
+<tr>
+<td><strong>作者读取</strong></td>
+<td>Python：<code>os.environ["TFROBOT_SKILL_DIR"]</code>；Node：<code>process.env.TFROBOT_SKILL_DIR</code>；shell：<code>$TFROBOT_SKILL_DIR</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-展开示例">4.3 展开示例<a class="headerlink" href="#43-展开示例" title="Permanent link">&para;</a></h3>
+<p>SKILL.md body 原文：</p>
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gu">## 任务</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">1.</span> 读取 references/checklist.md（会话 ID：$TFROBOT_SESSION_ID）
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">2.</span> 调用 scripts/process.py，输出落到 $TFROBOT_SKILL_DIR/out/
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">3.</span> 把脚本 stdout 中的处理统计汇总到响应
+</code></pre></div>
+<p><code>runtime: cubesandbox::python</code> + 平台展开后 LLM 看到：</p>
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gu">## 任务</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">1.</span> 读取 references/checklist.md（会话 ID：8b0e4d2a-...）
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">2.</span> 调用 scripts/process.py，输出落到 /skill/out/
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">3.</span> 把脚本 stdout 中的处理统计汇总到响应
+</code></pre></div>
+<p><code>runtime: prompt-only</code> + 平台展开后 LLM 看到：</p>
+<div class="language-markdown highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gu">## 任务</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">1.</span> 读取 references/checklist.md（会话 ID：8b0e4d2a-...）
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">2.</span> 调用 scripts/process.py，输出落到 tfs-skill://tenant-a/my-skill/v1.2/out/
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">3.</span> 把脚本 stdout 中的处理统计汇总到响应
+</code></pre></div>
+<blockquote>
+<p>§3.1 示例：prompt-only 中 LLM 可把 <code>$TFROBOT_SKILL_DIR/scripts/process.py</code> 作为 Read 工具入参；具体能否执行非沙箱化代码取决于平台是否提供执行能力 —— v1 prompt-only 无此能力，作者应避免在 prompt-only SKILL 中引用 <code>scripts/</code>。</p>
+</blockquote>
+<h2 id="5-与-claude-code-占位符的兼容性">5. 与 Claude Code 占位符的兼容性<a class="headerlink" href="#5-与-claude-code-占位符的兼容性" title="Permanent link">&para;</a></h2>
+<h3 id="51-命名空间隔离">5.1 命名空间隔离<a class="headerlink" href="#51-命名空间隔离" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>命名空间</th>
+<th>拥有者</th>
+<th>本文档处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$TFROBOT_*</code></td>
+<td>TFRobotServer（本文档）</td>
+<td>平台展开</td>
+</tr>
+<tr>
+<td><code>${CLAUDE_SKILL_DIR}</code> / <code>${CLAUDE_SESSION_ID}</code> / <code>${CLAUDE_EFFORT}</code> 等 <code>CLAUDE_*</code></td>
+<td>Claude Code 私有扩展</td>
+<td><strong>保持字面</strong>，平台不展开；跨客户端加载到 TFRobotServer 时 LLM 见到原文，自行理解（多数模型能从上下文推断含义）</td>
+</tr>
+<tr>
+<td><code>$ARGUMENTS</code> / <code>$1</code> / <code>$2</code> / <code>$name</code></td>
+<td>Claude Code 私有（CLI 残留）</td>
+<td><strong>保持字面</strong>，平台不展开（避免误展为空字符串造成 LLM 困惑）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-跨客户端互操作">5.2 跨客户端互操作<a class="headerlink" href="#52-跨客户端互操作" title="Permanent link">&para;</a></h3>
+<ul>
+<li>在 TFRobotServer 编写的 SKILL.md 加载到 Claude Code 时：<code>$TFROBOT_*</code> 保持字面（Claude Code 不识别），LLM 见原文 —— 不影响 LLM 理解 body 大意；但若 SKILL 依赖具体值（如脚本路径），需要作者改写或仅在 TFRobotServer 内使用；</li>
+<li>在 Claude Code 编写的 SKILL.md 加载到 TFRobotServer 时：<code>${CLAUDE_*}</code> / <code>$ARGUMENTS</code> 保持字面，LLM 见原文 —— 类似不影响理解，但依赖具体值的部分需作者重写为 <code>$TFROBOT_*</code>。</li>
+</ul>
+<h3 id="53-命名为何不-mirror-claude-code-而用自有前缀">5.3 命名"为何不 mirror Claude Code 而用自有前缀"<a class="headerlink" href="#53-命名为何不-mirror-claude-code-而用自有前缀" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>物理上</strong>：平台执行/挂载/会话语义与 Claude Code 不同（Agent-Computer 分离、MinIO 存储、多 Pod 部署），含义不能直接对齐；</li>
+<li><strong>逻辑上</strong>：用 <code>CLAUDE_*</code> 借名容易让作者误以为语义完全一致；自有 <code>TFROBOT_*</code> 前缀<strong>明确表达"这是 TFRobotServer 的占位符约定"</strong>，配合本文档可一查便知；</li>
+<li><strong>互操作不破坏</strong>：跨平台加载时各自保持字面，不引入冲突。</li>
+</ul>
+<h2 id="6-与其他-a-子任务的同步">6. 与其他 A 子任务的同步<a class="headerlink" href="#6-与其他-a-子任务的同步" title="Permanent link">&para;</a></h2>
+<h3 id="61-与-a1frontmatter对齐">6.1 与 A1（frontmatter）对齐<a class="headerlink" href="#61-与-a1frontmatter对齐" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>A1 §4.2 留给 A4 的决策点</strong>：「是否引入任何环境/运行时占位符、引入哪些、命名规则」 → 本文档定稿为 v1 4 个 <code>TFROBOT_*</code> 占位符 + 私有命名空间。A1 §4.2 中关于占位符的留白由本文档关闭。</li>
+<li><strong>A1 §3.1 已排除的 CLI 残留</strong>：<code>$ARGUMENTS</code> / <code>$N</code> / <code>$name</code> 与本文档 §3.5 / §5.1 一致 —— 不收入、保持字面、跨客户端互操作时透传。</li>
+</ul>
+<h3 id="62-与-a2skillenv对齐">6.2 与 A2（<code>.skillenv</code>）对齐<a class="headerlink" href="#62-与-a2skillenv对齐" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>.skillenv</code> 文件名</strong>：与本文档 §2 的「3 个 v1 特殊文件名」之一对齐；命名空间合并，便于加载器统一识别。</li>
+<li><strong>解析后注入的 env vars</strong>：与 <code>TFROBOT_*</code> 占位符<strong>共享沙箱进程 env 命名空间</strong>，但<strong>互不重叠</strong>（用户 vault 命名空间通常是 <code>SLACK_BOT_TOKEN</code> / <code>NOTION_TOKEN</code> 等业务名，与平台 <code>TFROBOT_</code> 前缀避让）。</li>
+<li><strong>LLM 不可见性</strong>：A2 §5 三层防护中"加载器黑名单"对 <code>.skillenv</code> 生效；A4 §3.5 把同样的"敏感值不暴露 body"原则推广到 <code>TFROBOT_AUTH_TOKEN</code> 等占位符。</li>
+</ul>
+<h3 id="63-与-a3runtime-枚举对齐">6.3 与 A3（runtime 枚举）对齐<a class="headerlink" href="#63-与-a3runtime-枚举对齐" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>.cubesandbox.dockerfile</code> / <code>.e2b.dockerfile</code> 文件名</strong>：与本文档 §2 的「3 个 v1 特殊文件名」对齐；A3 §6.4 已定文件契约，本文档仅在目录结构中标注其位置。</li>
+<li><strong>跨 runtime 占位符可用性</strong>：A3 §6.3 承诺占位符"在所有沙箱化 runtime 下统一可用" —— 本文档 §3 落地为 3 个具体占位符（<code>$TFROBOT_SKILL_DIR</code> / <code>$TFROBOT_SESSION_ID</code> / <code>$TFROBOT_ROBOT_ID</code>），全部跨 runtime 通用。</li>
+<li><strong>A3 例值中的 <code>$TFROBOT_ARG</code></strong>：A3 §3.2 / §3.3 例值中曾出现 <code>$TFROBOT_ARG</code>；本文档 §3.4 已说明此名属 C2 范围 —— A3 例值已在 §9.2 反溯就地修订。</li>
+</ul>
+<h3 id="64-沙箱脚本的纯函数输入输出协议">6.4 沙箱脚本的纯函数输入/输出协议<a class="headerlink" href="#64-沙箱脚本的纯函数输入输出协议" title="Permanent link">&para;</a></h3>
+<p>v1 沙箱脚本是<strong>无 host 回调</strong>的纯函数（§1 第 9 条）；输入与输出协议如下：</p>
+<table>
+<thead>
+<tr>
+<th>通道</th>
+<th>内容</th>
+<th>实施 ticket</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>输入 · 环境变量</strong></td>
+<td><code>TFROBOT_SKILL_DIR</code> / <code>TFROBOT_SESSION_ID</code> / <code>TFROBOT_ROBOT_ID</code>（本文档 §3）+ <code>.skillenv</code> 解析后的明文（A2 §4）</td>
+<td>C2 <a href="https://turingfocus.atlassian.net/browse/TFRS-195">TFRS-195</a></td>
+</tr>
+<tr>
+<td><strong>输入 · 挂载目录</strong></td>
+<td>SKILL 包目录挂载至 <code>$TFROBOT_SKILL_DIR</code>（沙箱本地 FS）；<strong>MinIO → sandbox 卷的 staging 不经 FastAPI 主进程 FS</strong>（§1.1 第 13 条），具体方案（baked image / lazy FUSE / sandbox 直拉 / pre-warm）由 C2/C6 ADR；staging 延迟约束："不淹没 &lt; 60ms 冷启动"（CubeSandbox 60ms / E2B P95 ~90ms）</td>
+<td>C6 <a href="https://turingfocus.atlassian.net/browse/TFRS-199">TFRS-199</a></td>
+</tr>
+<tr>
+<td><strong>输入 · 启动参数</strong></td>
+<td>LLM tool call 的结构化参数 → 注入方式（argv / stdin JSON / 额外 env）由 C2 定</td>
+<td>C2 <a href="https://turingfocus.atlassian.net/browse/TFRS-195">TFRS-195</a></td>
+</tr>
+<tr>
+<td><strong>输出 · stdout</strong></td>
+<td>沙箱进程 stdout 捕获后作为 LLM 见到的 tool result</td>
+<td>C2 / C6（执行链路）</td>
+</tr>
+<tr>
+<td><strong>输出 · stderr</strong></td>
+<td>落平台日志，作者可查；不进入 LLM 上下文（除非 stdout 也写入）</td>
+<td>C2 / C6</td>
+</tr>
+<tr>
+<td><strong>输出 · 产物文件</strong></td>
+<td>写入 <code>$TFROBOT_SKILL_DIR/out/</code> 的文件可选回收（具体策略由 C6 定）</td>
+<td>C6 <a href="https://turingfocus.atlassian.net/browse/TFRS-199">TFRS-199</a></td>
+</tr>
+<tr>
+<td><strong>❌ 无 host 回调</strong></td>
+<td>脚本不主动 HTTP 调 TFRobotServer 主进程；无 <code>$TFROBOT_API_ENDPOINT</code></td>
+<td>—（v1 不实现，<a href="https://turingfocus.atlassian.net/browse/TFRS-197">TFRS-197</a> 暂停）</td>
+</tr>
+</tbody>
+</table>
+<p>需要"读会话 / 调其他工具 / 做对话决策"的 SKILL → 写为 <code>prompt-only</code>，由 LLM 在其工具循环中编排；不在沙箱脚本内做。</p>
+<h3 id="65-平台内置-skills-工具llm-读-skill-资源的唯一受控通道">6.5 平台内置 <code>skills</code> 工具（LLM 读 SKILL 资源的唯一受控通道）<a class="headerlink" href="#65-平台内置-skills-工具llm-读-skill-资源的唯一受控通道" title="Permanent link">&para;</a></h3>
+<p>任何 SKILL 激活期间，LLM 隐式可用一个<strong>平台内置工具</strong> <code>skills</code>，用于读取 SKILL 包内文件（references/ / assets/ / scripts/ 等）。该工具是 prompt-only SKILL 访问自身资源、以及任何 SKILL 跨 skill 引用共享资源的<strong>唯一受控通道</strong> —— FastAPI 主进程不会绕过该工具替 LLM "直接 dump SKILL 内容"，符合 §1.1 第 11 条「SKILL 资源访问受控」。</p>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>设计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>工具名</strong></td>
+<td><code>skills</code>（与 Claude Code 命名一致；跨平台肌肉记忆）</td>
+</tr>
+<tr>
+<td><strong>入参 1</strong></td>
+<td><code>skill_name</code>: string —— 平台已注册 SKILL 的 <code>name</code>（A1 §2.1）</td>
+</tr>
+<tr>
+<td><strong>入参 2</strong></td>
+<td><code>path</code>: string —— 相对 skill 根的路径（如 <code>references/foo.md</code> / <code>scripts/main.py</code> / <code>assets/template.docx</code>）</td>
+</tr>
+<tr>
+<td><strong>返回</strong></td>
+<td>文件内容（文本直返；二进制走 base64）</td>
+</tr>
+<tr>
+<td><strong>黑名单（强制 403）</strong></td>
+<td><code>.skillenv</code> / <code>.cubesandbox.dockerfile</code> / <code>.e2b.dockerfile</code> / 任何 <code>.*.dockerfile</code> 模式 / 任何 <code>.skillenv*</code> 模式 —— 与 §2.1 隐藏文件 + A2 §5 LLM 不可见性三层防护一致</td>
+</tr>
+<tr>
+<td><strong>路径校验</strong></td>
+<td>拒绝 <code>..</code> / 绝对路径 / 跳出 skill 根 / 符号链接逃逸</td>
+</tr>
+<tr>
+<td><strong>授权校验</strong></td>
+<td>当前会话有权访问 <code>skill_name</code> 才允许；权限模型由 B 模块 registry 定（<a href="https://turingfocus.atlassian.net/browse/TFRS-181">TFRS-181</a>）</td>
+</tr>
+<tr>
+<td><strong>大小上限</strong></td>
+<td>单次读取上限（建议 ~10 MB，超过返回错误并提示走 sandbox 处理）；具体阈值由 B 模块定</td>
+</tr>
+<tr>
+<td><strong>作用域</strong></td>
+<td><strong>仅 LLM 工具调用层</strong> —— 不暴露给 sandbox 脚本（脚本走本地挂载，§6.4）</td>
+</tr>
+<tr>
+<td><strong>激活机制</strong></td>
+<td>平台内置工具，<strong>任何</strong> SKILL 激活时<strong>隐式可用</strong>；不要求作者写进 <code>allowed-tools</code>、也不能通过 <code>allowed-tools</code> 禁用（与 SKILL 激活机制本身同级）。底层依赖 TFRobotV2 Drive 层「隐身工具 + 动态暴露」能力（<a href="https://turingfocus.atlassian.net/browse/TFROB-477">TFROB-477</a>）</td>
+</tr>
+<tr>
+<td><strong>跨 SKILL 读</strong></td>
+<td>天然支持 —— <code>skill_name</code> 是显式入参，授权校验通过即可读其他 skill 资源。这覆盖"shared template / 共享术语表 / SKILL 间引用"场景</td>
+</tr>
+</tbody>
+</table>
+<p><strong>典型调用</strong>：</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># LLM 在 prompt-only SKILL 中按 SKILL.md body 指示读取 references/checklist.md</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">skills</span><span class="p">(</span><span class="n">skill_name</span><span class="o">=</span><span class="s2">&quot;deploy-helper&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;references/checklist.md&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># 跨 SKILL 引用共享资源</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">skills</span><span class="p">(</span><span class="n">skill_name</span><span class="o">=</span><span class="s2">&quot;common-utils&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;references/glossary.md&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># 黑名单触发拒绝</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">skills</span><span class="p">(</span><span class="n">skill_name</span><span class="o">=</span><span class="s2">&quot;csv-aggregator&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;.skillenv&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1"># → 403 access denied: protected file</span>
+</code></pre></div>
+<p><strong>实施 ticket</strong>：<a href="https://turingfocus.atlassian.net/browse/TFRS-181">TFRS-181</a>（B 模块）—— 见 §9.6。</p>
+<h2 id="7-完整示例">7. 完整示例<a class="headerlink" href="#7-完整示例" title="Permanent link">&para;</a></h2>
+<h3 id="71-极简-prompt-only无脚本无环境变量纯参考文档驱动">7.1 极简 <code>prompt-only</code>（无脚本、无环境变量、纯参考文档驱动）<a class="headerlink" href="#71-极简-prompt-only无脚本无环境变量纯参考文档驱动" title="Permanent link">&para;</a></h3>
+<p>包目录：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>deploy-helper/
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>├── SKILL.md
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>└── references/
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    └── checklist.md
+</code></pre></div>
+<p><code>SKILL.md</code>：</p>
+<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nn">---</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy-helper</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">帮助用户准备发布到目标环境的清单。当用户说&quot;准备发布&quot;或类似意图时触发。</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nn">---</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1">## 任务流程</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="l l-Scalar l-Scalar-Plain">1. 询问用户目标环境（dev / staging / prod）与版本号</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="l l-Scalar l-Scalar-Plain">2. 读取 `references/checklist.md`（描述按环境分组的检查项）</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="l l-Scalar l-Scalar-Plain">3. 根据当前 robot 状态逐项核对</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="l l-Scalar l-Scalar-Plain">4. 输出报告，会话 ID 引用 `$TFROBOT_SESSION_ID` 以便后续追溯</span>
+</code></pre></div>
+<blockquote>
+<p>步骤 2 LLM 调用 <code>skills("deploy-helper", "references/checklist.md")</code>（§6.5）取回内容；<code>$TFROBOT_SESSION_ID</code> 在激活时展开为具体 UUID。</p>
+</blockquote>
+<h3 id="72-cubesandboxpython-沙箱脚本--资源--纯函数输出">7.2 <code>cubesandbox::python</code> 沙箱（脚本 + 资源 + 纯函数输出）<a class="headerlink" href="#72-cubesandboxpython-沙箱脚本--资源--纯函数输出" title="Permanent link">&para;</a></h3>
+<p>包目录：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>csv-aggregator/
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>├── SKILL.md
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>├── .skillenv
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>├── scripts/
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>│   ├── main.py
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>│   └── lib/normalize.py
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>├── references/
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>│   └── column-mapping.md
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>└── assets/
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    └── report-template.docx
+</code></pre></div>
+<p><code>SKILL.md</code>：</p>
+<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nn">---</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv-aggregator</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">把多个 CSV 文件按用户给定的列规则聚合，并按 assets/report-template.docx 模板生成报告。</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nt">runtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cubesandbox::python</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nt">compatibility</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">已预装 pandas / python-docx；列规则参见 references/column-mapping.md</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nn">---</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1">## 执行</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="l l-Scalar l-Scalar-Plain">1. 沙箱启动后运行 `$TFROBOT_SKILL_DIR/scripts/main.py`</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="l l-Scalar l-Scalar-Plain">2. 脚本把处理统计 JSON 写到 stdout；LLM 收到 stdout 作为 tool result，决定下一步</span>
+</code></pre></div>
+<p><code>.skillenv</code>：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>LOG_LEVEL=INFO
+</code></pre></div>
+<p><code>scripts/main.py</code>（沙箱内执行 —— 纯函数：env / 挂载 in，stdout / 文件 out）：</p>
+<div class="language-python highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">skill_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TFROBOT_SKILL_DIR&quot;</span><span class="p">]</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">session</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;TFROBOT_SESSION_ID&quot;</span><span class="p">]</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># 读包内资源</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">skill_dir</span><span class="si">}</span><span class="s2">/assets/report-template.docx&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    <span class="n">template</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="c1"># ... 业务逻辑 ...</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="c1"># 输出统计到 stdout，被 LLM 看到</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">({</span><span class="s2">&quot;session&quot;</span><span class="p">:</span> <span class="n">session</span><span class="p">,</span> <span class="s2">&quot;rows_processed&quot;</span><span class="p">:</span> <span class="mi">1234</span><span class="p">,</span> <span class="s2">&quot;output_file&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">skill_dir</span><span class="si">}</span><span class="s2">/out/report.docx&quot;</span><span class="p">},</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="73-cubesandbox-byo含-ffmpeg">7.3 <code>cubesandbox</code> BYO（含 ffmpeg）<a class="headerlink" href="#73-cubesandbox-byo含-ffmpeg" title="Permanent link">&para;</a></h3>
+<p>包目录：</p>
+<div class="language-text highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>video-thumbnail/
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>├── SKILL.md
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>├── .cubesandbox.dockerfile
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>└── scripts/
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    └── thumb.py
+</code></pre></div>
+<p><code>SKILL.md</code>：</p>
+<div class="language-yaml highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nn">---</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">video-thumbnail</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">对上传的视频抽取关键帧并生成缩略图。</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nt">runtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cubesandbox</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nt">compatibility</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">自带镜像含 ffmpeg 7.x（详见 .cubesandbox.dockerfile）</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="nn">---</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="l l-Scalar l-Scalar-Plain">运行 `$TFROBOT_SKILL_DIR/scripts/thumb.py`；脚本将缩略图 base64 + 元数据 JSON 写到 stdout，LLM 收到后输出给用户。</span>
+</code></pre></div>
+<p><code>.cubesandbox.dockerfile</code>（A3 §7.5 示例略）。</p>
+<h2 id="8-准出对照">8. 准出对照<a class="headerlink" href="#8-准出对照" title="Permanent link">&para;</a></h2>
+<p>完成标准（来自 <a href="https://turingfocus.atlassian.net/browse/TFRS-186">TFRS-186</a> 任务描述）：</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 标准目录结构图（§2）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 占位符全集与展开规则（§3 + §4）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 与 Claude Code 占位符的兼容性说明（§5）</li>
+</ul>
+<p><strong>额外澄清</strong>（任务描述未列但本设计必须显式表达）：</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 占位符私有命名空间策略（<code>TFROBOT_*</code> 前缀，§1.3 / §5）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>$TFROBOT_SKILL_DIR</code> 跨 runtime 同名异值的统一语义（§3.1）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>SKILL 资源访问安全模型</strong>（§1.1 三条：FastAPI 不持久化 SKILL + 资源访问受控 + Sandbox staging 不经 FastAPI FS）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>平台内置 <code>skills</code> 工具契约</strong>（§6.5）—— LLM 读 SKILL 资源的唯一受控通道；2 参数（<code>skill_name</code>, <code>path</code>）+ 黑名单（<code>.skillenv</code> / <code>.*.dockerfile</code>）+ 路径校验 + 授权</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>纯函数沙箱脚本模型</strong>（§1 第 9 条 / §6.4）—— v1 无 host 回调，与 E2B / CubeSandbox 行业默认一致</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 敏感值不进入占位符集合的隔离原则（§1.8 / §3.4）</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 与已定稿前序子任务的命名空间合并（<code>.skillenv</code> / <code>.cubesandbox.dockerfile</code> / <code>.e2b.dockerfile</code>，§2.1 / §6）</li>
+</ul>
+<p>依赖下游子任务：</p>
+<ul>
+<li><code>$TFROBOT_SKILL_DIR</code> 在沙箱中的具体挂载机制、占位符 env 注入时机 → <a href="https://turingfocus.atlassian.net/browse/TFRS-199">TFRS-199</a>（C6）</li>
+<li>沙箱脚本输入注入（env / argv / stdin）与输出捕获（stdout / 文件）实施 → <a href="https://turingfocus.atlassian.net/browse/TFRS-195">TFRS-195</a>（C2）/ <a href="https://turingfocus.atlassian.net/browse/TFRS-199">TFRS-199</a>（C6）</li>
+<li><strong>平台内置 <code>skills</code> 工具实施 + SKILL 资源访问安全模型 + MinIO → sandbox staging 管线</strong> → 模块 B <a href="https://turingfocus.atlassian.net/browse/TFRS-181">TFRS-181</a>（§9.6 新增 AC）</li>
+<li><strong>Staging 延迟约束（不淹没 &lt; 60ms 冷启动）</strong> → <a href="https://turingfocus.atlassian.net/browse/TFRS-195">TFRS-195</a> C2 + <a href="https://turingfocus.atlassian.net/browse/TFRS-199">TFRS-199</a> C6 联合 ADR（§9.5 / §9.7）</li>
+</ul>
+<h2 id="9-任务描述-ac-修订建议反溯">9. 任务描述 AC 修订建议（反溯）<a class="headerlink" href="#9-任务描述-ac-修订建议反溯" title="Permanent link">&para;</a></h2>
+<p>A4 设计稿过程中发现以下上游 / 同级文档表述与本文档校准后的设计不一致，建议视为已澄清/废弃，由 Story owner（<a href="https://turingfocus.atlassian.net/browse/TFRS-180">TFRS-180</a>）决定是否直接修订字段：</p>
+<h3 id="91-tfrs-186本任务描述清理">9.1 <a href="https://turingfocus.atlassian.net/browse/TFRS-186">TFRS-186</a>（本任务）描述清理<a class="headerlink" href="#91-tfrs-186本任务描述清理" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>原表述</th>
+<th>建议修订</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务描述中列举的候选占位符 "<code>$TFROBOT_SKILL_DIR</code>、<strong><code>$ARGUMENTS</code></strong>、<strong><code>$N</code></strong>、<code>${TFROBOT_SESSION_ID}</code> 等"</td>
+<td>删除 <code>$ARGUMENTS</code> / <code>$N</code> —— 已由 A1 §3.1 整组排除（CLI 残留）；候选占位符列表改为 "<code>$TFROBOT_SKILL_DIR</code> / <code>$TFROBOT_SESSION_ID</code> / <code>$TFROBOT_ROBOT_ID</code>"（A4 §3 定稿 —— 3 个占位符，纯函数模型不含 <code>$TFROBOT_API_ENDPOINT</code>）</td>
+</tr>
+<tr>
+<td>完成标准「与 Claude Code 占位符的兼容性说明」</td>
+<td>维持（A4 §5 已交付）；同时澄清"兼容"指<strong>命名空间不冲突 + 跨客户端加载时各自保持字面</strong>，<strong>不</strong>指 mirror Claude Code 命名</td>
+</tr>
+</tbody>
+</table>
+<h3 id="92-a3-tfrs-185-文档同步小修已就地修订">9.2 <a href="https://turingfocus.atlassian.net/browse/TFRS-185">A3 (TFRS-185)</a> 文档同步小修（已就地修订）<a class="headerlink" href="#92-a3-tfrs-185-文档同步小修已就地修订" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>原表述</th>
+<th>建议修订（<strong>已在本 PR 应用</strong>）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A3 §3.2 「入参 / 出参」行</td>
+<td>"入参由 A4 占位符（如 <code>$TFROBOT_ARG</code>）注入"</td>
+<td>"入参注入命名与机制由 C2 (<a href="https://turingfocus.atlassian.net/browse/TFRS-195">TFRS-195</a>) 定（v1 纯函数模型，详见 A4 §3.4 / §6.4）；A4 仅承诺运行时上下文占位符"</td>
+</tr>
+<tr>
+<td>A3 §7.2 / §7.4 例值中 <code>$TFROBOT_ARG</code> 出现处</td>
+<td>"从 <code>$TFROBOT_ARG</code> 读取页面 ID" / "从 <code>$TFROBOT_ARG</code> 读 thread URL"</td>
+<td>改写为「由 LLM 通过 C2 (<a href="https://turingfocus.atlassian.net/browse/TFRS-195">TFRS-195</a>) 定的输入注入机制传入」</td>
+</tr>
+</tbody>
+</table>
+<p>→ A3 文档已合入 develop（<a href="https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/37">#37</a>）。本次 A4 PR 一并提交上述 A3 例值修订。</p>
+<h3 id="93-tfrs-197c4-鉴权通道暂停">9.3 <a href="https://turingfocus.atlassian.net/browse/TFRS-197">TFRS-197</a>（C4 鉴权通道）暂停<a class="headerlink" href="#93-tfrs-197c4-鉴权通道暂停" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>当前 ticket 范围</th>
+<th>建议处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"SKILL 在 E2B 内调 TFRobotServer 内部 API（如读会话、调内置工具）的鉴权机制；鉴权 token 格式、Token 生命周期、工具白名单执行点"</td>
+<td><strong>v1 暂停推进</strong>。A4 §1 第 9 条 / §6.4 定稿沙箱脚本采用<strong>纯函数模型</strong>（无 host 回调），脚本不调 TFRobotServer 内部 API；本 ticket 整体推到 v2，等"脚本期间需要调其他工具 / 读会话"的具体业务诉求出现再重启。建议状态改为 <code>Won't do (v1) / Deferred to v2</code>，标签加 <code>deferred-v2</code>。Story owner 确认后归档。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="94-tfrs-182story-模块-cac-项删除">9.4 <a href="https://turingfocus.atlassian.net/browse/TFRS-182">TFRS-182</a>（Story 模块 C）AC 项删除<a class="headerlink" href="#94-tfrs-182story-模块-cac-项删除" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>原 AC</th>
+<th>建议处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Skill 内回调 TFRobotServer 内部 API 的鉴权通道（短期 token、绑会话与租户）（C4 <a href="https://turingfocus.atlassian.net/browse/TFRS-197">TFRS-197</a>）"</td>
+<td><strong>删除</strong>该 AC 项 —— v1 纯函数模型下不存在此通道；C4 ticket 暂停。</td>
+</tr>
+<tr>
+<td>"内部 RPC 回调通道" 在「背景与动机」中的措辞</td>
+<td>删除或改写为 "v1 采用纯函数沙箱脚本模型，无 host 回调"。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="95-tfrs-195c2-注入链路ac-扩项">9.5 <a href="https://turingfocus.atlassian.net/browse/TFRS-195">TFRS-195</a>（C2 注入链路）AC 扩项<a class="headerlink" href="#95-tfrs-195c2-注入链路ac-扩项" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>原 AC</th>
+<th>建议增加</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"注入流程图（读 .skillenv → 查密钥库 → 注入容器）"</td>
+<td><strong>增加</strong>："① 沙箱脚本启动参数 / stdin / argv 注入机制的最终选型 —— 承接 A4 §6.4 纯函数模型 I/O 协议中"启动参数"行的延后决定；② staging 延迟约束：MinIO → sandbox 卷的传递不能淹没 &lt; 60ms 冷启动（CubeSandbox 60ms / E2B P95 ~90ms），具体实现方向（per-skill-version baked image / lazy FUSE mount / sandbox 直拉 + signed URL / speculative pre-warm）由 C2/C6 联合出 ADR"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="96-tfrs-181b-模块存储ac-扩项">9.6 <a href="https://turingfocus.atlassian.net/browse/TFRS-181">TFRS-181</a>（B 模块存储）AC 扩项<a class="headerlink" href="#96-tfrs-181b-模块存储ac-扩项" title="Permanent link">&para;</a></h3>
+<p>A4 在 §1.1 / §6.5 引入了两个 B 模块负责的新能力，本节统一登记：</p>
+<table>
+<thead>
+<tr>
+<th>新增 AC</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>平台内置 <code>skills</code> 工具实施</strong></td>
+<td>LLM 端读 SKILL 资源的唯一受控通道（A4 §6.5）。范围：① 入参 <code>(skill_name, path)</code> 双参数签名；② 黑名单（<code>.skillenv</code> / <code>.*.dockerfile</code>）强制 403；③ 路径校验（拒 <code>..</code> / 绝对路径 / 跳出 skill 根 / 符号链接逃逸）；④ 授权校验（基于 registry 权限模型）；⑤ 大小上限（建议 ~10 MB）；⑥ 与 LLM 工具循环的注册机制（每次 SKILL 激活时隐式可用，作者不可禁用）</td>
+</tr>
+<tr>
+<td><strong>SKILL 资源访问安全模型</strong></td>
+<td>落实 A4 §1.1 三条安全原则：① FastAPI 主进程不持久化 SKILL（只读字节、不下盘、不 eval）；② 跨 SKILL 访问的 registry 授权矩阵（决定哪些会话有权读哪些 SKILL）；③ 黑名单与路径校验逻辑下沉到加载器，避免每个工具重写</td>
+</tr>
+<tr>
+<td><strong>Sandbox staging 管线</strong></td>
+<td>MinIO → sandbox 卷的文件传递管线设计（与 C6 协作）。<strong>约束</strong>：不经 FastAPI 主进程 FS（A4 §1.1 第 13 条）+ 延迟不淹没 &lt; 60ms 冷启动（A4 §9.5）。实现方向同 §9.5（baked image / lazy FUSE / 直拉 / pre-warm 任选）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="97-tfrs-199c6-占位符--挂载ac-扩项">9.7 <a href="https://turingfocus.atlassian.net/browse/TFRS-199">TFRS-199</a>（C6 占位符 + 挂载）AC 扩项<a class="headerlink" href="#97-tfrs-199c6-占位符--挂载ac-扩项" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>原 AC</th>
+<th>建议增加</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"挂载机制（MinIO → 容器内 <code>/skill/</code> 路径）"</td>
+<td><strong>增加</strong>：与 B 模块（<a href="https://turingfocus.atlassian.net/browse/TFRS-181">TFRS-181</a> §9.6）staging 管线协作，约束：① <strong>不经 FastAPI 主进程 FS</strong>（A4 §1.1 第 13 条）；② <strong>延迟不淹没 &lt; 60ms 冷启动</strong>（A4 §9.5）；具体方案与 C2 联合出 ADR</td>
+</tr>
+</tbody>
+</table>
+<h3 id="98-跨项目依赖tfrobotv2-tfrob-477drive-层隐身工具--动态暴露">9.8 跨项目依赖：TFRobotV2 <a href="https://turingfocus.atlassian.net/browse/TFROB-477">TFROB-477</a>（Drive 层隐身工具 + 动态暴露）<a class="headerlink" href="#98-跨项目依赖tfrobotv2-tfrob-477drive-层隐身工具--动态暴露" title="Permanent link">&para;</a></h3>
+<p>A4 §6.5 <code>skills</code> 工具的「平台内置 + SKILL 激活时隐式可用 + 不通过 <code>allowed-tools</code> 暴露」机制，本质需要 TFRobotV2 Drive 层支持「工具默认隐身 + 上下文动态暴露」能力 —— 该能力已作为 Feature Request 提交：</p>
+<ul>
+<li><strong>Issue</strong>：<a href="https://turingfocus.atlassian.net/browse/TFROB-477">TFROB-477</a>（TFRobotV2 项目，Story 类型，P1 重要）</li>
+<li><strong>请求范围</strong>：visibility 属性、Query 接口默认过滤、运行时动态暴露、暴露 scope（建议会话级 sticky）、隐身 ≠ 免授权</li>
+<li><strong>本 A4 文档对其依赖</strong>：</li>
+<li>§6.5 <code>skills</code> 工具实施依赖 hidden tool 机制（不被 LLM 主动看见，但激活时可调用）</li>
+<li>未来 <code>SkillSandbox</code> 工具（Module C 执行入口）同样依赖此机制 —— <code>runtime != prompt-only</code> 的 SKILL 激活时动态暴露给 LLM</li>
+<li><strong>阻塞关系</strong>：</li>
+<li><strong>不阻塞</strong> A4 本身定稿（仅协议层）</li>
+<li><strong>不阻塞</strong> SKILL 协议 v1 文档化（A4 / A5）</li>
+<li><strong>阻塞</strong> Module C 端到端实施时（<a href="https://turingfocus.atlassian.net/browse/TFRS-182">TFRS-182</a> / <a href="https://turingfocus.atlassian.net/browse/TFRS-194">TFRS-194</a>）：当 <a href="https://turingfocus.atlassian.net/browse/TFRS-194">TFRS-194</a> C1 准备落地 <code>SkillSandbox</code> 工具时，必须等 <a href="https://turingfocus.atlassian.net/browse/TFROB-477">TFROB-477</a> 在 TFRobotV2 中实现并发版</li>
+<li><strong>回退策略</strong>（如 <a href="https://turingfocus.atlassian.net/browse/TFROB-477">TFROB-477</a> 推迟）：本地 hack 一层 visibility wrapper（拦截 <code>list_tools</code> 返回值过滤 hidden 工具），临时支撑 v1，但语义边界不如内核原生支持清晰</li>
+</ul>
+<p><strong>协议设计教训 —— 占位符命名空间策略</strong>：</p>
+<p>设计 SKILL 协议这类有跨客户端互操作可能的协议时，「是否 mirror 上游标准的占位符命名」是反复出现的张力。<strong>完全 mirror</strong>（用 <code>${CLAUDE_*}</code>）让作者跨平台零迁移成本，但平台行为不一致会埋"看似相同实则不同"的隐 bug；<strong>完全自有</strong>（用 <code>${TFROBOT_*}</code>）让跨平台需要重写部分内容，但语义边界清晰。本文档选择后者 + "未识别占位符保持字面"的容错策略，既清晰又不破坏互操作。后续 Module A 类任务可借鉴这种"私有命名空间 + 跨平台字面透传"模式。</p>
+<p><strong>架构教训 —— 沙箱脚本的工具表面</strong>：</p>
+<p>A4 设计稿过程中识别出一个潜在过度设计：A3 / 早期 A4 / TFRS-197 都假设沙箱脚本需要 HTTP 回调主进程读会话、调工具，与 E2B / CubeSandbox 行业默认（脚本 = 纯函数）背离。回归审视后改回纯函数模型 —— <strong>能力 (B) LLM 工具调用与 (C) 脚本执行严格分层</strong>，需要跨层调度的场景由 LLM 用 prompt-only SKILL 自己编排，而非脚本回头调度。这避免了：① 鉴权复杂度（C4 整张 ticket 消失）；② 两个白名单的一致性维护；③ "沙箱化是为了隔离，但脚本又能回头调平台"的语义矛盾。后续 Module C / 跨进程协作设计可参考此分层原则。</p>
+<p><strong>架构教训 —— SKILL 资源的"不可信资产"边界</strong>：</p>
+<p>A4 后期补足了 §1.1 三条安全原则与 §6.5 <code>skills</code> 工具契约 —— 之前 §3.1 把 <code>prompt-only</code> 下 <code>$TFROBOT_SKILL_DIR</code> 展开为 URI 时一度让设计稍显"敞开"。澄清后的边界：<strong>SKILL 是不可信资产，但占位符 URI 可见并不构成漏洞</strong> —— 真正的安全闸门在 <code>skills</code> 工具实现层（黑名单 + 路径校验 + 授权 + 大小上限）；URI 字面给 LLM 看反而是个特性（作者在外部 Bash + S3 凭据环境可直接 <code>curl</code>）。教训：<strong>设计安全协议时区分"信息边界"与"能力边界"</strong> —— 暴露标识符不等于授权操作；闸门设在能力层，标识符可以放心透传。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/A2C-SMCP" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.tabs.link", "content.code.annotate", "content.code.copy", "announce.dismiss", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"alias": true, "provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
