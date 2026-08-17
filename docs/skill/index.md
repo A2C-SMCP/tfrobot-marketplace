@@ -32,4 +32,4 @@ A1\~A4 是协议规范的分步设计文档；如与协议表述冲突，**以�
 | A2 `.skillenv` 环境变量声明 | [TFRS-184](https://turingfocus.atlassian.net/browse/TFRS-184) | 已完成 | [.skillenv 设计](design-history/skillenv.md) |
 | A3 `runtime` 枚举 | [TFRS-185](https://turingfocus.atlassian.net/browse/TFRS-185) | 已完成（撤回） | [runtime 枚举](design-history/runtime-enum.md) |
 | A4 目录结构与占位符 | [TFRS-186](https://turingfocus.atlassian.net/browse/TFRS-186) | 已完成 | [目录与占位符](design-history/directory-placeholders.md) |
-| A5 规范整合 | [TFRS-187](https://turingfocus.atlassian.net/browse/TFRS-187) | 进行中 | [SKILL 协议](protocol.md) |
+| A5 规范整合 | [TFRS-187](https://turingfocus.atlassian.net/browse/TFRS-187) | 已完成（定稿） | [SKILL 协议](protocol.md) |

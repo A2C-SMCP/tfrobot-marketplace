@@ -3,7 +3,7 @@
 > 关联：[protocol.md](protocol.md) 主规范
 > Jira：[TFRS-202](https://turingfocus.atlassian.net/browse/TFRS-202) / [TFRS-201](https://turingfocus.atlassian.net/browse/TFRS-201)
 > 性质：**实施/运行时行为参考**，非规范强制约束。Module D 实施时建议复刻 Claude Code 这套行为以最大化兼容；SKILL/Plugin 作者用于理解装载时的取舍。
-> 来源：[Claude Code 官方文档](https://code.claude.com/docs/en/plugin-marketplaces) + 公开源码观察（`pluginLoader.ts` / `schemas.ts`）
+> 来源：[Claude Code 官方文档](https://code.claude.com/docs/en/plugin-marketplaces) + 公开源码观察（`pluginLoader.ts` / `schemas.ts`）+ **A2C 参考实现 SDK（python-sdk / rust-sdk）实测**。Claude Code 原版与双 SDK 有分歧处已显式标注（§1 / §6 / §7）——Module D 应**以双 SDK 实测为准**对齐 Computer 侧，避免行为分叉。
 
 ## 0. 为什么单列此文档
 
@@ -28,10 +28,19 @@
 | --- | --- | --- |
 | `true`（默认）| 缺失 | ✅ 正常装载；用最小化 manifest 兜底（仅 `name` + 占位 `description`），其余字段来自 marketplace 条目 |
 | `true` | 存在（合法 JSON）| ✅ 装载；`plugin.json` 是事实源，marketplace 条目字段（如 `description`）作为补充合并 |
-| `true` | 存在但 JSON 解析失败 | ❌ 抛错，装载中止 |
+| `true` | 存在但 JSON 解析失败 | ❌ 抛错，装载中止（Claude Code 原版）；⚠️ **双 SDK 实际选择容错**（见下方 note） |
 | `false` | 缺失 | ✅ 装载；marketplace 条目即组件定义全集 |
 | `false` | 存在且声明组件（commands/agents/hooks 等） | ❌ 冲突错误，装载失败 |
 | `false` | 存在但不声明组件（仅元数据如 description）| ✅ 装载；marketplace 条目是组件权威，`plugin.json` 仅作元数据补充 |
+
+!!! note "plugin.json 解析失败：Claude Code fatal vs 双 SDK 容错（Module D 决策点）"
+
+    Claude Code 原版对「`plugin.json` 存在但解析失败」是 fatal。但两个 A2C 参考实现都选择了**容错降级**：
+
+    * python-sdk `skills/manifest.py read_plugin_metadata`：best-effort，损坏 → `logger.warning("plugin manifest ignored")` + 返回 `{}`；注释明言「损坏不致命（SKILL/server 由路径推导）」
+    * rust-sdk `manifest.rs` `read_plugin_metadata`：同样 WARN + 空 map
+
+    Module D 若照本文档复刻 Claude Code 的 fatal 行为，会与 Computer 侧（同为参考实现的 SDK）**行为分叉**——一个损坏的 `plugin.json` 在 Robot 侧装载中止、在 Computer 侧却正常装载。建议 Module D 对齐双 SDK 的容错姿态；若坚持 fatal，需推动 SDK 同步修改（另行决策）。
 
 ## 2. plugin.json 缺失时的兜底逻辑
 
@@ -59,7 +68,7 @@ if (!(await pathExists(manifestPath))) {
 | 字段 | 必填 | 说明 |
 | --- | --- | --- |
 | `name` | ✅ | kebab-case 标识符（即使 `plugin.json` 缺失，`name` 也可来自 marketplace 条目）|
-| `version` | ❌ | semver；省略则用 git commit SHA |
+| `version` | ❌ | semver；省略则用 git commit SHA。**优先级**（SDK `resolve_plugin_version` 实测）：marketplace 条目 `version` > `plugin.json` `version` > git commit SHA |
 | `description` | ❌ | |
 | `author` | ❌ | `{name: string, email?: string}` |
 | `dependencies` | ❌ | 依赖其他 plugin |
@@ -99,7 +108,7 @@ if (!(await pathExists(manifestPath))) {
 
 1. **plugin.json 缺失兜底**：用 marketplace 条目 `name` + 占位 description，**不**从目录名兜底
 2. **冲突检测**：`strict: false` 时若发现 `plugin.json` 声明了任何组件字段（commands/agents/hooks/skills/mcpServers/lspServers），立即报错而非静默合并 —— 防止"以为生效但实际被覆盖"
-3. **JSON 解析错误**：`plugin.json` 存在但解析失败一律视为致命错误，**不**降级到缺失兜底（避免掩盖作者的语法 bug）
+3. **JSON 解析错误**：Claude Code 原版对「`plugin.json` 存在但解析失败」一律视为致命错误，**不**降级到缺失兜底（避免掩盖作者的语法 bug）。⚠️ **双 SDK 实际选择容错降级**（WARN + 空 manifest，SKILL/server 由路径推导）——见 §1 note，Module D 需择一并对齐 Computer 侧
 4. **不引入按约定的目录自动发现**：组件目录必须显式声明，保持与 Claude Code 行为一致；这样作者跨阵地切换不会遇到"在 A 端能跑、在 B 端找不到组件"的怪现象
 
 ## 7. Marketplace source vs Plugin source —— schema 层 disjoint union
@@ -127,6 +136,8 @@ PluginSource:       relative | npm | pip | url | github | git-subdir
 MarketplaceSource:  url | github | git | cnb              ← 4 类
 PluginSource:       relative | url | github | git-subdir | cnb   ← 5 类
 ```
+
+> **Computer 侧实施状态**：A2C SDK 的 Marketplace source 目前收敛为仅 `{type: "git", url}`（无 ref/sha、无简写糖，`marketplace_clone_url` 硬性校验）——上表 4 类是 Robot 侧（Module D）契约；作者配置若直接进 Computer 侧，`github` / `cnb` 对象形态会被拒绝（另见主规范 [protocol.md §5.3](protocol.md) 标注）。
 
 简写糖归一化（D3 Loader 实施）：
 
@@ -183,7 +194,47 @@ mv  <cloneDir>/<path>  →  targetPath                    ← 仅保留目标子
 
 **收益**：cache 模型简单 —— 避免单一 cache 既要服务 marketplace 视图又要服务 plugin 视图的两难。Module D 实施时建议复刻这个分层，不引入"共享 clone"优化以免引入耦合 bug。
 
-## 10. 设计后果（作者视角）
+## 10. 运行时状态层：install / enable 分离（v0.3.0 语义）
+
+v0.2.x 是「**装即活跃**」：`install` 一个 plugin，其 SKILLs 立即进入投影。v0.3.0 把 **install（安装）** 与 **enable（启用）** 分离为两个可分别停留的状态——`install` 只安装、**不激活**，`enable` 才激活。这是一次**破坏性行为变更**（权威：[A2C-SMCP v0.3.0 迁移指南](https://doc.turingfocus.cn/a2c-smcp/latest/migrations/v0.3.0-plugin-install-enable-separation/) / runtime-contract §2.4）。
+
+### 10.1 状态模型
+
+两个正交、独立生命周期的维度：
+
+- **是否安装**——全局一次，承载于 `installedPlugins`（已安装 `<plugin>@<marketplace>` 集合）。
+- **本 scope 是否启用**——per-scope，承载于 `enabledPlugins`（`<plugin>@<marketplace>` → bool）。
+
+组合出三态：
+
+| 状态 | `installedPlugins` | `enabledPlugins`（合并后） | 投影 |
+|---|---|---|---|
+| `available` | 不含 | —— | 无 |
+| `installed_disabled` | 含 | absent 或 `false` | **无**（惰性） |
+| `installed_enabled` | 含 | `true` | skills + bundled server **一并** |
+
+`enabledPlugins[id]` 三态（scope 合并 user < project < local）：absent = 无意见、继承上层（无任何 scope 置 `true` 即不激活）；`true` = 启用；`false` = 显式禁用（覆盖上层 `true`）。
+
+### 10.2 行为对照
+
+| 动作 | v0.2.x（装即活跃） | v0.3.0（分离） |
+|---|---|---|
+| `install` | 写账本 + skills 立即 active（server 需 hooks 才挂） | 写 `installedPlugins` + 物化；**不激活**、不写 `enabledPlugins` → `installed_disabled` |
+| `enable` | 补挂 bundled server | 写 `enabledPlugins=true` + **原子**投影 skills 与 server；失败回滚 `installed_disabled` |
+| `disable` | 反激活 | 写 `enabledPlugins=false` + 移除投影；保留 installation |
+| `uninstall` | 删账本 + teardown | 删 `installedPlugins` + 清 `enabledPlugins` 条目 + teardown |
+| boot | 账本存在即恢复 active | 活跃集 = 已安装 ∧ 本 scope 启用；`installed_disabled` 恢复为惰性 |
+| 账本删除 | 可能丢安装集 | **无损**：从 `installedPlugins` 重物化 |
+
+### 10.3 相关持久化与信任记录
+
+- **物化记录**：`known_marketplaces.json`（已添加 marketplace 目录）/ `installed_plugins.json`（已安装 plugin 集）。旧「账本」降级为可从 `installedPlugins` 重建的**纯派生缓存**——MUST NOT 手编、MUST NOT 作为权威。
+- **trustedMarketplaces**：`marketplace add` 有 trust 确认并持久化——marketplace 源被视作可执行信任边界（SKILL 脚本执行权限继承自安装来源）。
+- **一次性迁移**（v0.2.x → v0.3.0）：既有用户的账本有记录、`enabledPlugins` 无条目——在 v0.2.x 下是 active，在 v0.3.0 下（absent = 未启用）会「熄灯」。SDK 升级 MUST 提供一次性迁移：把每个「账本已安装」的 plugin 写入 `installedPlugins`，并在**记录该安装的 scope** 写 `enabledPlugins=true`（迁为 `installed_enabled`）。注意 `enabledPlugins` 是 per-scope，project / local 的 `false` 会覆盖 user 的 `true`——迁移 MUST 写在能确保合并后为 `true` 的 scope。此迁移只跑一次。
+
+> 对第三方作者的实际意义：`/plugin install <plugin-name>@<marketplace-name>`（§2.3）只安装**不激活**——「装了为什么没生效」的答案通常是**尚未 `enable`**，而不是配置错误。
+
+## 11. 设计后果（作者视角）
 
 理解上述两套 schema + 加载独立性后，作者可获得的能力：
 
@@ -194,7 +245,7 @@ mv  <cloneDir>/<path>  →  targetPath                    ← 仅保留目标子
 
 → "marketplace 嵌套 marketplace" 是**错觉** —— `marketplace.json` 里的 plugin 条目从来都是指向 plugin 源，从不指向另一个 marketplace；只是 plugin 源恰好可以是某个 repo 的子目录，而那个 repo 本身**碰巧**也对外提供 marketplace 接口而已。两个身份在 schema 层与加载链路层都完全隔离。
 
-## 11. 参考
+## 12. 参考
 
 * [Claude Code Plugin Marketplaces 官方文档](https://code.claude.com/docs/en/plugin-marketplaces) —— §strict mode 章节
 * [Claude Code Plugin Reference](https://code.claude.com/docs/en/plugins) —— plugin manifest schema

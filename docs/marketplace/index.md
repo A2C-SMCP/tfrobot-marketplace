@@ -9,7 +9,7 @@ TFRobot Marketplace 定义 **Plugin 包**（含 SKILL 与 MCP Server 配置）�
 一个 Plugin 由两类内容组成（至少含一项非空）：
 
 * **SKILL 子树**（`<plugin>/skills/`）—— 单个 SKILL 包的内容契约见姊妹章节 [SKILL 协议](../skill/index.md)
-* **MCP Server 子树**（`<plugin>/mcp-servers/`）—— 配置 schema 完整对齐 [A2C-SMCP v0.2.0](https://doc.turingfocus.cn/a2c-smcp/)（本规范 §8 摘要）
+* **MCP Server 子树**（`<plugin>/mcp-servers/`）—— 配置 schema 完整对齐 [A2C-SMCP v0.3.2](https://doc.turingfocus.cn/a2c-smcp/)（本规范 §8 摘要）
 
 ## 权威规范
 

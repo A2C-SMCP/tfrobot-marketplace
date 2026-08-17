@@ -1,7 +1,7 @@
 # TFRobot SKILL 协议规范
 
 > Jira：[TFRS-187](https://turingfocus.atlassian.net/browse/TFRS-187)（A5）/ Story [TFRS-180](https://turingfocus.atlassian.net/browse/TFRS-180) / Epic [TFRS-179](https://turingfocus.atlassian.net/browse/TFRS-179)
-> 状态：**规范定稿（草稿）** —— A1\~A4 已合并至 develop（[#35](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/35) / [#36](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/36) / [#37](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/37) / [#38](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/38)），本文档将它们整合为单一权威契约。
+> 状态：**规范定稿** —— A1\~A4 已合并至 develop（[#35](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/35) / [#36](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/36) / [#37](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/37) / [#38](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/38)），本文档将它们整合为单一权威契约。
 > 范围：**SKILL 撰写规范与使用语义**——内容契约（如何写一个 SKILL）+ 加载使用约束（任何接入方必守）。**不涉及** SKILL 分发渠道、运行时存储介质、执行后端（沙箱 / 引擎 / 容器 / 凭证基础设施）等业务侧议题——这些由接入方业务库 / Computer 侧 A2C-SMCP 实施方文档处理。
 > 读者：**SKILL 作者**（开发指南）+ **接入方实施工程师**（加载使用层的最小协议契约）。
 
@@ -92,10 +92,22 @@ my-skill/                          # 包根目录名 = SKILL.md frontmatter `nam
 
 | 项 | 约束 |
 | --- | --- |
-| 包根目录名 | 必须等于 `SKILL.md` frontmatter 中的 `name` |
+| 包根目录名 | 必须等于 `SKILL.md` frontmatter 中的 `name`。**目录 basename 是身份**（见下方 note） |
 | `SKILL.md` | 必须存在于包根；缺失即加载失败 |
 | 受协议解释的 hidden-file | 仅 `.skillenv`；其他 `.xxx` 平台不解释也不拒绝 |
 | `scripts/` / `references/` / `assets/` | 命名标准化但**不强制必填** —— 按需创建即可，缺失加载器不报错 |
+
+!!! note "目录 basename 是身份（按来源分三态）"
+
+    暴露给 Agent 的 SKILL name 由**目录 basename** 决定，而非 frontmatter `name`——frontmatter `name` 在多数来源下仅作显示名。作者要改暴露名，须**改目录名**（并保持 frontmatter `name` 一致）。
+
+    | 来源 | 身份规则（SDK staging 实测） |
+    | --- | --- |
+    | marketplace | name = `<plugin>:<目录 basename>`；frontmatter.name 仅作显示名、不改 ID（防伪） |
+    | user（手动 drop-in） | name = 目录 basename（单段裸名）；frontmatter.name 不一致仅记 DEBUG |
+    | mcp（Computer 从 MCP server 物化） | 才真正把目录重命名为 frontmatter.name |
+
+    跨工具可见名规则（A2C skill.md §1 权威）：marketplace 源 `<plugin>:<skill>`、user 源裸 `<skill>`、mcp 源 `mcp:<bundle_id>:<skill>`——**不含 marketplace 名**。
 
 ### 2.2 语义化命名指引（建议遵循）
 
@@ -148,7 +160,9 @@ CLI 残留：`arguments` / `argument-hint` / `$ARGUMENTS` / `$N` / `$name`
 
 仓库根可选文件，声明 SKILL 执行所需的环境变量与密钥来源。**LLM 全程不可见**。
 
-> 协议层只规定 `.skillenv` 的**语法与语义**。Robot 配置侧 SKILL 不执行脚本，因此 `.skillenv` 主要服务 Computer 侧 SKILL；Computer 侧负责按本节语义解析并注入运行环境。
+> 协议层只规定 `.skillenv` 的**语法与语义**。Robot 配置侧 SKILL 不执行脚本，因此 `.skillenv` 主要服务 Computer 侧 SKILL。
+>
+> **实施状态（待实施）**：当前双 SDK 对 `.skillenv` **仅作硬秘密边界**——任何 `rel_path` 命中即 `4017 forbidden`、不泄漏存在性，**没有任何 vault 查询 / 执行环境注入实现**；A2C skill.md 亦只把 `.skillenv` 定义为硬秘密边界（§9.1 原则三）。本节「解析 + 注入」的语义归属哪一侧（Agent SDK / Robot）目前是无实现支撑的约定，接入方实施前需先落定归属。
 
 ### 5.1 文件契约
 
@@ -208,13 +222,23 @@ CLI 残留：`arguments` / `argument-hint` / `$ARGUMENTS` / `$N` / `$name`
 
 | 占位符 | 语义 |
 | --- | --- |
-| `$TFROBOT_SKILL_DIR` | 当前 SKILL 包的资源前缀。Body 中 LLM 看到的是不透明 URI（如 `tfs-skill://<tenant>/<skill>/<version>/`），供 `skills` 工具（§7）识别；具体 URI 格式由接入方定，作者不应解析其内部结构 |
+| `$TFROBOT_SKILL_DIR` | 当前 SKILL 包的**真实绝对目录**（= A2C `A2CSkillRef.path`）。渲染期展开为本地路径，Bash 可直接 `cd` / `open`；**不得**展开为 `skill://` 不透明 URI（A2C skill.md §9.4 规范权威，见下方 note） |
 | `$TFROBOT_SESSION_ID` | 当前会话 UUID |
 | `$TFROBOT_ROBOT_ID` | 当前 Robot 实例 ID |
 
-> `$TFROBOT_SKILL_DIR` 字面暴露给 LLM **不构成漏洞** —— 安全闸门在 `skills` 工具实现层（§7）。
+!!! note "`$TFROBOT_SKILL_DIR` 展开目标：真实绝对目录（非 URI）"
 
-> Computer 侧若选择将这些占位符也注入脚本执行环境（如 `os.environ["TFROBOT_SKILL_DIR"]`），命名仍遵循"去掉 `$` / `${}`"约定；具体注入由 A2C-SMCP 实施方负责。
+    A2C-SMCP skill.md §9.4 是本节占位符展开的**规范权威**：
+
+    1. **占位符集是闭合白名单**：未在白名单内的 `${...}` 与裸 `$` 文本 MUST 原样透传（SKILL.md 正文里的 shell 变量 / `$` 金额不被误伤）。
+    2. **展开时机 = render-time**：Agent SDK 在把内容拼进 LLM prompt **之前**替换；`client:get_skill` 只投递原始字节、占位符不展开（`total_size` / `sha256` 基于未展开字节）。
+    3. **展开目标 MUST 为真实绝对目录**（= `A2CSkillRef.path`），**不得**展开为 `skill://` 不透明 URI——Bash 无法 `cd` 进 URI；且 URI 仅 MCP 源存在，对 marketplace / user 源根本不可用。稳定标识需求由协议主键 `name` 满足。早期「对 LLM 展开为不透明 URI」的表述已被 A2C **主动撤回**（消除「远程不可信」姿态残留）。
+    4. **子进程 env 注入是运行期防御纵深**：Computer 执行 `scripts/` 子进程时 MAY 额外注入同名 env `TFROBOT_SKILL_DIR`（值 = skill 绝对目录），供脚本运行期 `os.environ[...]` 自引用。它是子进程 env，**不是** body 文本渲染机制——两者作用对象不同。
+    5. **秘密边界不变**：泄露 skill 目录路径 ≠ 泄露秘密；`.skillenv` 仍是硬秘密边界（§5），任何 `rel_path` 都不可读出、注入时不写日志、不进 prompt。
+
+> `$TFROBOT_SKILL_DIR` 字面暴露给 LLM **不构成漏洞** —— 目录路径本身藏不住（LLM 本就能跑 `pwd` / `ls`），真正的秘密由 `.skillenv` 边界独立守护（§5 / §8）。
+
+> Computer 侧若选择将这些占位符也注入脚本执行环境（如 `os.environ["TFROBOT_SKILL_DIR"]`），命名仍遵循"去掉 `$` / `${}`"约定；具体注入由 A2C-SMCP 实施方负责（见上方 note 第 4 条）。
 
 ### 6.2 展开规则
 
@@ -222,6 +246,7 @@ CLI 残留：`arguments` / `argument-hint` / `$ARGUMENTS` / `$N` / `$name`
 | --- | --- |
 | 时机 | 平台在拼到 LLM prompt **之前**完成替换；LLM 见到的是已展开值 |
 | 语法 | `$TFROBOT_NAME` 与 `${TFROBOT_NAME}` 等价 |
+| `${TFROBOT_SKILL_DIR}` 展开目标 | **真实绝对目录**（非 URI）——Bash 可 `cd`；稳定标识需求由协议主键 `name` 满足（A2C skill.md §9.4(3)） |
 | 命名空间 | 仅识别 `$TFROBOT_*` 开头；其他 `$VAR` 保持字面原样 |
 | 未定义占位符 | `$TFROBOT_FOOBAR` 等 → 加载器报错 |
 | 转义 | 不支持；需要字面字符串用 code block 或文本说明 |
@@ -253,9 +278,11 @@ CLI 残留：`arguments` / `argument-hint` / `$ARGUMENTS` / `$N` / `$name`
 | **黑名单（强制 403）** | `.skillenv` / 任何 `.skillenv*` 模式 |
 | **路径校验** | 拒绝 `..` / 绝对路径 / 跳出 skill 根 / 符号链接逃逸 |
 | **授权校验** | 当前会话有权访问 `skill_name` 才允许；权限模型由接入方 registry 定 |
-| **大小上限** | 建议 ≤ 10 MB（超过返回错误并提示走 Computer 侧执行处理） |
+| **大小上限** | Robot 工具实现侧建议 ≤ 10 MB（超过返回错误并提示走 Computer 侧执行处理）。若本工具转发到 Computer 侧 `client:get_skill`，作者实际感受到的是 **Computer 阈值**：文本 ≤ 32 KiB 内联 body、超则转 blob 句柄；100 MiB 硬上限（`A2C_SKILL_INLINE_BUDGET` / `A2C_SKILL_MAX_SIZE` 可调） |
 | **作用域** | 仅 LLM 工具调用层；Computer 侧脚本访问自身 SKILL 资源走 A2C-SMCP，不通过本工具 |
 | **跨 SKILL 读** | 天然支持 —— `skill_name` 是显式入参；授权由 registry 把关 |
+
+> **黑名单与 Computer 侧的差异**：本工具契约的 `.skillenv*` 模式比 Computer 侧更严——A2C `client:get_skill` 只精确匹配 basename `.skillenv`（含 symlink realpath 复检，命中 → `4017 forbidden`）。更严无冲突（本工具是 TFRobot 平台自己的工具契约），但实施转发时注意两套黑名单各自生效。
 
 ### 7.2 典型调用
 

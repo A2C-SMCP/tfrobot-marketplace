@@ -18,7 +18,7 @@
 
     ---
 
-    Plugin 内 `mcp-servers/` 目录约定 + A2C-SMCP v0.2.0 schema 摘要（stdio / streamable / sse 三种传输 + inputs 占位符 + ToolMeta）。
+    Plugin 内 `mcp-servers/` 目录约定 + A2C-SMCP v0.3.2 schema 摘要（stdio / streamable / sse 三种传输 + inputs 占位符 + ToolMeta）。
 
     [:octicons-arrow-right-24: 进入 MCP Server 配置](mcp-servers/index.md)
 
@@ -56,7 +56,7 @@
 
 ## 版本信息
 
-当前版本：**0.1.0**
+当前版本：**0.3.2**
 
 ## License
 

@@ -65,7 +65,7 @@
           references/
           assets/
       mcp-servers/                            # 可选 —— MCP Server 子树（§8）
-        <server-name>.json                    # 单个 MCP Server 配置（对齐 A2C-SMCP v0.2.0）
+        <server-name>.json                    # 单个 MCP Server 配置（对齐 A2C-SMCP v0.3.2）
         inputs.json                           # 可选 —— 占位符输入定义
     <plugin-name-B>/
       .tfrobot-plugin/plugin.json             # 同上，条件必需
@@ -90,6 +90,8 @@
 * **三元组**：`(marketplace_name, plugin_name, skill_name)`
 * **串形式**：`marketplace_name/plugin_name/skill_name`
 * **Plugin 安装语法（Claude Code 兼容）**：`/plugin install <plugin-name>@<marketplace-name>`
+
+> **TFRobot registry 视角 vs Computer 侧可见名**：三元组 / 串形式是 TFRobot registry 的存储与引用视角。对 Computer 侧作者，**A2C 可见 SKILL name 不含 marketplace 名**——marketplace 源为裸 `<plugin>:<skill>`（跨 marketplace 的 `<plugin>` 重名由安装层 `<plugin>@<marketplace>` 拦截，故已装集合内 `<plugin>` 唯一）；三形态全集见 A2C-SMCP [skill.md §1](https://doc.turingfocus.cn/a2c-smcp/latest/specification/skill/#1-skill-命名)（user 裸名 / marketplace `<plugin>:<skill>` / mcp `mcp:<bundle_id>:<skill>`）。完整 marketplace 溯源由 `source = marketplace:<repo>` 承载。
 
 ## 3. marketplace.json 字段规范
 
@@ -274,6 +276,8 @@ Marketplace 体系实际上由 **两套互不交集的 source schema** 组成。
 | TFRobotServer 实施类型 | `url` / `github` / `git` / `cnb`（4 类） | 相对路径 / `url` / `github` / `git-subdir` / `cnb`（5 类）|
 | 是否支持 `sha` 锁版本 | 仅 `ref` 分支/tag，**不**支持 `sha` | 同时支持 `ref` 与 `sha` 精确锁定 commit |
 
+> **Computer 侧实施状态**：A2C SDK（python-sdk / rust-sdk）的 Marketplace source 目前收敛为**仅 `{type: "git", url}`**（无 ref/sha、无 github/cnb 简写糖，`marketplace_clone_url` 硬性校验）。上表 4 类是 **Robot 侧（Module D / Portal）契约**——作者配置若直接进 Computer 侧，`github` / `cnb` 对象形态会被拒绝。
+
 > 两侧都仅接受 Git 引用，`github`/`cnb` 都是简写糖到不同 host 的 `git` —— 命名差异只为 UX 与 schema 校验，底层加载链路一致。
 
 **关键交集为空（disjoint union）**：
@@ -321,7 +325,7 @@ Marketplace 体系实际上由 **两套互不交集的 source schema** 组成。
 | 目录 / 文件 | 用途 | TFRobot |
 | --- | --- | --- |
 | `skills/` | SKILL 包（每个 `<name>/SKILL.md`）——按 [SKILL 协议](../skill/protocol.md) 解析 | **消费** |
-| `mcp-servers/` | MCP Server 配置（每个 `<name>.json` + 可选 `inputs.json`）——按 §8 解析，对齐 [A2C-SMCP v0.2.0](https://doc.turingfocus.cn/a2c-smcp/) | **消费** |
+| `mcp-servers/` | MCP Server 配置（每个 `<name>.json` + 可选 `inputs.json`）——按 §8 解析，对齐 [A2C-SMCP v0.3.2](https://doc.turingfocus.cn/a2c-smcp/) | **消费** |
 | `.mcp.json` | Claude Code 私有的 MCP 嵌入式配置 | 不消费（与 `mcp-servers/` 解耦；同时存在两者时只读 `mcp-servers/`） |
 | `commands/` | 平铺 `.md` 命令文件 | 不消费 |
 | `agents/` | Agent 定义 | 不消费 |
@@ -368,7 +372,7 @@ MCP Server 目录 `<plugin>/mcp-servers/` 内的所有内容契约由 [MCP Serve
 * `<server-name>.json`（子树存在时至少 1 个）：单个 MCP Server 配置，结构对齐 A2C-SMCP `MCPServerConfig`
 * `inputs.json`（可选）：占位符输入定义，plugin 范围内共享
 * 文件名（去掉 `.json`）必须等于配置内的 `name` 字段
-* Schema 权威来源：[A2C-SMCP v0.2.0](https://doc.turingfocus.cn/a2c-smcp/)
+* Schema 权威来源：[A2C-SMCP v0.3.2](https://doc.turingfocus.cn/a2c-smcp/)
 
 ## 9. Curator / Aggregator 模式
 
@@ -461,7 +465,7 @@ vendor-x/skills/                                    ← provider marketplace（�
 * [x] Plugin source 类型枚举 + 各类型字段表（§5）
 * [x] `plugin.json` JSON Schema 字段表（§6）
 * [x] SKILL 层引用 SKILL 协议（§7）
-* [x] MCP Server 层对齐 A2C-SMCP v0.2.0（§8）
+* [x] MCP Server 层对齐 A2C-SMCP v0.3.2（§8）
 * [x] Curator / Aggregator 模式合法性与边界（§9）
 * [x] 与 Claude Code Marketplace 兼容性矩阵（§10）
 * [x] 不引入项（§11）
