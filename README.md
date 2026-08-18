@@ -11,7 +11,7 @@ TFRobot Marketplace 是 TFRobot 生态的市场平台。本仓库存放与之相
 
 ## 版本
 
-当前版本：**0.4.0**
+当前版本：**0.3.3**
 
 ---
 
@@ -57,7 +57,7 @@ inv docs.serve
 inv docs.build
 
 # 构建指定版本
-inv docs.build --version 0.4.0
+inv docs.build --version 0.3.3
 
 # 预览多版本文档
 inv docs.serve-versioned
@@ -211,9 +211,9 @@ inv docs.deploy
 
 # 或使用 bump-my-version 自动更新版本
 pip install bump-my-version
-bump-my-version bump patch  # 0.4.0 -> 0.4.1
-bump-my-version bump minor  # 0.4.0 -> 0.5.0
-bump-my-version bump major  # 0.4.0 -> 1.0.0
+bump-my-version bump patch  # 0.3.3 -> 0.3.4
+bump-my-version bump minor  # 0.3.3 -> 0.4.0
+bump-my-version bump major  # 0.3.3 -> 1.0.0
 ```
 
 ---
