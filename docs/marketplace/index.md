@@ -2,7 +2,7 @@
 
 TFRobot Marketplace 定义 **Plugin 包**（含 SKILL 与 MCP Server 配置）从 Git 仓库到平台的分发流程，与 [Claude Code Plugin Marketplaces](https://code.claude.com/docs/en/plugin-marketplaces) 兼容并按 TFRobot 多租户、Curator 审核、A2C-SMCP MCP 配置等需求做受控扩展。
 
-对应 Story：[TFRS-201](https://turingfocus.atlassian.net/browse/TFRS-201)；Epic：[TFRS-179](https://turingfocus.atlassian.net/browse/TFRS-179)。
+> 动手前先看：[发布 Plugin](../guides/publish-plugin.md)（场景化流程）；本章是字段级契约。
 
 ## Plugin 内容
 

@@ -4,7 +4,7 @@ TFRobot Plugin 可以在 `<plugin>/mcp-servers/` 子树下声明若干 **MCP Ser
 
 本协议**不另行设计** MCP 配置 schema：完整 schema 来自 A2C-SMCP；本协议**只规定** Plugin 内的目录约定 + 摘要当前对齐版本（v0.3.2）的字段速查，便于 Plugin 作者撰写时无需切换文档。
 
-对应 Story：[TFRS-201](https://turingfocus.atlassian.net/browse/TFRS-201)；Epic：[TFRS-179](https://turingfocus.atlassian.net/browse/TFRS-179)。
+> 动手前先看：[配置 MCP Server](../guides/configure-mcp-server.md)（场景化流程）；本章是字段级契约。
 
 ## 权威规范
 

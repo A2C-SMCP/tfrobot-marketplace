@@ -1,9 +1,9 @@
 # TFRobot SKILL 协议规范
 
-> Jira：[TFRS-187](https://turingfocus.atlassian.net/browse/TFRS-187)（A5）/ Story [TFRS-180](https://turingfocus.atlassian.net/browse/TFRS-180) / Epic [TFRS-179](https://turingfocus.atlassian.net/browse/TFRS-179)
-> 状态：**规范定稿** —— A1\~A4 已合并至 develop（[#35](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/35) / [#36](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/36) / [#37](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/37) / [#38](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/38)），本文档将它们整合为单一权威契约。
+> 状态：**规范定稿** —— A1\~A4 分步设计文档（见 [设计史](design-history/index.md)）整合而成的单一权威契约。
 > 范围：**SKILL 撰写规范与使用语义**——内容契约（如何写一个 SKILL）+ 加载使用约束（任何接入方必守）。**不涉及** SKILL 分发渠道、运行时存储介质、执行后端（沙箱 / 引擎 / 容器 / 凭证基础设施）等业务侧议题——这些由接入方业务库 / Computer 侧 A2C-SMCP 实施方文档处理。
 > 读者：**SKILL 作者**（开发指南）+ **接入方实施工程师**（加载使用层的最小协议契约）。
+> 动手前先看：[编写一个 SKILL](../guides/write-a-skill.md)（场景化流程）；本章是字段级契约。
 
 ## 0. 总览
 
@@ -39,9 +39,22 @@ TFRobot SKILL 协议定义**单个能力包（SKILL）的撰写规范与使用�
 
 ### 0.3 与上游标准的关系
 
-* **完全对齐**[Agent Skills 开放标准](https://agentskills.io/specification)的 6 个 frontmatter 字段（`name` / `description` / `license` / `compatibility` / `metadata` / `allowed-tools`），跨 Claude Code / Cursor / Goose 等兼容客户端**互操作不破坏**。
+* **完全对齐**[Agent Skills 开放标准](https://agentskills.io/specification)的 6 个 frontmatter 字段（`name` / `description` / `license` / `compatibility` / `metadata` / `allowed-tools`），跨 Claude Code / Codex / Cursor / Goose 等兼容客户端**互操作不破坏**。
 * **不采纳**任何 Claude Code 私有扩展字段（CLI 残留 / 平台决策项 / 本地 FS 概念）。
 * **不引入任何独有 frontmatter 字段**——执行后端差异由 Computer 侧 A2C-SMCP 协议表达，不污染 SKILL 内容契约。
+
+### 0.5 与 A2C-SMCP 协议的边界（先读这条）
+
+| 主题 | 权威 | 具体地址 |
+| --- | --- | --- |
+| SKILL 编写规范（本章全部内容） | **本站** | A2C-SMCP [skill.md](https://doc.turingfocus.cn/a2c-smcp/latest/specification/skill/) 明确「SKILL = 符合 marketplace SKILL v1 规范的目录包」，**反向引用本站**为内容契约权威 |
+| SKILL 的 staging 物化 / name 合成 / 三形态（`<plugin>:<skill>` 等） | A2C-SMCP | [skill.md §1 命名](https://doc.turingfocus.cn/a2c-smcp/latest/specification/skill/#1-skill-命名) |
+| `client:get_skill` 读取沙箱 / `.skillenv` 4017 边界 / 错误码 | A2C-SMCP | [skill.md §9-§10](https://doc.turingfocus.cn/a2c-smcp/latest/specification/skill/)、[error-handling.md](https://doc.turingfocus.cn/a2c-smcp/latest/specification/error-handling/) |
+| `${TFROBOT_SKILL_DIR}` 展开规范（render-time / 真实绝对目录） | A2C-SMCP | [skill.md §9.4](https://doc.turingfocus.cn/a2c-smcp/latest/specification/skill/#94-占位符展开与目录路径可见性)（本章 §6.1 为其摘要） |
+| MCP Server 配置 schema | A2C-SMCP | [data-structures.md § MCP Server 配置结构](https://doc.turingfocus.cn/a2c-smcp/latest/specification/data-structures/#mcp-server-配置结构) |
+| 执行后端 / 沙箱 / 凭证基础设施 | A2C-SMCP 实施方文档 | 本章不规定 |
+
+口诀：**写一个 SKILL 看本站；SKILL 怎么被 Computer 加载与执行看 A2C-SMCP。**
 
 ### 0.4 范围与不范围
 
@@ -429,7 +442,7 @@ json.dump(
 | | `$TFROBOT_ARG` / `$TFROBOT_INPUT`（输入语义留给 A2C-SMCP） | §6.3 |
 | | `$TFROBOT_EFFORT` / `$TFROBOT_MODEL` / `$TFROBOT_REQUEST_ID` | §6.3 |
 | 执行后端 | runtime 枚举 / per-engine Dockerfile / 沙箱 I/O 协议 / 跨 sandbox 通信 / IPC | 由 Computer 侧 A2C-SMCP 自行定义 |
-| 协议外能力 | 完整性签名校验、跨租户公共 marketplace、CDN 加速、多 region 分发、Web 编辑器、调试器 UI、资源配额计费、并发隔离精细策略 | Epic [TFRS-179](https://turingfocus.atlassian.net/browse/TFRS-179) |
+| 协议外能力 | 完整性签名校验、跨租户公共 marketplace、CDN 加速、多 region 分发、Web 编辑器、调试器 UI、资源配额计费、并发隔离精细策略 | 平台产品路线图范畴 |
 
 ## 11. 字段集 Freeze 清单
 
@@ -463,12 +476,12 @@ json.dump(
 
 A1\~A4 是规范的分步设计文档；本文档是其整合后的权威契约。如本文与 A1\~A4 表述冲突，**以本文为准**（A1\~A4 保留作为决策 rationale 与设计史）。
 
-| 子任务 | Jira | 文档 | PR | 最终采纳 |
-| --- | --- | --- | --- | --- |
-| A1 frontmatter 字段表 | [TFRS-183](https://turingfocus.atlassian.net/browse/TFRS-183) | [frontmatter-fields.md](design-history/frontmatter-fields.md) | [#35](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/35) | ✅ 完全对齐 Agent Skills 开放标准；不采纳 Claude Code 扩展字段 |
-| A2 `.skillenv` 设计 | [TFRS-184](https://turingfocus.atlassian.net/browse/TFRS-184) | [skillenv.md](design-history/skillenv.md) | [#36](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/36) | ✅ 标准 dotenv 双语义；用户 vault 三层强制隔离 |
-| A3 `runtime` 枚举 | [TFRS-185](https://turingfocus.atlassian.net/browse/TFRS-185) | [runtime-enum.md](design-history/runtime-enum.md) | [#37](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/37) | ❌ **撤回**——A3 曾设计双引擎枚举（`cubesandbox::*` / `e2b::*`）+ BYO Dockerfile；最终决定执行后端归 Computer 侧 A2C-SMCP，`runtime` 字段不入协议 |
-| A4 目录 + 占位符 | [TFRS-186](https://turingfocus.atlassian.net/browse/TFRS-186) | [directory-placeholders.md](design-history/directory-placeholders.md) | [#38](https://cnb.cool/turingfocus/tfrobotv2/TFRobotServer/-/pulls/38) | ✅ `TFROBOT_*` 私有命名空间 + `skills` 工具契约 + 3 条安全原则 |
+| 子任务 | 文档 | 最终采纳 |
+| --- | --- | --- |
+| A1 frontmatter 字段表 | [frontmatter-fields.md](design-history/frontmatter-fields.md) | ✅ 完全对齐 Agent Skills 开放标准；不采纳 Claude Code 扩展字段 |
+| A2 `.skillenv` 设计 | [skillenv.md](design-history/skillenv.md) | ✅ 标准 dotenv 双语义；用户 vault 三层强制隔离 |
+| A3 `runtime` 枚举 | [runtime-enum.md](design-history/runtime-enum.md) | ❌ **撤回**——A3 曾设计双引擎枚举（`cubesandbox::*` / `e2b::*`）+ BYO Dockerfile；最终决定执行后端归 Computer 侧 A2C-SMCP，`runtime` 字段不入协议 |
+| A4 目录 + 占位符 | [directory-placeholders.md](design-history/directory-placeholders.md) | ✅ `TFROBOT_*` 私有命名空间 + `skills` 工具契约 + 3 条安全原则 |
 
 **A3 撤回 rationale**：A3 假设 TFRobot 协议要直接驱动执行后端（双引擎集群 + 镜像构建 + 沙箱注入），因此设计了 `runtime` 字段携带执行模板 + 引擎前缀语义。评审时确认了更清晰的协议分层：
 - **Robot 配置侧 SKILL** 本就不执行脚本（仅文档驱动），不需要 `runtime` 字段

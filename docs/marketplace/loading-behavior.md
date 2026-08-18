@@ -1,8 +1,7 @@
 # Plugin manifest 加载行为参考（基于 Claude Code 实现观察）
 
 > 关联：[protocol.md](protocol.md) 主规范
-> Jira：[TFRS-202](https://turingfocus.atlassian.net/browse/TFRS-202) / [TFRS-201](https://turingfocus.atlassian.net/browse/TFRS-201)
-> 性质：**实施/运行时行为参考**，非规范强制约束。Module D 实施时建议复刻 Claude Code 这套行为以最大化兼容；SKILL/Plugin 作者用于理解装载时的取舍。
+> 性质：**实施/运行时行为参考**，非规范强制约束。实施方建议复刻 Claude Code 这套行为以最大化兼容；SKILL/Plugin 作者用于理解装载时的取舍。
 > 来源：[Claude Code 官方文档](https://code.claude.com/docs/en/plugin-marketplaces) + 公开源码观察（`pluginLoader.ts` / `schemas.ts`）+ **A2C 参考实现 SDK（python-sdk / rust-sdk）实测**。Claude Code 原版与双 SDK 有分歧处已显式标注（§1 / §6 / §7）——Module D 应**以双 SDK 实测为准**对齐 Computer 侧，避免行为分叉。
 
 ## 0. 为什么单列此文档

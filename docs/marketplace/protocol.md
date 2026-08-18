@@ -1,6 +1,5 @@
 # TFRobotServer Marketplace 规范
 
-> Jira：D1 [TFRS-202](https://turingfocus.atlassian.net/browse/TFRS-202) / Module D Story [TFRS-201](https://turingfocus.atlassian.net/browse/TFRS-201) / Epic [TFRS-179](https://turingfocus.atlassian.net/browse/TFRS-179)
 > 范围：SKILL 包的 **Git 仓库分发约定（数据结构与 JSON Schema）**；与单个 SKILL 文件夹的内容契约（[SKILL 协议](../skill/protocol.md)）正交
 > 设计参考：[Claude Code Plugin Marketplaces 官方规范](https://code.claude.com/docs/en/plugin-marketplaces) —— 字段定义与 source 类型枚举借鉴其设计，**但 manifest 路径与命名空间独立**（`.tfrobot-plugin/` 而非 `.claude-plugin/`）
 > 读者：① SKILL / Plugin 作者（通过 Marketplace 发布场景）② Module D 实施工程师
