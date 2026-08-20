@@ -52,7 +52,7 @@
 
     ---
 
-    单个 SKILL 包的**内容契约**（frontmatter 6 字段、目录布局、`.skillenv`、占位符、`skills` 工具、安全模型）。本站权威，A2C-SMCP 反向引用。
+    单个 SKILL 包的**内容契约**（frontmatter 7 字段含 `tags` 分类元数据、目录布局、`.skillenv`、占位符、`skills` 工具、安全模型）。本站权威，A2C-SMCP 反向引用。
 
     [:octicons-arrow-right-24: 进入 SKILL 协议](skill/index.md)
 

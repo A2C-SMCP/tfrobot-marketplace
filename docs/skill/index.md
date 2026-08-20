@@ -24,7 +24,7 @@ SKILL 归属于 **Robot**，切换 Robot 即切换 SKILL 集合。Robot 的 SKIL
 
 ## 设计史（附录）
 
-A1\~A4 是协议规范的分步设计文档；如与协议表述冲突，**以协议为准**。保留作为决策 rationale 与设计史，统一收录于 [设计史索引](design-history/index.md)。
+A1\~A6 是协议规范的分步设计文档；如与协议表述冲突，**以协议为准**。保留作为决策 rationale 与设计史，统一收录于 [设计史索引](design-history/index.md)。
 
 | 子任务 | 状态 | 产出 |
 | --- | --- | --- |
@@ -33,3 +33,4 @@ A1\~A4 是协议规范的分步设计文档；如与协议表述冲突，**以�
 | A3 `runtime` 枚举 | 已完成（撤回） | [runtime 枚举](design-history/runtime-enum.md) |
 | A4 目录结构与占位符 | 已完成 | [目录与占位符](design-history/directory-placeholders.md) |
 | A5 规范整合 | 已完成（定稿） | [SKILL 协议](protocol.md) |
+| A6 tags 分类元数据 | 已完成 | [tags 字段](design-history/tags-field.md) |

@@ -1,6 +1,6 @@
 # TFRobot SKILL 协议规范
 
-> 状态：**规范定稿** —— A1\~A4 分步设计文档（见 [设计史](design-history/index.md)）整合而成的单一权威契约。
+> 状态：**规范定稿** —— A1\~A6 分步设计文档（见 [设计史](design-history/index.md)）整合而成的单一权威契约。
 > 范围：**SKILL 撰写规范与使用语义**——内容契约（如何写一个 SKILL）+ 加载使用约束（任何接入方必守）。**不涉及** SKILL 分发渠道、运行时存储介质、执行后端（沙箱 / 引擎 / 容器 / 凭证基础设施）等业务侧议题——这些由接入方业务库 / Computer 侧 A2C-SMCP 实施方文档处理。
 > 读者：**SKILL 作者**（开发指南）+ **接入方实施工程师**（加载使用层的最小协议契约）。
 > 动手前先看：[编写一个 SKILL](../guides/write-a-skill.md)（场景化流程）；本章是字段级契约。
@@ -17,7 +17,7 @@ TFRobot SKILL 协议定义**单个能力包（SKILL）的撰写规范与使用�
 * **平台无关** —— 协议本身**不指定**分发渠道、存储介质、执行后端；同一个 SKILL 文件夹可在 Claude Code / Cursor / TFRobot 等任何兼容客户端加载使用
 * TFRobot 数字员工通过加载 SKILL 来扩展能力 —— 与 Anthropic [Agent Skills 开放标准](https://agentskills.io/specification)中的 Skill 概念**等价**
 
-**协议层扩展概览**：相对上游标准，本协议在 `.skillenv` 双语义（§5）、`skills` 工具（§7）、`$TFROBOT_*` 占位符（§6）、SKILL 资源访问安全原则（§8）等处做了受控扩展，以适配 Robot ↔ Computer 的混合执行模型。**本规范不引入任何独有 frontmatter 字段**——6 个 frontmatter 字段全部来自 Agent Skills 开放标准。
+**协议层扩展概览**：相对上游标准，本协议在 `.skillenv` 双语义（§5）、`skills` 工具（§7）、`$TFROBOT_*` 占位符（§6）、SKILL 资源访问安全原则（§8）等处做了受控扩展，以适配 Robot ↔ Computer 的混合执行模型。**独有 frontmatter 字段仅 `tags`**（纯分类元数据，见 §3.3）——其余 6 个 frontmatter 字段全部来自 Agent Skills 开放标准。
 
 ### 0.2 SKILL 归属与来源
 
@@ -41,7 +41,7 @@ TFRobot SKILL 协议定义**单个能力包（SKILL）的撰写规范与使用�
 
 * **完全对齐**[Agent Skills 开放标准](https://agentskills.io/specification)的 6 个 frontmatter 字段（`name` / `description` / `license` / `compatibility` / `metadata` / `allowed-tools`），跨 Claude Code / Codex / Cursor / Goose 等兼容客户端**互操作不破坏**。
 * **不采纳**任何 Claude Code 私有扩展字段（CLI 残留 / 平台决策项 / 本地 FS 概念）。
-* **不引入任何独有 frontmatter 字段**——执行后端差异由 Computer 侧 A2C-SMCP 协议表达，不污染 SKILL 内容契约。
+* **独有 frontmatter 字段仅 `tags`**（纯分类元数据，§3.3）：执行后端差异仍由 Computer 侧 A2C-SMCP 协议表达，不污染 SKILL 内容契约；其他客户端忽略未知 key，互操作不破坏。
 
 ### 0.5 与 A2C-SMCP 协议的边界（先读这条）
 
@@ -60,7 +60,7 @@ TFRobot SKILL 协议定义**单个能力包（SKILL）的撰写规范与使用�
 
 **本规范收入**：
 
-* Frontmatter 6 字段（全部来自开放标准）+ 标准目录结构 + `.skillenv` 双语义环境变量声明 + 3 个运行时占位符 + 平台内置 `skills` 工具 + 3 条 SKILL 资源访问安全原则。
+* Frontmatter 7 字段（6 个开放标准字段 + `tags` 分类元数据）+ 标准目录结构 + `.skillenv` 双语义环境变量声明 + 3 个运行时占位符 + 平台内置 `skills` 工具 + 3 条 SKILL 资源访问安全原则。
 
 **本规范不收入**（详见 §10）：
 
@@ -70,13 +70,13 @@ TFRobot SKILL 协议定义**单个能力包（SKILL）的撰写规范与使用�
 
 ## 1. 设计原则
 
-本规范设计共 9 条原则：6 条来自 A1~A4 的"克制 + 互操作 + 安全"基调；3 条是 SKILL 资源访问安全模型的强制约束。
+本规范设计共 9 条原则：6 条来自 A1\~A6 的"克制 + 互操作 + 安全"基调；3 条是 SKILL 资源访问安全模型的强制约束。
 
 ### 1.1 协议层（6 条）
 
 1. **完全对齐 Agent Skills 开放标准**：6 个 frontmatter 字段全采纳，不破坏跨客户端互操作。
 2. **不采纳 Claude Code 扩展字段**：CLI 残留（`$ARGUMENTS` / `arguments` / `argument-hint`）、平台决策项（`model` / `effort` / `disable-model-invocation` / `user-invocable`）、本地 FS 概念（`hooks` / `paths`）等一律不入；理由汇总在 A1 §3。
-3. **不引入独有字段**：执行后端差异（沙箱 / 引擎 / 容器选择）由 Computer 侧 A2C-SMCP 表达；SKILL frontmatter **不承载**该类信息。设计史中 A3 曾设计 `runtime` 字段，最终撤回（见附录 A）。
+3. **不引入执行后端独有字段**：执行后端差异（沙箱 / 引擎 / 容器选择）由 Computer 侧 A2C-SMCP 表达；SKILL frontmatter **不承载**该类信息。设计史中 A3 曾设计 `runtime` 字段，最终撤回（见附录 A）。**唯一例外 `tags`**：纯分类元数据（protocol#50 需求驱动），不参与执行 / 授权决策；其他客户端忽略未知 key，互操作不破坏（§3.3）。
 4. **可由仓库内文件表达的不入 frontmatter**：环境变量 → `.skillenv`；frontmatter 仅承载元信息。
 5. **占位符私有命名空间**：所有运行时占位符以 `TFROBOT_` 前缀；不 mirror Claude Code `CLAUDE_*` / `$ARGUMENTS`；未识别占位符跨平台加载时字面透传。
 6. **克制**：所有候选字段 / 占位符 / 取值均需具体 SKILL 场景驱动；不预设未实证的能力。
@@ -132,7 +132,7 @@ my-skill/                          # 包根目录名 = SKILL.md frontmatter `nam
 
 ## 3. SKILL.md Frontmatter 字段表
 
-YAML frontmatter 位于 SKILL.md 顶部，包裹在 `---` 之间。共 6 个字段，全部来自 Agent Skills 开放标准。
+YAML frontmatter 位于 SKILL.md 顶部，包裹在 `---` 之间。共 7 个字段：6 个来自 Agent Skills 开放标准，`tags` 为本平台唯一私有字段（纯分类元数据，详见 §3.3）。
 
 ### 3.1 必填字段
 
@@ -141,16 +141,34 @@ YAML frontmatter 位于 SKILL.md 顶部，包裹在 `---` 之间。共 6 个字�
 | `name` | string | 1–64 字符；`[a-z0-9-]`；不以 `-` 开头/结尾；无连续 `--`；**与目录名一致** | SKILL 唯一标识 |
 | `description` | string | 1–1024 字符；非空 | "做什么 + 何时用"；Robot 启动时进入 LLM 可见 skill 列表（progressive disclosure 第一层）；**首句包含核心触发关键词** |
 
-### 3.2 可选字段（开放标准）
+### 3.2 可选字段（开放标准 4 个 + 平台私有 `tags`）
 
 | 字段 | 类型 | 约束 | 含义 |
 | --- | --- | --- | --- |
 | `license` | string | 标准未规定字符上限 | 许可声明 |
 | `compatibility` | string | 最长 500 字符 | 人类可读环境要求 hint（如"需要互联网访问"、"需要 Computer 预装 pandas"） |
+| `tags` | list[str] | 可选；0–10 条；单条 1–32 字符 kebab-case | 分类/发现标签；A2C 侧透传 `A2CSkillRef.tags`（详见 §3.3） |
 | `metadata` | map<string,string> | 标准未规定大小上限 | 自由 key-value，跨客户端互操作透传；TFRobot 平台**不解释** |
 | `allowed-tools` | string \| list | 空格分隔字符串或 YAML 列表 | LLM 推理循环中可直接调用、免授权的工具白名单；**与 Computer 侧执行无关**，仅作用于 LLM-工具循环层面 |
 
-### 3.3 本规范不引入的字段（完整列表）
+### 3.3 `tags` 字段详述（唯一平台私有字段）
+
+`tags` 是本规范**唯一**的平台私有 frontmatter 字段（不在 Agent Skills 开放标准 6 字段内，protocol#50 需求驱动）：纯分类元数据，供 SKILL 分类 / 发现使用。A2C-SMCP 侧将其透传至 `A2CSkillRef.tags`（`NotRequired[list[str]]` 加性字段，与 `allowed_tools` 同款模式），Agent 全量 `client:get_skills` 后自行过滤；**不改任何协议事件**。
+
+| 项 | 约定 |
+| --- | --- |
+| 类型 | `list[str]`（YAML 列表）；**不接受**空格分隔字符串（与 `allowed-tools` 双形态不同） |
+| 条目数 | 0–10 条；超限仅作者侧警告，多余条目仍透传 |
+| 单条 | 1–32 字符；kebab-case 小写 `[a-z0-9-]`；空串 / 非 kebab 条目仅作者侧警告 |
+| 重复 | 无意义，作者侧提示；加载链路不去重，重复条目透传，去重由 Agent 侧过滤时自行处理 |
+
+**校验语义（与 A2C-SMCP 透传口径一致）**：`tags` 非 `list[str]` → **省略该字段 + 作者侧警告**，SKILL **照常注册**，不触发任何加载拒绝路径（protocol#50 已裁决；A2C 侧行为相同：省略字段 + 诊断日志）。
+
+**词汇约定**：v1 仅定上述最小约定（kebab-case 小写、禁空串、不设保留字白名单）。与 MCP Tool 级 `ToolMeta.tags`（[protocol#51](https://github.com/A2C-SMCP/a2c-smcp-protocol/issues/51) 在推）的统一词汇约定（大小写 / 保留字 / 空串语义）落地后，**以协议仓为权威**，本规范承诺跟进对齐，避免两套 tag 体系各自演化。
+
+**与 plugin 级 tags 的关系**：[Marketplace 规范](../marketplace/protocol.md) 的 `marketplace.json` plugin 条目已有 `tags`（plugin 级分类）；本字段是 **skill 级**分类，粒度不同、互不替代。
+
+### 3.4 本规范不引入的字段（完整列表）
 
 CLI 残留：`arguments` / `argument-hint` / `$ARGUMENTS` / `$N` / `$name`
 平台决策：`model` / `effort` / `disable-model-invocation` / `user-invocable` / `agent`
@@ -389,6 +407,7 @@ csv-aggregator/
 name: csv-aggregator
 description: 把多个 CSV 文件按用户给定的列规则聚合，并按 assets/report-template.docx 模板生成报告。当用户上传 CSV 并要求聚合/出报告时触发。
 compatibility: 需要 Computer 侧 Python 3.11+ 环境；预装 pandas / python-docx；列规则参见 references/column-mapping.md
+tags: [data-processing, csv]
 ---
 
 ## 执行
@@ -431,11 +450,11 @@ json.dump(
 
 | 类别 | 不收入项 | 出处 |
 | --- | --- | --- |
-| Frontmatter 字段 | `arguments` / `argument-hint` / `$ARGUMENTS` / `$N` / `$name`（CLI 残留） | §3.3 / A1 §3.1 |
-| | `model` / `effort` / `disable-model-invocation` / `user-invocable` / `agent`（平台决策） | §3.3 / A1 §3.1 |
-| | `hooks` / `paths` / `shell`（本地 FS 概念） | §3.3 / A1 §3.1 |
-| | `runtime` / `dockerfile` / `image` / `byoi`（执行后端） | §3.3（A3 撤回，见附录 A） |
-| | `version` / `secrets` / `network` / `egress` / `visibility` / `audience` / `quota` / `cost` / `signature` / `integrity` | §3.3 / A1 §3.2 |
+| Frontmatter 字段 | `arguments` / `argument-hint` / `$ARGUMENTS` / `$N` / `$name`（CLI 残留） | §3.4 / A1 §3.1 |
+| | `model` / `effort` / `disable-model-invocation` / `user-invocable` / `agent`（平台决策） | §3.4 / A1 §3.1 |
+| | `hooks` / `paths` / `shell`（本地 FS 概念） | §3.4 / A1 §3.1 |
+| | `runtime` / `dockerfile` / `image` / `byoi`（执行后端） | §3.4（A3 撤回，见附录 A） |
+| | `version` / `secrets` / `network` / `egress` / `visibility` / `audience` / `quota` / `cost` / `signature` / `integrity` | §3.4 / A1 §3.2 |
 | 占位符 | `$ARGUMENTS` / `$N` / `$name` | §6.3 |
 | | `$TFROBOT_API_ENDPOINT` / `$TFROBOT_AUTH_TOKEN`（无回调通道） | §6.3 |
 | | `$TFROBOT_TENANT_ID` / `$TFROBOT_USER_ID`（多租户上下文不暴露） | §6.3 |
@@ -448,9 +467,9 @@ json.dump(
 
 > 本节为协议字段总图，作为接入方实施时的字段对齐基准。任何不在本表中的字段、占位符、文件名平台均不解释。
 
-### 11.1 Frontmatter 字段（6 个）
+### 11.1 Frontmatter 字段（7 个）
 
-`name` / `description` / `license` / `compatibility` / `metadata` / `allowed-tools`
+`name` / `description` / `license` / `compatibility` / `tags` / `metadata` / `allowed-tools`
 
 ### 11.2 受协议解释的特殊文件名（1 个）
 
@@ -474,7 +493,7 @@ json.dump(
 
 ## 附录 A：设计史
 
-A1\~A4 是规范的分步设计文档；本文档是其整合后的权威契约。如本文与 A1\~A4 表述冲突，**以本文为准**（A1\~A4 保留作为决策 rationale 与设计史）。
+A1\~A6 是规范的分步设计文档；本文档是其整合后的权威契约。如本文与 A1\~A6 表述冲突，**以本文为准**（A1\~A6 保留作为决策 rationale 与设计史）。
 
 | 子任务 | 文档 | 最终采纳 |
 | --- | --- | --- |
@@ -482,6 +501,7 @@ A1\~A4 是规范的分步设计文档；本文档是其整合后的权威契约�
 | A2 `.skillenv` 设计 | [skillenv.md](design-history/skillenv.md) | ✅ 标准 dotenv 双语义；用户 vault 三层强制隔离 |
 | A3 `runtime` 枚举 | [runtime-enum.md](design-history/runtime-enum.md) | ❌ **撤回**——A3 曾设计双引擎枚举（`cubesandbox::*` / `e2b::*`）+ BYO Dockerfile；最终决定执行后端归 Computer 侧 A2C-SMCP，`runtime` 字段不入协议 |
 | A4 目录 + 占位符 | [directory-placeholders.md](design-history/directory-placeholders.md) | ✅ `TFROBOT_*` 私有命名空间 + `skills` 工具契约 + 3 条安全原则 |
+| A6 tags 分类元数据 | [tags-field.md](design-history/tags-field.md) | ✅ 唯一平台私有 frontmatter 字段；纯分类元数据，A2C 侧 `A2CSkillRef.tags` 加性透传（[protocol#50](https://github.com/A2C-SMCP/a2c-smcp-protocol/issues/50) / [marketplace#1](https://github.com/A2C-SMCP/tfrobot-marketplace/issues/1)） |
 
 **A3 撤回 rationale**：A3 假设 TFRobot 协议要直接驱动执行后端（双引擎集群 + 镜像构建 + 沙箱注入），因此设计了 `runtime` 字段携带执行模板 + 引擎前缀语义。评审时确认了更清晰的协议分层：
 - **Robot 配置侧 SKILL** 本就不执行脚本（仅文档驱动），不需要 `runtime` 字段

@@ -125,9 +125,10 @@ nav:
       - 加载行为参考: marketplace/loading-behavior.md
   - 附录:
       - 常见问题: appendix/faq.md
-      - 设计史 (A1~A4):
+      - 设计史 (A1~A6):
           - 概览: skill/design-history/index.md
           - A1 frontmatter 字段表: skill/design-history/frontmatter-fields.md
           - A2 .skillenv 设计: skill/design-history/skillenv.md
           - A3 runtime 枚举: skill/design-history/runtime-enum.md
           - A4 目录与占位符: skill/design-history/directory-placeholders.md
+          - A6 tags 分类元数据: skill/design-history/tags-field.md

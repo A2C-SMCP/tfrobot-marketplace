@@ -1,6 +1,6 @@
-# SKILL 协议设计史（A1\~A4）
+# SKILL 协议设计史（A1\~A6）
 
-下列文档是 [SKILL 协议](../protocol.md) 的分步设计稿，按 Jira 子任务顺序产出。
+下列文档是 [SKILL 协议](../protocol.md) 的分步设计稿。A1\~A5 按 Jira 子任务顺序产出（A5 规范整合 → 协议正文）；A6 为 GitHub 立项的后继修订（protocol#50 / marketplace#1）。
 
 **冲突仲裁**：如与协议表述冲突，**以协议为准**。本目录文档保留作为决策 rationale 与设计史，不作为实施契约。
 
@@ -12,3 +12,5 @@
 | A2 | [TFRS-184](https://turingfocus.atlassian.net/browse/TFRS-184) | [.skillenv 设计](skillenv.md) | ✅ 标准 dotenv 双语义；用户 vault 三层强制隔离 |
 | A3 | [TFRS-185](https://turingfocus.atlassian.net/browse/TFRS-185) | [runtime 枚举](runtime-enum.md) | ❌ **撤回**——A3 曾设计双引擎枚举 + BYO Dockerfile；最终决定执行后端归 Computer 侧 A2C-SMCP 表达，`runtime` 字段不入协议。详见 [协议附录 A](../protocol.md#附录-a设计史)。 |
 | A4 | [TFRS-186](https://turingfocus.atlassian.net/browse/TFRS-186) | [目录与占位符](directory-placeholders.md) | ✅ `TFROBOT_*` 私有命名空间 + `skills` 工具契约 + 3 条安全原则 |
+| A5 | —（规范整合，无独立设计稿） | [SKILL 协议](../protocol.md) | ✅ 整合 A1\~A4 为单一权威契约 |
+| A6 | [protocol#50](https://github.com/A2C-SMCP/a2c-smcp-protocol/issues/50) / [marketplace#1](https://github.com/A2C-SMCP/tfrobot-marketplace/issues/1) | [tags 字段](tags-field.md) | ✅ 唯一平台私有 frontmatter 字段；纯分类元数据，`A2CSkillRef.tags` 加性透传 |

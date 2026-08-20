@@ -22,18 +22,18 @@
 | 用户输入/凭据 | plugin.json `userConfig` + `${user_config.KEY}`（`sensitive` 入 keychain） | 无清单内凭据——从宿主环境继承 | `mcp-servers/inputs.json` + `${input:<id>}`（`password: true` 隐藏输入） |
 | 密钥文件 | 无 | 无 | `.skillenv`（LLM 不可见，硬秘密边界） |
 | 占位符 | `$ARGUMENTS` / `${CLAUDE_SKILL_DIR}` | 无 | `$TFROBOT_SKILL_DIR`（真实绝对目录）/ `$TFROBOT_SESSION_ID` / `$TFROBOT_ROBOT_ID` |
-| frontmatter 扩展 | CLI 内支持扩展字段，但 claude.ai 上传 / Skills API 通道**硬报错** | 未知 key 忽略；额外读 `agents/openai.yaml` | **仅 6 字段**，私有字段一律拒收 |
+| frontmatter 扩展 | CLI 内支持扩展字段，但 claude.ai 上传 / Skills API 通道**硬报错** | 未知 key 忽略；额外读 `agents/openai.yaml` | **6 开放标准字段 + `tags`**（唯一平台私有字段，其余不解释） |
 | 校验 | `claude plugin validate` | `codex plugin --help` 查原生 validate；否则官方 validator 脚本 | 仓库 `validate_tfrobot_marketplace.py`（镜像 SDK 边界） |
 
 ## 技术选型原则
 
-### 1. SKILL.md：只用 6 个标准字段
+### 1. SKILL.md：只用 6 个标准字段 + `tags`
 
-`name`（1–64 字符，`[a-z0-9-]` kebab，**必须与目录名一致**）/ `description`（1–1024，首句触发关键词）/ `license` / `compatibility` / `metadata` / `allowed-tools`。
+`name`（1–64 字符，`[a-z0-9-]` kebab，**必须与目录名一致**）/ `description`（1–1024，首句触发关键词）/ `license` / `compatibility` / `tags`（TFRobot 平台私有：`list[str]`，0–10 条，单条 1–32 字符 kebab-case，[SKILL 协议 §3.3](../skill/protocol.md#33-tags-字段详述唯一平台私有字段)）/ `metadata` / `allowed-tools`。
 
 - Claude Code 的扩展字段（`argument-hint` / `model` / `user-invocable` 等）CLI 内可用，但**出圈即报错**（claude.ai 上传 / Skills API / 打包分发校验器硬拒绝）。
-- Codex 对未知 key 宽容（忽略），但为了三端一致同样只用 6 字段。
-- TFRobot 协议明确**不引入任何私有字段**（[SKILL 协议 §0.3](../skill/protocol.md#03-与上游标准的关系)）。
+- Codex 对未知 key 宽容（忽略），但为了三端一致同样只用 6 字段 + `tags`（Codex 侧忽略 `tags`，无副作用）。
+- TFRobot 协议**私有字段仅 `tags`**（纯分类元数据；Claude Code / Codex 忽略未知 key，互操作不破坏）（[SKILL 协议 §0.3](../skill/protocol.md#03-与上游标准的关系)）。
 - 若要兼容最窄通道（claude.ai 上传限 200 字符），description 控制在 200 字符内。
 
 ### 2. SubAgent：三系统最大差异，逐平台独立决策

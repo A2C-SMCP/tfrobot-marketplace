@@ -20,7 +20,7 @@ my-skill/                  # ← 目录名 = 身份 = frontmatter name
 
 ## 第 2 步：写 SKILL.md
 
-frontmatter 共 6 个字段，全部来自 [Agent Skills 开放标准](https://agentskills.io/specification)（跨 Claude Code / Codex / TFRobot 互操作不破坏）：
+frontmatter 共 7 个字段：6 个来自 [Agent Skills 开放标准](https://agentskills.io/specification) + 平台私有 `tags`（跨 Claude Code / Codex / TFRobot 互操作不破坏——其他客户端忽略未知 key）：
 
 ```yaml
 ---
@@ -28,6 +28,7 @@ name: csv-aggregator
 description: 把多个 CSV 文件按用户给定的列规则聚合并生成报告。当用户上传 CSV 并要求聚合/出报告时使用。
 license: MIT
 compatibility: 需要 Python 3.11+；预装 pandas
+tags: [data-processing, csv]
 metadata: {}
 allowed-tools: Bash
 ---
@@ -35,9 +36,9 @@ allowed-tools: Bash
 
 - `name`：必填，约束见第 1 步。
 - `description`：必填，1–1024 字符。**「做什么 + 何时用」都写**，首句放核心触发关键词——它是 LLM 决定是否加载的唯一依据。
-- 其余 4 个可选字段来自开放标准，TFRobot 平台不解释 `metadata`，跨客户端透传。
+- 其余 5 个可选字段中 4 个来自开放标准（TFRobot 平台不解释 `metadata`，跨客户端透传）；`tags` 为本平台分类元数据，形状与校验见 [SKILL 协议 §3.3](../skill/protocol.md#33-tags-字段详述唯一平台私有字段)。
 
-**不引入任何平台私有字段**（`model` / `runtime` / `hooks` 等一律不入）——执行后端差异由 A2C-SMCP 表达，不污染内容契约。完整不引入清单见 [SKILL 协议 §3.3](../skill/protocol.md#33-本规范不引入的字段完整列表)。
+**平台私有字段仅 `tags`**（`model` / `runtime` / `hooks` 等一律不入）——执行后端差异由 A2C-SMCP 表达，不污染内容契约；`tags` 是纯分类元数据例外。完整不引入清单见 [SKILL 协议 §3.4](../skill/protocol.md#34-本规范不引入的字段完整列表)。
 
 正文是 Markdown，由 LLM 直接消费：
 
