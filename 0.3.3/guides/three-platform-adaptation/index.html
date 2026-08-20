@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.7">
     
     
       
@@ -31,7 +31,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -688,10 +688,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-skillmd只用-6-个标准字段" class="md-nav__link">
+  <a href="#1-skillmd只用-6-个标准字段--tags" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. SKILL.md：只用 6 个标准字段
+        1. SKILL.md：只用 6 个标准字段 + tags
       
     </span>
   </a>
@@ -1267,7 +1267,7 @@
   <span class="md-ellipsis">
     
   
-    设计史 (A1~A4)
+    设计史 (A1~A6)
   
 
     
@@ -1283,7 +1283,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    设计史 (A1~A4)
+    设计史 (A1~A6)
   
 
           </label>
@@ -1429,6 +1429,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skill/design-history/tags-field/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A6 tags 分类元数据
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1507,10 +1535,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-skillmd只用-6-个标准字段" class="md-nav__link">
+  <a href="#1-skillmd只用-6-个标准字段--tags" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. SKILL.md：只用 6 个标准字段
+        1. SKILL.md：只用 6 个标准字段 + tags
       
     </span>
   </a>
@@ -1725,7 +1753,7 @@
 <td>frontmatter 扩展</td>
 <td>CLI 内支持扩展字段，但 claude.ai 上传 / Skills API 通道<strong>硬报错</strong></td>
 <td>未知 key 忽略；额外读 <code>agents/openai.yaml</code></td>
-<td><strong>仅 6 字段</strong>，私有字段一律拒收</td>
+<td><strong>6 开放标准字段 + <code>tags</code></strong>（唯一平台私有字段，其余不解释）</td>
 </tr>
 <tr>
 <td>校验</td>
@@ -1736,12 +1764,12 @@
 </tbody>
 </table>
 <h2 id="技术选型原则">技术选型原则<a class="headerlink" href="#技术选型原则" title="Permanent link">&para;</a></h2>
-<h3 id="1-skillmd只用-6-个标准字段">1. SKILL.md：只用 6 个标准字段<a class="headerlink" href="#1-skillmd只用-6-个标准字段" title="Permanent link">&para;</a></h3>
-<p><code>name</code>（1–64 字符，<code>[a-z0-9-]</code> kebab，<strong>必须与目录名一致</strong>）/ <code>description</code>（1–1024，首句触发关键词）/ <code>license</code> / <code>compatibility</code> / <code>metadata</code> / <code>allowed-tools</code>。</p>
+<h3 id="1-skillmd只用-6-个标准字段--tags">1. SKILL.md：只用 6 个标准字段 + <code>tags</code><a class="headerlink" href="#1-skillmd只用-6-个标准字段--tags" title="Permanent link">&para;</a></h3>
+<p><code>name</code>（1–64 字符，<code>[a-z0-9-]</code> kebab，<strong>必须与目录名一致</strong>）/ <code>description</code>（1–1024，首句触发关键词）/ <code>license</code> / <code>compatibility</code> / <code>tags</code>（TFRobot 平台私有：<code>list[str]</code>，0–10 条，单条 1–32 字符 kebab-case，<a href="../../skill/protocol/#33-tags-字段详述唯一平台私有字段">SKILL 协议 §3.3</a>）/ <code>metadata</code> / <code>allowed-tools</code>。</p>
 <ul>
 <li>Claude Code 的扩展字段（<code>argument-hint</code> / <code>model</code> / <code>user-invocable</code> 等）CLI 内可用，但<strong>出圈即报错</strong>（claude.ai 上传 / Skills API / 打包分发校验器硬拒绝）。</li>
-<li>Codex 对未知 key 宽容（忽略），但为了三端一致同样只用 6 字段。</li>
-<li>TFRobot 协议明确<strong>不引入任何私有字段</strong>（<a href="../../skill/protocol/#03-与上游标准的关系">SKILL 协议 §0.3</a>）。</li>
+<li>Codex 对未知 key 宽容（忽略），但为了三端一致同样只用 6 字段 + <code>tags</code>（Codex 侧忽略 <code>tags</code>，无副作用）。</li>
+<li>TFRobot 协议<strong>私有字段仅 <code>tags</code></strong>（纯分类元数据；Claude Code / Codex 忽略未知 key，互操作不破坏）（<a href="../../skill/protocol/#03-与上游标准的关系">SKILL 协议 §0.3</a>）。</li>
 <li>若要兼容最窄通道（claude.ai 上传限 200 字符），description 控制在 200 字符内。</li>
 </ul>
 <h3 id="2-subagent三系统最大差异逐平台独立决策">2. SubAgent：三系统最大差异，逐平台独立决策<a class="headerlink" href="#2-subagent三系统最大差异逐平台独立决策" title="Permanent link">&para;</a></h3>
@@ -1871,7 +1899,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "content.code.annotate", "content.code.copy", "announce.dismiss", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"alias": true, "provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
